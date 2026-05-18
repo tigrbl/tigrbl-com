@@ -1,0 +1,10 @@
+services:
+  tigrbl-com:
+    build: .
+    container_name: tigrbl-com
+    restart: unless-stopped
+    labels:
+      site.host: tigrbl.com
+      site.kind: mdwrk-lander
+    ports:
+      - "127.0.0.1:0:80"

@@ -1,0 +1,24 @@
+{
+  "host": "tigrbl.com",
+  "zone": "tigrbl.com",
+  "repository": "tigrbl/tigrbl-com",
+  "siteKind": "mdwrk-lander",
+  "orchestrator": "npmctl",
+  "dnsProvider": "namecheap",
+  "deployment": "self-hosted-docker",
+  "dockerService": "tigrbl-com",
+  "records": [
+    {
+      "type": "A",
+      "host": "@",
+      "value": "SELF_HOSTED_DOCKER_IP",
+      "ttl": 300
+    },
+    {
+      "type": "CNAME",
+      "host": "www",
+      "value": "tigrbl.com",
+      "ttl": 300
+    }
+  ]
+}
