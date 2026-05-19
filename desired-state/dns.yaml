@@ -15,7 +15,7 @@ dns_records:
   - provider: namecheap
     zone: tigrbl.com
     type: A
-    name: "*"
+    name: "*.tigrbl.com"
     value: __SITE_SERVER_IP__
     ttl: 300
     meta:
