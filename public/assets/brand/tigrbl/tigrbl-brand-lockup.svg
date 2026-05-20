@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 96" role="img" aria-label="Tigrbl">
+  <rect width="96" height="96" rx="22" fill="#0b0f17"/>
+  <path d="M20 26h46c11 0 19 8 19 19s-8 19-19 19H41v12H20V26Z" fill="#f8fafc"/>
+  <path d="M41 43h25c3 0 5 2 5 5s-2 5-5 5H41V43Z" fill="#0b0f17"/>
+  <path d="M23 26h18L23 76h-7l17-50Z" fill="#f97316"/>
+  <path d="M47 26h13L42 76H29l18-50Z" fill="#f97316"/>
+  <text x="120" y="59" fill="#eef5ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="0">Tigrbl</text>
+  <text x="122" y="80" fill="#aeb9ca" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Governed runtime primitives</text>
+</svg>
