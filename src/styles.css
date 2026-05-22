@@ -58,7 +58,7 @@ footer {
 .site-brand img {
   display: block;
   width: auto;
-  height: 64px;
+  height: 70px;
   filter: drop-shadow(0 16px 36px var(--tigrbl-shadow));
 }
 

@@ -14,6 +14,12 @@ export const siteContent = {
       { label: "Proof", href: "/proof/" },
       { label: "Docs", href: "https://docs.tigrbl.com" }
     ],
+    compactLinks: [
+      { label: "Platform", href: "/platform/" },
+      { label: "Docs", href: "https://docs.tigrbl.com" },
+      { label: "Reviewable contracts", href: "/articles/contract-first-apis-stay-reviewable/" },
+      { label: "Publication lane", href: "/articles/the-tigrbl-site-proves-its-own-publication-lane/" }
+    ],
     cta: { label: "Get started", href: "/platform/" }
   },
   footer: {
@@ -40,7 +46,7 @@ export const siteContent = {
       h1: "Tigrbl",
       intro: "Tigrbl brings explicit contracts, runtime operations, and traceable service surfaces to Python applications. The site packages product positioning, structured metadata, and deployment evidence in a standalone MdWrk lander repository.",
       sections: [
-        { id: "hero", kind: "hero", eyebrow: "Tigrbl", title: "Governed API and runtime primitives for durable Python systems.", subtitle: "Tigrbl brings explicit contracts, runtime operations, and traceable service surfaces to Python applications." },
+        { id: "hero", kind: "hero", eyebrow: "Contract-first runtime", title: "Governed API and runtime primitives for durable Python systems.", subtitle: "Tigrbl brings explicit contracts, runtime operations, and traceable service surfaces to Python applications." },
         { id: "platform", kind: "feature_grid", title: "What this site owns", items: [
           { title: "Product narrative", description: "Canonical product messaging, audience positioning, and calls to action for tigrbl.com." },
           { title: "Structured discovery", description: "Search, assistant, social, and linked-data metadata generated from the content pack." },
