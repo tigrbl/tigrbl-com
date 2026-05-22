@@ -1,7 +1,17 @@
 :root {
-  color: #eef5ff;
-  background: #070a10;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f1f3f5;
+  background: #060708;
+  font-family: "Aldrich", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --tigrbl-ink: #f1f3f5;
+  --tigrbl-copy: #cfd4da;
+  --tigrbl-muted: #a5adb7;
+  --tigrbl-dim: #7f8790;
+  --tigrbl-accent: #ffffff;
+  --tigrbl-accent-soft: #d8dde3;
+  --tigrbl-border: rgba(255, 255, 255, 0.12);
+  --tigrbl-panel: rgba(255, 255, 255, 0.04);
+  --tigrbl-panel-strong: rgba(255, 255, 255, 0.06);
+  --tigrbl-shadow: rgba(0, 0, 0, 0.46);
 }
 
 * {
@@ -19,8 +29,9 @@ a {
 .site-shell {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 18% 0%, rgba(234, 88, 12, 0.18), transparent 34%),
-    linear-gradient(180deg, #111827 0%, #080c14 54%, #05070b 100%);
+    radial-gradient(circle at 50% -8%, rgba(255, 255, 255, 0.12), transparent 34%),
+    radial-gradient(circle at 50% 0%, rgba(88, 92, 97, 0.2), transparent 56%),
+    linear-gradient(180deg, #141618 0%, #090a0b 50%, #030303 100%);
 }
 
 .site-header,
@@ -47,7 +58,8 @@ footer {
 .site-brand img {
   display: block;
   width: auto;
-  height: 44px;
+  height: 64px;
+  filter: drop-shadow(0 16px 36px var(--tigrbl-shadow));
 }
 
 .site-header nav,
@@ -62,15 +74,16 @@ footer div,
 .site-header nav a,
 footer a,
 .compact-links a {
-  color: #c8d5ea;
+  color: var(--tigrbl-copy);
   font-size: 14px;
   text-decoration: none;
+  transition: color 160ms ease;
 }
 
 .site-header nav a:hover,
 footer a:hover,
 .article-link:hover strong {
-  color: #f97316;
+  color: var(--tigrbl-accent);
 }
 
 main {
@@ -85,7 +98,7 @@ main {
 .eyebrow,
 .article-kicker,
 .article-link span {
-  color: #f97316;
+  color: var(--tigrbl-accent-soft);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -110,13 +123,13 @@ p {
 .home-hero p,
 .article-excerpt {
   max-width: 700px;
-  color: #c5cedd;
+  color: var(--tigrbl-copy);
   font-size: 20px;
   line-height: 1.62;
 }
 
 .article-list {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--tigrbl-border);
   padding-top: 34px;
 }
 
@@ -141,7 +154,7 @@ p {
   display: grid;
   grid-template-columns: 130px minmax(180px, 280px) 1fr;
   gap: 22px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--tigrbl-border);
   padding: 22px 0;
   text-decoration: none;
 }
@@ -153,7 +166,7 @@ p {
 .article-link p {
   grid-column: 3;
   margin: 0;
-  color: #aeb9ca;
+  color: var(--tigrbl-muted);
   line-height: 1.55;
 }
 
@@ -164,7 +177,7 @@ p {
 .article-breadcrumb {
   display: flex;
   gap: 10px;
-  color: #aeb9ca;
+  color: var(--tigrbl-muted);
   font-size: 14px;
   margin-bottom: 42px;
 }
@@ -174,7 +187,7 @@ p {
 }
 
 .article-content {
-  color: #c5cedd;
+  color: var(--tigrbl-copy);
   font-size: 18px;
   line-height: 1.7;
   display: grid;
@@ -193,7 +206,7 @@ p {
 }
 
 .article-section p {
-  color: #c5cedd;
+  color: var(--tigrbl-copy);
   font-size: 18px;
   line-height: 1.7;
 }
@@ -211,8 +224,9 @@ p {
 .proof-card,
 .package-card,
 .article-callout {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--tigrbl-border);
+  background: var(--tigrbl-panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   padding: 18px 20px;
 }
 
@@ -228,7 +242,7 @@ p {
 .proof-card span {
   display: inline-flex;
   margin-bottom: 10px;
-  color: #f97316;
+  color: var(--tigrbl-accent-soft);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -236,11 +250,11 @@ p {
 }
 
 .package-card code {
-  color: #eef5ff;
+  color: var(--tigrbl-ink);
 }
 
 .compact-links {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--tigrbl-border);
   margin-top: 42px;
   padding-top: 28px;
 }
@@ -251,8 +265,8 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  color: #aeb9ca;
+  border-top: 1px solid var(--tigrbl-border);
+  color: var(--tigrbl-muted);
 }
 
 footer p {
@@ -265,7 +279,7 @@ footer p {
 }
 
 .footer-copy small {
-  color: #91a2ba;
+  color: var(--tigrbl-dim);
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;

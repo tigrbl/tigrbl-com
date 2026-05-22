@@ -37,7 +37,7 @@ function SiteChrome({ children }: { children: React.ReactNode }) {
     <div className="site-shell">
       <header className="site-header">
         <a className="site-brand" href="/" aria-label={`${siteContent.product.name} home`}>
-          <img src="/assets/brand/tigrbl/tigrbl-brand-lockup.svg" alt={siteContent.product.name} />
+          <img src="/assets/brand/tigrbl/tigrbl-logo-lockup.png" alt={siteContent.product.name} />
         </a>
         <nav aria-label="Primary navigation">
           {siteContent.nav.primary.map((link) => (
