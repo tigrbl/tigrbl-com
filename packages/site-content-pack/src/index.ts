@@ -25,7 +25,7 @@ export const siteContent = {
   footer: {
     note: "Tigrbl is maintained by tigrbl.",
     links: [
-      { label: "GitHub", href: "https://github.com/tigrbl/tigrbl-com" },
+      { label: "GitHub", href: "https://github.com/tigrbl/tigrbl" },
       { label: "Docs", href: "https://docs.tigrbl.com" }
     ]
   },
