@@ -7,6 +7,8 @@ import React, { useState } from "react";
 import { EXAMPLES } from "../data";
 import { ExampleRecord } from "../types";
 import { Terminal, Copy, CheckCircle, Code2, BookOpen, ExternalLink, Filter, HelpCircle, RefreshCw } from "lucide-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export function ExamplesView() {
   const [filterDifficulty, setFilterDifficulty] = useState<string>("All");
@@ -70,7 +72,7 @@ export function ExamplesView() {
         </div>
 
         {/* Filter Section */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 mb-10 shadow-lg">
+        <div className="bg-slate-900 border border-white/5 rounded-xl p-5 mb-10 shadow-lg">
           <div className="flex items-center gap-2 mb-4">
             <Filter className="w-4 h-4 text-emerald-500" />
             <span className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wide">
@@ -85,7 +87,7 @@ export function ExamplesView() {
               <select
                 value={filterDifficulty}
                 onChange={(e) => setFilterDifficulty(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 text-slate-300 rounded p-2 text-xs font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                className="w-full bg-slate-950 border border-white/5 text-slate-300 rounded p-2 text-xs font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-none"
               >
                 <option value="All">All Levels</option>
                 <option value="Beginner">Beginner</option>
@@ -100,7 +102,7 @@ export function ExamplesView() {
               <select
                 value={filterProtocol}
                 onChange={(e) => setFilterProtocol(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 text-slate-300 rounded p-2 text-xs font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                className="w-full bg-slate-950 border border-white/5 text-slate-300 rounded p-2 text-xs font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-none"
               >
                 <option value="All">All Protocols</option>
                 <option value="REST">REST</option>
@@ -117,7 +119,7 @@ export function ExamplesView() {
               <select
                 value={filterEngine}
                 onChange={(e) => setFilterEngine(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 text-slate-300 rounded p-2 text-xs font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                className="w-full bg-slate-950 border border-white/5 text-slate-300 rounded p-2 text-xs font-mono focus:ring-1 focus:ring-emerald-500 focus:outline-none"
               >
                 <option value="All">All Engines</option>
                 <option value="None">None (In-Memory)</option>
@@ -136,7 +138,7 @@ export function ExamplesView() {
             </span>
 
             {filteredList.length === 0 ? (
-              <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 text-center">
+              <div className="bg-slate-900 border border-white/5 rounded-lg p-6 text-center">
                 <p className="text-xs text-slate-400 font-mono">No examples match the chosen filters.</p>
                 <button
                   onClick={() => {
@@ -156,15 +158,15 @@ export function ExamplesView() {
                   onClick={() => setSelectedExample(ex)}
                   className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer ${
                     selectedExample.id === ex.id
-                      ? "bg-slate-900 border-emerald-500 shadow-md shadow-emerald-950/20"
-                      : "bg-slate-900/40 border-slate-850 hover:bg-slate-850 hover:border-slate-800"
+                      ? "bg-slate-900 border-emerald-500/80 shadow-md shadow-emerald-950/20"
+                      : "bg-slate-900/20 border-white/5 hover:bg-slate-800/30 hover:border-white/10"
                   }`}
                 >
                   <h4 className="text-slate-200 font-display font-semibold text-xs leading-snug">
                     {ex.name}
                   </h4>
                   <div className="flex flex-wrap gap-1.5 mt-2">
-                    <span className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-slate-950 text-slate-400 border border-slate-850">
+                    <span className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-slate-950 text-slate-400 border border-white/5">
                       {ex.protocol}
                     </span>
                     <span className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-semibold ${getDifficultyColor(ex.difficulty)}`}>
@@ -179,9 +181,9 @@ export function ExamplesView() {
           {/* Right Column: Code Detail Viewer */}
           <div className="lg:col-span-8">
             {selectedExample ? (
-              <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl flex flex-col">
+              <div className="bg-slate-900/50 border border-white/5 rounded-xl overflow-hidden shadow-2xl flex flex-col">
                 {/* Viewer Header */}
-                <div className="bg-slate-950 p-4 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="bg-slate-950/50 p-4 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-2">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-semibold ${getDifficultyColor(selectedExample.difficulty)}`}>
@@ -199,7 +201,7 @@ export function ExamplesView() {
 
                   <button
                     onClick={() => handleCopyCode(selectedExample.code)}
-                    className="text-slate-400 hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors cursor-pointer bg-slate-900 px-2.5 py-1.5 rounded border border-slate-800 align-middle shrink-0"
+                    className="text-slate-400 hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors cursor-pointer bg-slate-900/50 px-2.5 py-1.5 rounded border border-white/5 align-middle shrink-0"
                   >
                     {copied ? (
                       <>
@@ -216,7 +218,7 @@ export function ExamplesView() {
                 </div>
 
                 {/* Meta details strip */}
-                <div className="bg-slate-900/60 p-4 border-b border-slate-800 text-xs text-slate-400 space-y-1 leading-relaxed">
+                <div className="bg-slate-900/30 p-4 border-b border-white/5 text-xs text-slate-400 space-y-1 leading-relaxed">
                   <div>
                     <span className="font-mono text-[10px] text-slate-500 uppercase mr-1">Audience:</span>
                     <strong className="text-slate-300 font-normal">{selectedExample.audience}</strong>
@@ -228,23 +230,27 @@ export function ExamplesView() {
                 </div>
 
                 {/* Code Window */}
-                <div className="bg-slate-950 p-5 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre leading-relaxed border-b border-slate-800">
-                  {selectedExample.code}
+                <div className="bg-[#0A0A0B] border-b border-white/5 text-xs overflow-hidden">
+                  <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1.25rem', background: 'transparent' }}>
+                    {selectedExample.code}
+                  </SyntaxHighlighter>
                 </div>
 
                 {/* Expected Output block */}
-                <div className="bg-slate-950 p-5 font-mono text-xs border-t border-slate-800/80">
+                <div className="bg-slate-950 p-5 font-mono text-xs border-t border-white/5">
                   <div className="flex items-center gap-2 mb-2 text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
                     <Terminal className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Expected Request / Response Channel Output</span>
                   </div>
-                  <pre className="text-slate-400 overflow-x-auto whitespace-pre-wrap leading-relaxed bg-slate-900/40 p-3 rounded border border-slate-900/80">
-                    {selectedExample.expectedOutput}
-                  </pre>
+                  <div className="bg-[#0A0A0B] rounded border border-white/5 text-xs overflow-hidden">
+                    <SyntaxHighlighter style={vscDarkPlus} customStyle={{ margin: 0, padding: '0.75rem', background: 'transparent' }} wrapLines={true} wrapLongLines={true}>
+                      {selectedExample.expectedOutput}
+                    </SyntaxHighlighter>
+                  </div>
                 </div>
 
                 {/* External links footer */}
-                <div className="p-4 bg-slate-900 border-t border-slate-800 flex items-center gap-4 text-xs font-mono">
+                <div className="p-4 bg-slate-900/30 border-t border-white/5 flex items-center gap-4 text-xs font-mono">
                   <a
                     href={selectedExample.sourceLink}
                     target="_blank"
@@ -258,7 +264,7 @@ export function ExamplesView() {
                 </div>
               </div>
             ) : (
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-12 text-center text-slate-400 font-mono">
+              <div className="bg-slate-900/30 border border-white/5 rounded-xl p-12 text-center text-slate-400 font-mono">
                 Select an example from the left sidebar list to inspect source declarations.
               </div>
             )}

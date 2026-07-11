@@ -1,0 +1,35 @@
+# Tigrbl (mdwrk) - Schema-First ASGI Framework
+
+Tigrbl (also known as the mdwrk framework) is a schema-first ASGI framework and Python package family for defining API operations once and projecting them seamlessly across multiple protocols, validation layers, and execution engines.
+
+## Key Capabilities
+- **Single-Surface Operations (`tigrbl-core`)**: Define endpoints, schema models, and types once. Automatically project across REST, JSON-RPC, SSE, and WebSocket channels.
+- **Table-Backed CRUD (`tigrbl-orm`)**: Map domain database tables directly to CRUD API operations with dynamic parameter/schema compilation.
+- **Reviewable Execution Plans (`tigrbl-kernel`)**: Compile operational intent into static dispatch trees and reviewable pre-boot execution logs before starting the ASGI server.
+- **Pluggable Engines (`tigrbl-engine`)**: Declare database connections (PostgreSQL connection pools, caches) directly into operational dependencies.
+
+## Ecosystem Packages
+- `tigrbl` (Unified developer facade)
+- `tigrbl-core` (ASGI application & route compile logic)
+- `tigrbl-kernel` (Dispatch plan compiles)
+- `tigrbl-runtime` (Multi-protocol sessions executor)
+- `tigrbl-orm` (Declarative db schema mapper)
+- `tigrbl-crud-pack` (Reusable CRUD patterns)
+- `tigrbl-postgres` (PostgreSQL adapter)
+- `tigrbl-client` (JSON-RPC / REST client helper)
+- `tigrbl-typing` (Mypy/pyright checks)
+- `tigrbl-test` (Direct kernel plan simulation testing)
+
+## Main Views
+- Home: `/` (Overview & Job-to-be-Done profiles)
+- How It Works: `/how-it-works` (Architecture & execution plan compiler)
+- Ecosystem: `/ecosystem` (Package explorer & installation tags)
+- Releases: `/releases` (Version logs, changelogs & Archive)
+- Examples: `/examples` (Interactive code playgrounds & demos)
+- Get Started: `/get-started` (Prerequisites, interactive onboarding tutorial)
+
+## Useful Links
+- How It Works: `/how-it-works`
+- Releases & PyPI Packages: `/releases`
+- Examples & Demos: `/examples`
+- Full LLM Documentation: `/llms-full.txt`

@@ -6,8 +6,10 @@
 import React, { useState } from "react";
 import { Code, Share2, Layers, Server, Shield, CheckCircle, Copy, Terminal } from "lucide-react";
 import { EXAMPLES } from "../data";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-interface Projection {
+export interface Projection {
   id: string;
   name: string;
   pythonCode: string;
@@ -17,46 +19,70 @@ interface Projection {
   rpcDetails: string;
   generatedContract: string;
   lifecyclePlan: string[];
+  methodzOutput?: string;
+  hookzOutput?: string;
 }
 
 const PROJECTIONS: Projection[] = [
   {
-    id: "proj-users",
-    name: "Table-Backed Users CRUD",
-    pythonCode: `from tigrbl import TigrblApp, Table
+    id: "proj-orders",
+    name: "Multi-Table Order Management",
+    pythonCode: `from tigrbl import TigrblApp, TigrblRouter, Table
 from tigrbl.engines.postgres import PostgresEngine
 
 app = TigrblApp(engine=PostgresEngine())
+sales_router = TigrblRouter(prefix="/sales")
 
-class UserTable(Table):
+class Customer(Table):
     id: int
     name: str
     email: str
 
-@app.crud(UserTable)
-class UserOps:
-    pass`,
-    restEndpoint: "POST /users",
+class Product(Table):
+    id: int
+    name: str
+    price: float
+
+class Order(Table):
+    id: int
+    customer_id: int
+    status: str
+
+class OrderLine(Table):
+    id: int
+    order_id: int
+    product_id: int
+    quantity: int
+
+@sales_router.crud(Order)
+class OrderOps:
+    @sales_router.bind("order.submit")
+    def submit(self, customer_id: int, lines: list[dict]) -> Order:
+        """Custom domain operation to submit an order."""
+        pass
+
+app.include_router(sales_router)`,
+    restEndpoint: "POST /sales/order",
     restDetails: `Request Body:
 {
-  "name": "string (required)",
-  "email": "string (required, format: email)"
+  "customer_id": "integer (required)",
+  "status": "string (required)"
 }
 
 Response (201 Created):
 {
   "id": "integer",
-  "name": "string",
-  "email": "string"
+  "customer_id": "integer",
+  "status": "string"
 }`,
-    rpcMethod: "user.create",
+    rpcMethod: "order.create",
     rpcDetails: `Request Params:
 {
   "jsonrpc": "2.0",
-  "method": "user.create",
+  "method": "order.create",
   "params": {
-    "name": "Jane Doe",
-    "email": "jane@example.com"
+    "customer_id": 42,
+    "status": "pending"
   },
   "id": 1
 }
@@ -65,9 +91,9 @@ Response Result:
 {
   "jsonrpc": "2.0",
   "result": {
-    "id": 104,
-    "name": "Jane Doe",
-    "email": "jane@example.com"
+    "id": 1001,
+    "customer_id": 42,
+    "status": "pending"
   },
   "id": 1
 }`,
@@ -75,13 +101,13 @@ Response Result:
   "openapi": "3.1.0",
   "info": { "title": "Tigrbl Projected API", "version": "0.4.4" },
   "paths": {
-    "/users": {
+    "/sales/order": {
       "post": {
-        "summary": "Create UserTable",
+        "summary": "Create Order",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/UserTable" }
+              "schema": { "$ref": "#/components/schemas/Order" }
             }
           }
         }
@@ -90,30 +116,76 @@ Response Result:
   },
   "components": {
     "schemas": {
-      "UserTable": {
+      "Order": {
         "type": "object",
         "properties": {
           "id": { "type": "integer" },
-          "name": { "type": "string" },
-          "email": { "type": "string", "format": "email" }
+          "customer_id": { "type": "integer" },
+          "status": { "type": "string" }
         },
-        "required": ["name", "email"]
+        "required": ["customer_id", "status"]
       }
     }
   }
 }`,
     lifecyclePlan: [
-      "[BOOT] Compile UserTable properties into JSON schemas",
-      "[ROUTING] Map REST /users -> UserOps.create",
-      "[ROUTING] Map JSON-RPC user.create -> UserOps.create",
-      "[RUNTIME] Connection pooled via PostgresEngine",
-      "[REQUEST] Receive transport stream (ASGI unit)",
-      "[VALIDATION] Run typed check on input keys against schema",
-      "[TRANSACTION] Open database transaction block",
-      "[EXECUTION] Dispatch database write (INSERT INTO users)",
-      "[COMMIT] Auto-commit and flush metrics",
-      "[RESPONSE] Format and serialize to JSON"
-    ]
+      "[INGRESS_BEGIN] Receive transport stream",
+      "[INGRESS_PARSE] Parse JSON or RPC payload",
+      "[INGRESS_DISPATCH] Map to OrderOps.create via REST or RPC",
+      "[PRE_TX_BEGIN] Check capability masks and auth",
+      "[START_TX] Begin PostgresEngine transaction",
+      "[PRE_HANDLER] Run attached pre-operation hooks",
+      "[HANDLER] Execute core Order creation",
+      "[POST_HANDLER] Audit normalization or event logging",
+      "[PRE_COMMIT] Validate data constraints",
+      "[TX_COMMIT] Commit transaction to database",
+      "[POST_COMMIT] Publish realtime events",
+      "[EGRESS_SHAPE] Mask sensitive fields and shape response",
+      "[EGRESS_FINALIZE] Serialize to target protocol (REST/RPC)",
+      "[POST_RESPONSE] Log telemetry"
+    ],
+    methodzOutput: `{
+  "methods": [
+    {
+      "identity": "order.create",
+      "handler": "OrderOps.create",
+      "schemas": {
+        "request": "OrderCreateRequest",
+        "response": "Order"
+      },
+      "bindings": {
+        "rest": "POST /sales/order",
+        "rpc": "order.create"
+      }
+    },
+    {
+      "identity": "order.submit",
+      "handler": "OrderOps.submit",
+      "schemas": {
+        "request": "OrderSubmitRequest",
+        "response": "Order"
+      },
+      "bindings": {
+        "rest": "POST /sales/order/submit",
+        "rpc": "order.submit"
+      }
+    }
+  ]
+}`,
+    hookzOutput: `{
+  "hooks": [
+    {
+      "phase": "PRE_HANDLER",
+      "target": "order.*",
+      "name": "AuthGuard"
+    },
+    {
+      "phase": "POST_COMMIT",
+      "target": "order.create",
+      "name": "NotifyFulfillment"
+    }
+  ]
+}`
   },
   {
     id: "proj-health",
@@ -253,7 +325,7 @@ Response Result:
 
 export function ProtocolProjector() {
   const [selectedProj, setSelectedProj] = useState<Projection>(PROJECTIONS[0]);
-  const [activeTab, setActiveTab] = useState<"rest" | "rpc" | "contract" | "lifecycle">("rest");
+  const [activeTab, setActiveTab] = useState<"rest" | "rpc" | "contract" | "lifecycle" | "methodz" | "hookz">("rest");
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopyCode = () => {
@@ -263,9 +335,9 @@ export function ProtocolProjector() {
   };
 
   return (
-    <div id="protocol-projector" className="bg-slate-900 border border-slate-800/60 rounded-xl overflow-hidden shadow-2xl">
+    <div id="protocol-projector" className="bg-slate-900 border border-white/5 rounded-xl overflow-hidden shadow-2xl">
       {/* Top Header */}
-      <div className="bg-[#0A0A0B] p-5 border-b border-slate-800/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#0A0A0B] p-5 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <span className="text-orange-500 font-mono text-xs tracking-wider uppercase font-bold">
             Interactive Tooling
@@ -297,7 +369,7 @@ export function ProtocolProjector() {
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Left Hand Column: Python Source */}
-        <div className="p-5 border-r border-slate-800/60 bg-slate-950 flex flex-col">
+        <div className="p-5 border-r border-white/5 bg-slate-950 flex flex-col">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-orange-600"></span>
@@ -307,7 +379,7 @@ export function ProtocolProjector() {
             </div>
             <button
               onClick={handleCopyCode}
-              className="text-slate-400 hover:text-white flex items-center gap-1.5 text-xs transition-colors cursor-pointer bg-slate-900 px-2.5 py-1.5 rounded-md border border-slate-800"
+              className="text-slate-400 hover:text-white flex items-center gap-1.5 text-xs transition-colors cursor-pointer bg-slate-900 px-2.5 py-1.5 rounded-md border border-white/5"
             >
               {copied ? (
                 <>
@@ -323,10 +395,12 @@ export function ProtocolProjector() {
             </button>
           </div>
 
-          <div className="font-mono text-xs text-slate-200 bg-[#0F1115] p-4 rounded-lg border border-slate-800/80 overflow-x-auto flex-1 leading-relaxed whitespace-pre">
-            {selectedProj.pythonCode}
+          <div className="bg-[#0A0A0B] rounded-lg border border-white/5 text-xs overflow-hidden flex-1">
+            <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
+              {selectedProj.pythonCode}
+            </SyntaxHighlighter>
           </div>
-          <div className="mt-3 text-[11px] text-slate-500 flex items-center gap-1.5 bg-[#0F1115]/30 p-2.5 rounded border border-slate-800/40">
+          <div className="mt-3 text-[11px] text-slate-500 flex items-center gap-1.5 bg-[#0F1115]/30 p-2.5 rounded border border-white/5">
             <Terminal className="w-3.5 h-3.5 text-orange-500 shrink-0" />
             <span>The developer writes this single contract using stable public <strong>tigrbl</strong> facade imports.</span>
           </div>
@@ -342,7 +416,7 @@ export function ProtocolProjector() {
           </div>
 
           {/* Tab Selection */}
-          <div className="flex border-b border-slate-800 mb-4 overflow-x-auto">
+          <div className="flex border-b border-white/5 mb-4 overflow-x-auto">
             <button
               onClick={() => setActiveTab("rest")}
               className={`pb-2 px-3 text-xs font-mono font-medium transition-colors cursor-pointer border-b-2 whitespace-nowrap ${
@@ -381,7 +455,27 @@ export function ProtocolProjector() {
                   : "border-transparent text-slate-400 hover:text-slate-200"
               }`}
             >
-              Kernel Lifecycle Plan
+              Kernel Plan
+            </button>
+            <button
+              onClick={() => setActiveTab("methodz")}
+              className={`pb-2 px-3 text-xs font-mono font-medium transition-colors cursor-pointer border-b-2 whitespace-nowrap ${
+                activeTab === "methodz"
+                  ? "border-orange-500 text-slate-100"
+                  : "border-transparent text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              /system/methodz
+            </button>
+            <button
+              onClick={() => setActiveTab("hookz")}
+              className={`pb-2 px-3 text-xs font-mono font-medium transition-colors cursor-pointer border-b-2 whitespace-nowrap ${
+                activeTab === "hookz"
+                  ? "border-orange-500 text-slate-100"
+                  : "border-transparent text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              /system/hookz
             </button>
           </div>
 
@@ -389,61 +483,93 @@ export function ProtocolProjector() {
           <div className="flex-1 flex flex-col">
             {activeTab === "rest" && (
               <div className="flex-1 flex flex-col">
-                <div className="bg-slate-950 border border-slate-800/80 p-2 rounded mb-2 flex items-center justify-between">
+                <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-400">Target ASGI URL Path</span>
                   <span className="text-xs font-mono text-orange-400 font-bold bg-orange-950/40 px-2 py-0.5 rounded border border-orange-900/50">
                     {selectedProj.restEndpoint}
                   </span>
                 </div>
-                <div className="bg-slate-950/80 p-4 rounded-lg border border-slate-800 flex-1 font-mono text-xs text-slate-300 overflow-x-auto whitespace-pre leading-relaxed">
-                  {selectedProj.restDetails}
+                <div className="bg-[#0A0A0B] rounded-lg border border-white/5 flex-1 text-xs overflow-hidden">
+                  <SyntaxHighlighter language="json" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }} wrapLines={true} wrapLongLines={true}>
+                    {selectedProj.restDetails}
+                  </SyntaxHighlighter>
                 </div>
               </div>
             )}
 
             {activeTab === "rpc" && (
               <div className="flex-1 flex flex-col">
-                <div className="bg-slate-950 border border-slate-800/80 p-2 rounded mb-2 flex items-center justify-between">
+                <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-400">JSON-RPC Method Name</span>
                   <span className="text-xs font-mono text-cyan-400 font-bold bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-900/50">
                     {selectedProj.rpcMethod}
                   </span>
                 </div>
-                <div className="bg-slate-950/80 p-4 rounded-lg border border-slate-800 flex-1 font-mono text-xs text-slate-300 overflow-x-auto whitespace-pre leading-relaxed">
-                  {selectedProj.rpcDetails}
+                <div className="bg-[#0A0A0B] rounded-lg border border-white/5 flex-1 text-xs overflow-hidden">
+                  <SyntaxHighlighter language="json" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }} wrapLines={true} wrapLongLines={true}>
+                    {selectedProj.rpcDetails}
+                  </SyntaxHighlighter>
                 </div>
               </div>
             )}
 
             {activeTab === "contract" && (
               <div className="flex-1 flex flex-col">
-                <div className="bg-slate-950 border border-slate-800/80 p-2 rounded mb-2 flex items-center justify-between">
+                <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-400">Live API Spec Alignment</span>
                   <span className="text-[11px] font-mono text-slate-300 font-medium">OpenAPI / OpenRPC compatible</span>
                 </div>
-                <div className="bg-slate-950/80 p-4 rounded-lg border border-slate-800 flex-1 font-mono text-xs text-slate-300 overflow-x-auto whitespace-pre leading-relaxed max-h-[300px] overflow-y-auto">
-                  {selectedProj.generatedContract}
+                <div className="bg-[#0A0A0B] rounded-lg border border-white/5 flex-1 text-xs overflow-hidden max-h-[300px] overflow-y-auto">
+                  <SyntaxHighlighter language="json" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
+                    {selectedProj.generatedContract}
+                  </SyntaxHighlighter>
                 </div>
               </div>
             )}
 
             {activeTab === "lifecycle" && (
               <div className="flex-1 flex flex-col">
-                <div className="bg-slate-950 border border-slate-800/80 p-2 rounded mb-2 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">Pre-boot Compiled Kernel Plan</span>
+                <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-slate-400">Pre-boot Compiled Kernel Plan (/system/kernelz)</span>
                   <span className="text-[11px] font-mono text-orange-400 font-semibold">100% Inspectable</span>
                 </div>
-                <div className="bg-slate-950/80 p-3 rounded-lg border border-slate-800 flex-1 overflow-y-auto max-h-[300px]">
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex-1 overflow-y-auto max-h-[300px]">
                   <ol className="list-none space-y-1.5 font-mono text-[11px] text-slate-300">
                     {selectedProj.lifecyclePlan.map((step, idx) => (
-                      <li key={idx} className="flex items-start gap-2 py-0.5 border-b border-slate-850 last:border-0">
+                      <li key={idx} className="flex items-start gap-2 py-0.5 border-b border-white/5 last:border-0">
                         <span className="text-slate-500 font-bold w-4 text-right">{idx + 1}.</span>
-                        <span className={step.includes("[BOOT]") || step.includes("[ROUTING]") ? "text-orange-400" : step.includes("[VALIDATION]") ? "text-amber-400" : "text-slate-300"}>
+                        <span className={step.includes("[BOOT]") || step.includes("[ROUTING]") || step.includes("[INGRESS") ? "text-orange-400" : step.includes("[VALIDATION]") || step.includes("[PRE_") || step.includes("[POST_") ? "text-amber-400" : "text-slate-300"}>
                           {step}
                         </span>
                       </li>
                     ))}
                   </ol>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "methodz" && (
+              <div className="flex-1 flex flex-col">
+                <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-slate-400">Diagnostic Payload: /system/methodz</span>
+                </div>
+                <div className="bg-[#0A0A0B] rounded-lg border border-white/5 flex-1 text-xs overflow-hidden max-h-[300px] overflow-y-auto">
+                  <SyntaxHighlighter language="json" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
+                    {selectedProj.methodzOutput || '{"error": "Diagnostic not generated for this fixture."}'}
+                  </SyntaxHighlighter>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "hookz" && (
+              <div className="flex-1 flex flex-col">
+                <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-slate-400">Diagnostic Payload: /system/hookz</span>
+                </div>
+                <div className="bg-[#0A0A0B] rounded-lg border border-white/5 flex-1 text-xs overflow-hidden max-h-[300px] overflow-y-auto">
+                  <SyntaxHighlighter language="json" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
+                    {selectedProj.hookzOutput || '{"error": "Diagnostic not generated for this fixture."}'}
+                  </SyntaxHighlighter>
                 </div>
               </div>
             )}

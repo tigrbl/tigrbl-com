@@ -152,85 +152,271 @@ export const PROOF_ITEMS: ProofItem[] = [
 export const PACKAGES: PackageRecord[] = [
   // Public Facade
   {
-    name: "tigrbl",
-    category: "facade",
-    purpose: "The unified high-level developer contract. Aggregates and re-exports core routers, decorator bindings, table declarations, and engine adapters.",
-    maturity: "Alpha",
-    installCmd: "pip install tigrbl",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl",
-    pypiUrl: "https://pypi.org/project/tigrbl/"
+    distributionName: "tigrbl",
+    importRoot: "tigrbl",
+    group: "facade",
+    audience: "application",
+    responsibility: "Application-facing app/router factories, decorators, shortcuts, schema helpers, engine helpers, compatibility imports, and CLI.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl",
+    pypiUrl: "https://pypi.org/project/tigrbl/",
+    version: "0.4.4",
+    pythonRange: ">=3.10,<3.15",
+    installCmd: "uv add tigrbl",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   // Framework Layers
   {
-    name: "tigrbl-core",
-    category: "core",
-    purpose: "Provides the underlying ASGI application wrapper, route compilation logic, and global routing interfaces.",
-    maturity: "Alpha",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-core",
-    pypiUrl: "https://pypi.org/project/tigrbl-core/"
+    distributionName: "tigrbl-core",
+    importRoot: "tigrbl_core",
+    group: "core",
+    audience: "extension",
+    responsibility: "Specs, configuration resolution, operation vocabulary, and schema generation.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-core",
+    pypiUrl: "https://pypi.org/project/tigrbl-core/",
+    installCmd: "uv add tigrbl-core",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-core",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   {
-    name: "tigrbl-kernel",
-    category: "core",
-    purpose: "Compiles operational intent into explicit execution trees. Builds step-by-step dispatch logs and dependency plans before boot.",
-    maturity: "Alpha",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-kernel",
-    pypiUrl: "https://pypi.org/project/tigrbl-kernel/"
+    distributionName: "tigrbl-base",
+    importRoot: "tigrbl_base",
+    group: "core",
+    audience: "extension",
+    responsibility: "Abstract contracts, mapping helpers, and inference boundaries.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-base",
+    pypiUrl: "https://pypi.org/project/tigrbl-base/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-base",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   {
-    name: "tigrbl-runtime",
-    category: "core",
-    purpose: "Executes compiled dispatch trees across HTTP, SSE, WebSocket, and WebTransport sessions.",
-    maturity: "Alpha",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-runtime"
+    distributionName: "tigrbl-concrete",
+    importRoot: "tigrbl_concrete",
+    group: "core",
+    audience: "extension",
+    responsibility: "Concrete app/router/table/operation/docs/diagnostics/engine/transport adapters.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-concrete",
+    pypiUrl: "https://pypi.org/project/tigrbl-concrete/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-concrete",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   {
-    name: "tigrbl-orm",
-    category: "core",
-    purpose: "Declarative database schema builder. Converts Python class declarations into mapped tables and typed validation definitions.",
-    maturity: "Alpha",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-orm"
+    distributionName: "tigrbl-atoms",
+    importRoot: "tigrbl_atoms",
+    group: "core",
+    audience: "maintainer",
+    responsibility: "Lifecycle phase work, typed contexts, atoms, transactions, and runtime units.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-atoms",
+    pypiUrl: "https://pypi.org/project/tigrbl-atoms/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-atoms",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
+  },
+  {
+    distributionName: "tigrbl-kernel",
+    importRoot: "tigrbl_kernel",
+    group: "core",
+    audience: "maintainer",
+    responsibility: "Operation-view compilation, hook ordering, packed plans, protocol chains, lifecycle rows, labels, event keys, and capability masks.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-kernel",
+    pypiUrl: "https://pypi.org/project/tigrbl-kernel/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-kernel",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
+  },
+  {
+    distributionName: "tigrbl-runtime",
+    importRoot: "tigrbl_runtime",
+    group: "core",
+    audience: "maintainer",
+    responsibility: "Execution of compiled plans, routing, transport-unit handling, framing, and transaction progression.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-runtime",
+    pypiUrl: "https://pypi.org/project/tigrbl-runtime/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-runtime",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
+  },
+  {
+    distributionName: "tigrbl-orm",
+    importRoot: "tigrbl_orm",
+    group: "core",
+    audience: "extension",
+    responsibility: "SQLAlchemy-facing table, mixin, column, and persistence helpers.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-orm",
+    pypiUrl: "https://pypi.org/project/tigrbl-orm/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-orm",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   // Operation Packs
   {
-    name: "tigrbl-crud-pack",
-    category: "op-pack",
-    purpose: "Pre-packaged operations for standard CRUD workflows. Attaches to tables to immediately expose multi-protocol endpoints.",
-    maturity: "Beta",
-    installCmd: "pip install tigrbl[templates]",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-crud-pack"
+    distributionName: "tigrbl-ops-oltp",
+    importRoot: "tigrbl_ops_oltp",
+    group: "op-pack",
+    audience: "application",
+    responsibility: "Canonical CRUD and transactional operation definitions.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-ops-oltp",
+    pypiUrl: "https://pypi.org/project/tigrbl-ops-oltp/",
+    installCmd: "uv add tigrbl-ops-oltp",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-ops-oltp",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
+  },
+  {
+    distributionName: "tigrbl-ops-olap",
+    importRoot: "tigrbl_ops_olap",
+    group: "op-pack",
+    audience: "application",
+    responsibility: "Analytical operation definitions.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-ops-olap",
+    pypiUrl: "https://pypi.org/project/tigrbl-ops-olap/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-ops-olap",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
+  },
+  {
+    distributionName: "tigrbl-ops-realtime",
+    importRoot: "tigrbl_ops_realtime",
+    group: "op-pack",
+    audience: "application",
+    responsibility: "Realtime, streaming, pub/sub, and transport-oriented operation definitions.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-ops-realtime",
+    pypiUrl: "https://pypi.org/project/tigrbl-ops-realtime/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-ops-realtime",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   // Engine Plugins
   {
-    name: "tigrbl-postgres",
-    category: "engine",
-    purpose: "PostgreSQL transaction adapter. Manages connection pooling, lifecycle hooks, and safe stateful engines.",
-    maturity: "Alpha",
-    installCmd: "pip install tigrbl[postgres]",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-postgres"
+    distributionName: "tigrbl-engine-postgres",
+    importRoot: "tigrbl_engine_postgres",
+    group: "engine",
+    audience: "application",
+    responsibility: "PostgreSQL transaction and persistence engine integration.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/engines/tigrbl-engine-postgres",
+    pypiUrl: "https://pypi.org/project/tigrbl-engine-postgres/",
+    installCmd: "uv add tigrbl-engine-postgres",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/engines/tigrbl-engine-postgres",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   // Client and tooling
   {
-    name: "tigrbl-client",
-    category: "client",
-    purpose: "Lightweight frontend and backend client wrapper matching Tigrbl operations via native JSON-RPC and REST requests.",
-    maturity: "Alpha",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-client"
+    distributionName: "tigrbl-client",
+    importRoot: "tigrbl_client",
+    group: "client",
+    audience: "application",
+    responsibility: "Client helpers.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-client",
+    pypiUrl: "https://pypi.org/project/tigrbl-client/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-client",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   {
-    name: "tigrbl-typing",
-    category: "typing",
-    purpose: "Static type analysis plugins and schema checks that validate Tigrbl signatures during standard mypy or pyright checking.",
-    maturity: "Beta",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-typing"
+    distributionName: "tigrbl-typing",
+    importRoot: "tigrbl_typing",
+    group: "typing",
+    audience: "application",
+    responsibility: "Shared typing and vendor-compatible types.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl-typing",
+    pypiUrl: "https://pypi.org/project/tigrbl-typing/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-typing",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   },
   {
-    name: "tigrbl-test",
-    category: "testing",
-    purpose: "Testing helper suite that lets developers simulate requests directly into compiled kernel plans without binding a live socket.",
-    maturity: "Stable",
-    installCmd: "pip install tigrbl[tests]",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-test"
+    distributionName: "tigrbl_spec",
+    importRoot: "tigrbl_spec",
+    group: "testing",
+    audience: "maintainer",
+    responsibility: "Spec support package.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl_spec",
+    pypiUrl: "https://pypi.org/project/tigrbl_spec/",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl_spec",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
+  },
+  {
+    distributionName: "tigrbl_tests",
+    importRoot: "tigrbl_tests",
+    group: "testing",
+    audience: "testing",
+    responsibility: "Test harnesses, examples, conformance, and package tests.",
+    publicationStatus: "Published",
+    installable: true,
+    sourcePath: "pkgs/core/tigrbl_tests",
+    pypiUrl: "https://pypi.org/project/tigrbl_tests/",
+    installCmd: "uv add --dev tigrbl_tests",
+    evidence: {
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl_tests",
+      verifiedAt: "2026-07-11",
+      evidenceKind: "pypi"
+    }
   }
 ];
 

@@ -40,13 +40,43 @@ export interface ProofItem {
 }
 
 export interface PackageRecord {
-  name: string;
-  category: "facade" | "core" | "op-pack" | "engine" | "client" | "typing" | "testing" | "example";
-  purpose: string;
-  maturity: "Alpha" | "Beta" | "Stable" | "Internal";
-  installCmd?: string;
-  sourceUrl: string;
+  distributionName: string;
+  importRoot: string;
+  group: string;
+  audience: "application" | "extension" | "maintainer" | "testing";
+  responsibility: string;
+  sourcePath: string;
   pypiUrl?: string;
+  installable: boolean;
+  version?: string;
+  pythonRange?: string;
+  publicationStatus: string;
+  evidence: EvidenceRef;
+  installCmd?: string;
+}
+
+export interface ApplicationFixture {
+  id: string;
+  tigrblVersion: string;
+  pythonVersion: string;
+  generatedAt: string;
+  sourceUrl: string;
+  routers: string[];
+  tables: string[];
+  operations: string[];
+  handlers: string[];
+  schemas: string[];
+  hooks: string[];
+  bindings: string[];
+  docs: any;
+  diagnostics: any;
+}
+
+export interface EvidenceRef {
+  sourceUrl: string;
+  verifiedAt: string;
+  versionScope?: string;
+  evidenceKind: "source" | "test" | "docs" | "ssot" | "pypi" | "generated-fixture";
 }
 
 export interface ReleaseRecord {

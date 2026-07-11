@@ -22,6 +22,8 @@ import {
   ExternalLink,
   Info
 } from "lucide-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ProtocolProjector } from "./ProtocolProjector";
 import { FEATURES, CLAIMS, CAPABILITIES, RELEASES, VISITOR_PROFILES } from "../data";
 
@@ -34,7 +36,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
   const [activeProfileIdx, setActiveProfileIdx] = useState<number>(0);
 
   const copyInstall = () => {
-    navigator.clipboard.writeText("pip install tigrbl");
+    navigator.clipboard.writeText("uv add tigrbl");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -48,11 +50,11 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       <div className="absolute bottom-[30%] left-[-10%] w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       {/* 1. HERO SECTION */}
-      <section id="hero" className="relative py-20 lg:py-28 overflow-hidden border-b border-slate-800/50">
+      <section id="hero" className="relative py-20 lg:py-28 overflow-hidden border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-orange-500 font-bold font-mono uppercase tracking-wider mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-white/5 text-xs text-orange-500 font-bold font-mono uppercase tracking-wider mb-6">
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
               <span>Schema-First ASGI Framework for Python</span>
             </div>
@@ -82,14 +84,14 @@ export function HomeView({ onNavigate }: HomeViewProps) {
 
               <button
                 onClick={() => onNavigate("how-it-works")}
-                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold px-6 py-3 rounded-full transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-white/5 font-semibold px-6 py-3 rounded-full transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>How it works</span>
               </button>
 
               {/* Install Code Copier */}
-              <div className="w-full sm:w-auto flex items-center justify-between bg-slate-950 border border-slate-850 rounded-lg p-2.5 pl-3.5 font-mono text-xs text-slate-300">
-                <span className="mr-3">pip install tigrbl</span>
+              <div className="w-full sm:w-auto flex items-center justify-between bg-slate-950 border border-white/5 rounded-lg p-2.5 pl-3.5 font-mono text-xs text-slate-300">
+                <span className="mr-3">uv add tigrbl</span>
                 <button
                   onClick={copyInstall}
                   className="p-1.5 hover:bg-slate-900 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
@@ -122,7 +124,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 2. ADAPTIVE VISITOR EVALUATION PATHS (JTBD Profile Selector) */}
-      <section className="py-12 bg-slate-900/20 border-b border-slate-800/50">
+      <section className="py-12 bg-slate-900/20 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <h2 className="text-sm font-mono text-orange-500 uppercase tracking-wider font-bold">
@@ -141,7 +143,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
                 className={`py-3 px-4 rounded-full text-xs font-mono font-medium transition-all text-center border cursor-pointer ${
                   activeProfileIdx === idx
                     ? "bg-slate-800 border-orange-500 text-orange-400 shadow-md shadow-orange-950/20"
-                    : "bg-[#0A0A0B]/50 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40"
+                    : "bg-[#0A0A0B]/50 border-white/5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40"
                 }`}
               >
                 {profile.profileName}
@@ -150,7 +152,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
           </div>
 
           {/* Active Profile JTBD Output Card */}
-          <div className="bg-[#0A0A0B] border border-slate-800 rounded-xl p-6 transition-all duration-300">
+          <div className="bg-[#0A0A0B] border border-white/5 rounded-xl p-6 transition-all duration-300">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold">Key Question</span>
@@ -182,7 +184,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
                       onNavigate("ecosystem");
                     }
                   }}
-                  className="mt-2 text-xs font-mono bg-slate-800 hover:bg-slate-755 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-full flex items-center gap-1 cursor-pointer self-start md:self-auto"
+                  className="mt-2 text-xs font-mono bg-slate-800 hover:bg-slate-755 text-slate-200 border border-white/5 px-3 py-1.5 rounded-full flex items-center gap-1 cursor-pointer self-start md:self-auto"
                 >
                   <span>Resolve Proof</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -212,11 +214,11 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 4. VALUE PILLARS */}
-      <section id="pillars" className="py-16 bg-slate-900/10 border-y border-slate-800/50">
+      <section id="pillars" className="py-16 bg-slate-900/10 border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Pillar 1 */}
-            <div className="bg-slate-900/30 border border-slate-800/50 p-6 rounded-2xl hover:border-slate-700 transition-colors flex flex-col gap-3">
+            <div className="bg-slate-900/30 border border-white/5 p-6 rounded-2xl hover:border-white/10 transition-colors flex flex-col gap-3">
               <div className="w-10 h-10 rounded-lg bg-orange-950/40 border border-orange-900/40 flex items-center justify-center text-orange-500">
                 <Zap className="w-5 h-5" />
               </div>
@@ -229,7 +231,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             </div>
 
             {/* Pillar 2 */}
-            <div className="bg-slate-900/30 border border-slate-800/50 p-6 rounded-2xl hover:border-slate-700 transition-colors flex flex-col gap-3">
+            <div className="bg-slate-900/30 border border-white/5 p-6 rounded-2xl hover:border-white/10 transition-colors flex flex-col gap-3">
               <div className="w-10 h-10 rounded-lg bg-orange-950/40 border border-orange-900/40 flex items-center justify-center text-orange-500">
                 <Layers className="w-5 h-5" />
               </div>
@@ -242,7 +244,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             </div>
 
             {/* Pillar 3 */}
-            <div className="bg-slate-900/30 border border-slate-800/50 p-6 rounded-2xl hover:border-slate-700 transition-colors flex flex-col gap-3">
+            <div className="bg-slate-900/30 border border-white/5 p-6 rounded-2xl hover:border-white/10 transition-colors flex flex-col gap-3">
               <div className="w-10 h-10 rounded-lg bg-orange-950/40 border border-orange-900/40 flex items-center justify-center text-orange-500">
                 <Cpu className="w-5 h-5" />
               </div>
@@ -255,7 +257,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             </div>
 
             {/* Pillar 4 */}
-            <div className="bg-slate-900/30 border border-slate-800/50 p-6 rounded-2xl hover:border-slate-700 transition-colors flex flex-col gap-3">
+            <div className="bg-slate-900/30 border border-white/5 p-6 rounded-2xl hover:border-white/10 transition-colors flex flex-col gap-3">
               <div className="w-10 h-10 rounded-lg bg-orange-950/40 border border-orange-900/40 flex items-center justify-center text-orange-500">
                 <Database className="w-5 h-5" />
               </div>
@@ -306,12 +308,13 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             </button>
           </div>
 
-          <div className="lg:col-span-7 bg-slate-900 border border-slate-800/80 rounded-xl overflow-hidden shadow-2xl">
-            <div className="bg-slate-950 px-4 py-2 flex items-center justify-between border-b border-slate-800">
+          <div className="lg:col-span-7 bg-slate-900 border border-white/5 rounded-xl overflow-hidden shadow-2xl">
+            <div className="bg-slate-950 px-4 py-2 flex items-center justify-between border-b border-white/5">
               <span className="text-[11px] font-mono text-slate-400">example_api.py</span>
               <span className="w-3 h-3 rounded-full bg-orange-500" title="Tested on Python 3.10-3.14"></span>
             </div>
-            <div className="p-4 font-mono text-xs text-slate-200 bg-slate-950/40 overflow-x-auto whitespace-pre leading-relaxed">
+            <div className="bg-[#0A0A0B] rounded-b-xl overflow-hidden text-xs">
+              <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
 {`from tigrbl import TigrblApp, get
 
 app = TigrblApp()
@@ -320,13 +323,14 @@ app = TigrblApp()
 def health() -> dict[str, str]:
     """Exposes a clean REST GET endpoint at /health"""
     return {"status": "ok"}`}
+              </SyntaxHighlighter>
             </div>
           </div>
         </div>
       </section>
 
       {/* 6. HOW IT WORKS: AUTHOR -> DESCRIBE -> PLAN -> EXECUTE */}
-      <section id="how-it-works-summary" className="py-16 bg-slate-900/10 border-t border-slate-800/50">
+      <section id="how-it-works-summary" className="py-16 bg-slate-900/10 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-xs font-mono text-orange-500 uppercase tracking-widest font-bold">
@@ -343,7 +347,7 @@ def health() -> dict[str, str]:
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Step 1 */}
             <div className="relative">
-              <div className="bg-slate-900/40 border border-slate-800/60 p-6 rounded-xl h-full flex flex-col justify-between">
+              <div className="bg-slate-900/40 border border-white/5 p-6 rounded-xl h-full flex flex-col justify-between">
                 <div>
                   <div className="text-xs font-mono text-orange-500 font-bold mb-2">01. AUTHOR</div>
                   <h4 className="text-slate-200 font-bold font-display text-sm">Facade Declarations</h4>
@@ -351,7 +355,7 @@ def health() -> dict[str, str]:
                     Developers write simple declarative code using standard <code>TigrblRouter</code> and table schemas, remaining focused on clean Python logic.
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-slate-850/60 text-[10px] font-mono text-slate-500">
+                <div className="mt-4 pt-4 border-t border-white/5 text-[10px] font-mono text-slate-500">
                   Target: tigrbl package
                 </div>
               </div>
@@ -359,7 +363,7 @@ def health() -> dict[str, str]:
 
             {/* Step 2 */}
             <div className="relative">
-              <div className="bg-slate-900/40 border border-slate-800/60 p-6 rounded-xl h-full flex flex-col justify-between">
+              <div className="bg-slate-900/40 border border-white/5 p-6 rounded-xl h-full flex flex-col justify-between">
                 <div>
                   <div className="text-xs font-mono text-orange-500 font-bold mb-2">02. DESCRIBE</div>
                   <h4 className="text-slate-200 font-bold font-display text-sm">Intent Compiling</h4>
@@ -367,7 +371,7 @@ def health() -> dict[str, str]:
                     Tigrbl core maps all decorators, payload specifications, and tables into intermediate operational structures.
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-slate-850/60 text-[10px] font-mono text-slate-500">
+                <div className="mt-4 pt-4 border-t border-white/5 text-[10px] font-mono text-slate-500">
                   Target: tigrbl-core, tigrbl-orm
                 </div>
               </div>
@@ -375,7 +379,7 @@ def health() -> dict[str, str]:
 
             {/* Step 3 */}
             <div className="relative">
-              <div className="bg-slate-900/40 border border-slate-800/60 p-6 rounded-xl h-full flex flex-col justify-between">
+              <div className="bg-slate-900/40 border border-white/5 p-6 rounded-xl h-full flex flex-col justify-between">
                 <div>
                   <div className="text-xs font-mono text-orange-500 font-bold mb-2">03. PLAN</div>
                   <h4 className="text-slate-200 font-bold font-display text-sm">Dispatch Generation</h4>
@@ -383,7 +387,7 @@ def health() -> dict[str, str]:
                     The ASGI kernel generates explicit, readable request trees and logs dispatch sequences ahead of server startup.
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-slate-850/60 text-[10px] font-mono text-slate-500">
+                <div className="mt-4 pt-4 border-t border-white/5 text-[10px] font-mono text-slate-500">
                   Target: tigrbl-kernel
                 </div>
               </div>
@@ -391,7 +395,7 @@ def health() -> dict[str, str]:
 
             {/* Step 4 */}
             <div className="relative">
-              <div className="bg-slate-900/40 border border-slate-800/60 p-6 rounded-xl h-full flex flex-col justify-between">
+              <div className="bg-slate-900/40 border border-white/5 p-6 rounded-xl h-full flex flex-col justify-between">
                 <div>
                   <div className="text-xs font-mono text-orange-500 font-bold mb-2">04. EXECUTE</div>
                   <h4 className="text-slate-200 font-bold font-display text-sm">Transport Dispatch</h4>
@@ -399,7 +403,7 @@ def health() -> dict[str, str]:
                     At runtime, the optimized execution package dispatches requests, streams, and socket signals into the planned tree.
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-slate-850/60 text-[10px] font-mono text-slate-500">
+                <div className="mt-4 pt-4 border-t border-white/5 text-[10px] font-mono text-slate-500">
                   Target: tigrbl-runtime
                 </div>
               </div>
@@ -423,11 +427,11 @@ def health() -> dict[str, str]:
         </div>
 
         {/* Matrix Table */}
-        <div className="bg-slate-900/40 border border-slate-800/60 rounded-xl overflow-hidden shadow-xl">
+        <div className="bg-slate-900/40 border border-white/5 rounded-xl overflow-hidden shadow-xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#0A0A0B] border-b border-slate-800/80 text-xs font-mono uppercase text-slate-400 tracking-wider">
+                <tr className="bg-[#0A0A0B] border-b border-white/5 text-xs font-mono uppercase text-slate-400 tracking-wider">
                   <th className="py-4 px-6 font-semibold">Capability</th>
                   <th className="py-4 px-6 font-semibold">REST (HTTP)</th>
                   <th className="py-4 px-6 font-semibold">JSON-RPC</th>
@@ -452,7 +456,7 @@ def health() -> dict[str, str]:
               </tbody>
             </table>
           </div>
-          <div className="p-4 bg-[#0A0A0B] border-t border-slate-800/80 flex items-center gap-2 text-xs text-slate-500">
+          <div className="p-4 bg-[#0A0A0B] border-t border-white/5 flex items-center gap-2 text-xs text-slate-500">
             <Info className="w-4 h-4 text-orange-500 shrink-0" />
             <span>WebTransport-aware routing belongs to high-level framework layers and remains in <strong>Alpha development</strong> status.</span>
           </div>
@@ -460,9 +464,9 @@ def health() -> dict[str, str]:
       </section>
 
       {/* 8. FINAL CONVERSION CTA */}
-      <section className="py-16 bg-gradient-to-b from-[#0A0A0B] to-slate-900/20 border-t border-slate-800/50">
+      <section className="py-16 bg-gradient-to-b from-[#0A0A0B] to-slate-900/20 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-tr from-[#0F1115] to-[#0A0A0B] border border-slate-800/80 p-8 sm:p-12 rounded-2xl shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-tr from-[#0F1115] to-[#0A0A0B] border border-white/5 p-8 sm:p-12 rounded-2xl shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-2xl"></div>
 
             <span className="text-xs font-mono text-orange-500 uppercase tracking-widest font-bold">
@@ -486,7 +490,7 @@ def health() -> dict[str, str]:
 
               <button
                 onClick={() => onNavigate("examples")}
-                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-850 text-slate-300 border border-slate-800 text-xs font-mono px-6 py-3 rounded-full transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-850 text-slate-300 border border-white/5 text-xs font-mono px-6 py-3 rounded-full transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <span>Explore Examples</span>
               </button>

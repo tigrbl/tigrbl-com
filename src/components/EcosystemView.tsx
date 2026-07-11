@@ -30,21 +30,23 @@ export function EcosystemView() {
   const getFilteredPackages = (): PackageRecord[] => {
     if (activeCategory === "all") return PACKAGES;
     if (activeCategory === "tooling") {
-      return PACKAGES.filter(p => ["client", "typing", "testing", "example"].includes(p.category));
+      return PACKAGES.filter(p => ["client", "typing", "testing", "example"].includes(p.group));
     }
-    return PACKAGES.filter(p => p.category === activeCategory);
+    return PACKAGES.filter(p => p.group === activeCategory);
   };
 
-  const getMaturityColor = (maturity: string) => {
-    switch (maturity) {
-      case "Stable":
+  const getMaturityColor = (status: string) => {
+    switch (status) {
+      case "Published":
         return "bg-orange-950/30 text-orange-400 border border-orange-900/40";
-      case "Beta":
+      case "Prerelease":
         return "bg-cyan-950/30 text-cyan-400 border border-cyan-900/40";
-      case "Alpha":
+      case "Internal":
         return "bg-amber-950/30 text-amber-400 border border-amber-900/40";
+      case "Deprecated":
+        return "bg-red-950/30 text-red-400 border border-red-900/40";
       default:
-        return "bg-slate-900 text-slate-400 border border-slate-800";
+        return "bg-slate-900 text-slate-400 border border-white/5";
     }
   };
 
@@ -73,7 +75,7 @@ export function EcosystemView() {
               className={`px-4 py-2 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
                 activeCategory === cat.id
                   ? "bg-orange-600 text-white shadow-lg shadow-orange-950/20"
-                  : "bg-slate-900 text-slate-400 border border-slate-850 hover:text-slate-200 hover:bg-slate-800/60"
+                  : "bg-slate-900 text-slate-400 border border-white/5 hover:text-slate-200 hover:bg-slate-800/60"
               }`}
             >
               {cat.label}
@@ -85,31 +87,36 @@ export function EcosystemView() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {getFilteredPackages().map((pkg) => (
             <div
-              key={pkg.name}
-              className="bg-slate-900/30 border border-slate-800/60 rounded-xl p-5 flex flex-col justify-between hover:border-slate-700 transition-all shadow-md group"
+              key={pkg.distributionName}
+              className="bg-slate-900/30 border border-white/5 rounded-xl p-5 flex flex-col justify-between hover:border-white/10 transition-all shadow-md group"
             >
               <div>
                 <div className="flex items-center justify-between gap-4 mb-3">
                   <div className="flex items-center gap-2">
                     <Blocks className="w-4 h-4 text-orange-500 shrink-0" />
                     <span className="font-mono font-bold text-slate-100 text-sm group-hover:text-orange-400 transition-colors">
-                      {pkg.name}
+                      {pkg.distributionName}
                     </span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-semibold ${getMaturityColor(pkg.maturity)}`}>
-                    {pkg.maturity}
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-semibold ${getMaturityColor(pkg.publicationStatus)}`}>
+                    {pkg.publicationStatus}
                   </span>
                 </div>
 
-                <p className="text-slate-400 text-xs leading-relaxed mb-4 min-h-[50px]">
-                  {pkg.purpose}
+                <p className="text-slate-400 text-xs leading-relaxed mb-1 min-h-[40px]">
+                  {pkg.responsibility}
                 </p>
+
+                <div className="flex flex-col gap-1 mb-4 text-[10px] font-mono text-slate-500">
+                  <div><span className="uppercase font-semibold">Import:</span> <span className="text-slate-400">{pkg.importRoot}</span></div>
+                  <div><span className="uppercase font-semibold">Audience:</span> <span className="text-slate-400 capitalize">{pkg.audience}</span></div>
+                </div>
               </div>
 
               {/* Bottom Actions */}
-              <div className="space-y-3 pt-3 border-t border-slate-850/60">
-                {pkg.installCmd ? (
-                  <div className="flex items-center justify-between bg-slate-950 border border-slate-850 rounded p-2">
+              <div className="space-y-3 pt-3 border-t border-white/5">
+                {pkg.installCmd && pkg.installable ? (
+                  <div className="flex items-center justify-between bg-slate-950 border border-white/5 rounded p-2">
                     <div className="flex items-center gap-1.5 overflow-hidden">
                       <Terminal className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                       <code className="text-[11px] font-mono text-slate-300 overflow-x-auto whitespace-nowrap">
@@ -117,11 +124,11 @@ export function EcosystemView() {
                       </code>
                     </div>
                     <button
-                      onClick={() => handleCopyInstall(pkg.installCmd!, pkg.name)}
+                      onClick={() => handleCopyInstall(pkg.installCmd!, pkg.distributionName)}
                       className="p-1 text-slate-400 hover:text-white transition-colors"
                       title="Copy install tag"
                     >
-                      {copiedPackage === pkg.name ? (
+                      {copiedPackage === pkg.distributionName ? (
                         <CheckCircle className="w-3.5 h-3.5 text-orange-400" />
                       ) : (
                         <Copy className="w-3.5 h-3.5" />
@@ -129,14 +136,14 @@ export function EcosystemView() {
                     </button>
                   </div>
                 ) : (
-                  <div className="text-[11px] font-mono text-slate-500 italic p-2 bg-slate-950/30 rounded border border-slate-900">
+                  <div className="text-[11px] font-mono text-slate-500 italic p-2 bg-slate-950/30 rounded border border-white/5">
                     Internal core distribution
                   </div>
                 )}
 
                 <div className="flex items-center gap-3 text-xs font-mono pt-1">
                   <a
-                    href={pkg.sourceUrl}
+                    href={pkg.sourcePath}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-slate-400 hover:text-orange-400 flex items-center gap-1"

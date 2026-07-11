@@ -13,7 +13,7 @@ export function ReleasesView() {
   const [copiedVersion, setCopiedVersion] = useState<string | null>(null);
 
   const handleCopyInstall = (version: string) => {
-    const cmd = `pip install tigrbl==${version}`;
+    const cmd = `uv add tigrbl==${version}`;
     navigator.clipboard.writeText(cmd);
     setCopiedVersion(version);
     setTimeout(() => setCopiedVersion(null), 2000);
@@ -71,11 +71,11 @@ export function ReleasesView() {
             </div>
 
             {/* Install Box */}
-            <div className="bg-[#0A0A0B] border border-slate-800 rounded-lg p-3 flex items-center justify-between min-w-[260px]">
+            <div className="bg-[#0A0A0B] border border-white/5 rounded-lg p-3 flex items-center justify-between min-w-[260px]">
               <div className="flex items-center gap-1.5 overflow-hidden">
                 <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
                 <code className="text-xs font-mono text-slate-300">
-                  pip install tigrbl=={recommendedRelease.version}
+                  uv add tigrbl=={recommendedRelease.version}
                 </code>
               </div>
               <button
@@ -93,7 +93,7 @@ export function ReleasesView() {
           </div>
 
           {/* Recommended Release Changelog Highlights */}
-          <div className="mt-6 pt-6 border-t border-slate-800/60">
+          <div className="mt-6 pt-6 border-t border-white/5">
             <h4 className="text-xs font-mono text-slate-300 font-semibold uppercase tracking-wider mb-3">
               Changelog Highlights
             </h4>
@@ -131,7 +131,7 @@ export function ReleasesView() {
 
         {/* ALL RELEASES STREAM LOGS */}
         <div className="max-w-4xl mx-auto space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-4">
+          <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
             <h3 className="text-base font-display font-semibold text-slate-200">
               Release Archive History
             </h3>
@@ -140,7 +140,7 @@ export function ReleasesView() {
                 type="checkbox"
                 checked={showPrereleases}
                 onChange={() => setShowPrereleases(!showPrereleases)}
-                className="rounded border-slate-800 text-orange-600 focus:ring-orange-500 bg-slate-900 cursor-pointer"
+                className="rounded border-white/5 text-orange-600 focus:ring-orange-500 bg-slate-900 cursor-pointer"
               />
               <span className="text-xs font-mono text-slate-400">Show development prereleases</span>
             </label>
@@ -152,7 +152,7 @@ export function ReleasesView() {
               .map((release) => (
                 <div
                   key={release.version}
-                  className="bg-slate-900/30 border border-slate-800/60 rounded-xl p-5 hover:border-slate-700 transition-colors"
+                  className="bg-slate-900/30 border border-white/5 rounded-xl p-5 hover:border-white/10 transition-colors"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-2.5">
@@ -162,7 +162,7 @@ export function ReleasesView() {
                       <span className={`px-2 py-0.5 rounded text-[9px] font-mono font-medium ${
                         release.type === "prerelease"
                           ? "bg-amber-950/30 text-amber-400 border border-amber-900/30"
-                          : "bg-slate-850/50 text-slate-400 border border-slate-800"
+                          : "bg-slate-850/50 text-slate-400 border border-white/5"
                       }`}>
                         {release.type === "prerelease" ? "Pre-release" : "Stable Release"}
                       </span>
@@ -179,7 +179,7 @@ export function ReleasesView() {
                     {release.changelogSummary[0]}
                   </p>
 
-                  <div className="mt-4 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+                  <div className="mt-4 pt-4 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
                     <div className="flex items-center gap-3">
                       <a
                         href={release.pypiUrl}
@@ -195,7 +195,7 @@ export function ReleasesView() {
                     {/* Copy specific version cmd */}
                     <button
                       onClick={() => handleCopyInstall(release.version)}
-                      className="text-slate-400 hover:text-white flex items-center gap-1 bg-[#0A0A0B] px-2 py-1 rounded border border-slate-850"
+                      className="text-slate-400 hover:text-white flex items-center gap-1 bg-[#0A0A0B] px-2 py-1 rounded border border-white/5"
                     >
                       {copiedVersion === release.version ? (
                         <>

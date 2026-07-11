@@ -12,6 +12,7 @@ import { EcosystemView } from "./components/EcosystemView";
 import { ReleasesView } from "./components/ReleasesView";
 import { GetStartedView } from "./components/GetStartedView";
 import { ExamplesView } from "./components/ExamplesView";
+import { SEO } from "./components/SEO";
 
 export default function App() {
   // Simple client-side router matching view states
@@ -40,6 +41,9 @@ export default function App() {
 
   return (
     <div id="tigrbl-com-root" className="min-h-screen bg-[#0A0A0B] text-slate-200 font-sans antialiased flex flex-col justify-between selection:bg-orange-600/30 selection:text-orange-300">
+      {/* Dynamic SEO, Open Graph & JSON-LD metadata engine */}
+      <SEO currentView={currentView} />
+
       {/* Global Responsive Navigation Header */}
       <Header currentView={currentView} onNavigate={handleNavigate} />
 

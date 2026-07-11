@@ -5,16 +5,25 @@
 
 import React, { useState } from "react";
 import { Terminal, Copy, CheckCircle, Info, ArrowRight, Play, Check, Shield } from "lucide-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export function GetStartedView() {
   const [copiedPip, setCopiedPip] = useState(false);
+  const [copiedPipx, setCopiedPipx] = useState(false);
   const [copiedUv, setCopiedUv] = useState(false);
   const [copiedFile, setCopiedFile] = useState(false);
 
   const copyPip = () => {
-    navigator.clipboard.writeText("pip install tigrbl");
+    navigator.clipboard.writeText("python -m pip install tigrbl");
     setCopiedPip(true);
     setTimeout(() => setCopiedPip(false), 2000);
+  };
+
+  const copyPipx = () => {
+    navigator.clipboard.writeText("pipx install tigrbl");
+    setCopiedPipx(true);
+    setTimeout(() => setCopiedPipx(false), 2000);
   };
 
   const copyUv = () => {
@@ -56,9 +65,9 @@ def health() -> dict[str, str]:
 
         <div className="space-y-12">
           {/* Step 1: Verify Prerequisites */}
-          <div className="bg-slate-900/30 border border-slate-800/60 rounded-xl p-6">
+          <div className="bg-slate-900/30 border border-white/5 rounded-xl p-6">
             <h3 className="text-base font-display font-bold text-slate-200 flex items-center gap-2.5">
-              <span className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 text-slate-300 font-mono text-xs flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/5 text-slate-300 font-mono text-xs flex items-center justify-center">
                 1
               </span>
               <span>Verify Core Prerequisites</span>
@@ -69,13 +78,13 @@ def health() -> dict[str, str]:
             </p>
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-[#0A0A0B] p-4 rounded-lg border border-slate-800/60">
+              <div className="bg-[#0A0A0B] p-4 rounded-lg border border-white/5">
                 <span className="text-[10px] font-mono text-slate-500 uppercase">Supported python</span>
                 <p className="text-slate-200 font-mono text-xs mt-1 font-semibold">
                   Python &gt;= 3.10, &lt; 3.15
                 </p>
               </div>
-              <div className="bg-[#0A0A0B] p-4 rounded-lg border border-slate-800/60 flex items-center gap-2">
+              <div className="bg-[#0A0A0B] p-4 rounded-lg border border-white/5 flex items-center gap-2">
                 <Shield className="w-5 h-5 text-orange-500 shrink-0" />
                 <div>
                   <span className="text-[10px] font-mono text-slate-500 uppercase block">License</span>
@@ -88,9 +97,9 @@ def health() -> dict[str, str]:
           </div>
 
           {/* Step 2: Install */}
-          <div className="bg-slate-900/30 border border-slate-800/60 rounded-xl p-6">
+          <div className="bg-slate-900/30 border border-white/5 rounded-xl p-6">
             <h3 className="text-base font-display font-bold text-slate-200 flex items-center gap-2.5">
-              <span className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 text-slate-300 font-mono text-xs flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/5 text-slate-300 font-mono text-xs flex items-center justify-center">
                 2
               </span>
               <span>Install the Public Facade</span>
@@ -101,31 +110,10 @@ def health() -> dict[str, str]:
             </p>
 
             <div className="mt-5 space-y-4">
-              {/* Option A: PIP */}
+              {/* Option A: UV */}
               <div className="space-y-1.5">
-                <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold">Option A: Standard pip installer</span>
-                <div className="bg-[#0A0A0B] border border-slate-800/60 rounded-lg p-3 flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 overflow-hidden">
-                    <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
-                    <code className="text-xs font-mono text-slate-300">pip install tigrbl</code>
-                  </div>
-                  <button
-                    onClick={copyPip}
-                    className="p-1.5 hover:bg-slate-900 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    {copiedPip ? (
-                      <CheckCircle className="w-4 h-4 text-orange-400" />
-                    ) : (
-                      <Copy className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Option B: UV */}
-              <div className="space-y-1.5">
-                <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold">Option B: Astral uv package manager</span>
-                <div className="bg-[#0A0A0B] border border-slate-800/60 rounded-lg p-3 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-orange-400/80 uppercase font-semibold">Primary: Astral uv (Recommended for applications)</span>
+                <div className="bg-[#0A0A0B] border border-white/5 rounded-lg p-3 flex items-center justify-between">
                   <div className="flex items-center gap-1.5 overflow-hidden">
                     <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
                     <code className="text-xs font-mono text-slate-300">uv add tigrbl</code>
@@ -142,21 +130,63 @@ def health() -> dict[str, str]:
                   </button>
                 </div>
               </div>
+
+              {/* Option B: Pipx */}
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold">Secondary: Pipx (For isolated global CLI only)</span>
+                <div className="bg-[#0A0A0B] border border-white/5 rounded-lg p-3 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 overflow-hidden">
+                    <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
+                    <code className="text-xs font-mono text-slate-300">pipx install tigrbl</code>
+                  </div>
+                  <button
+                    onClick={copyPipx}
+                    className="p-1.5 hover:bg-slate-900 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
+                  >
+                    {copiedPipx ? (
+                      <CheckCircle className="w-4 h-4 text-orange-400" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Option C: PIP */}
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold">Tertiary: Standard pip (Virtual environments)</span>
+                <div className="bg-[#0A0A0B] border border-white/5 rounded-lg p-3 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 overflow-hidden">
+                    <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
+                    <code className="text-xs font-mono text-slate-300">python -m pip install tigrbl</code>
+                  </div>
+                  <button
+                    onClick={copyPip}
+                    className="p-1.5 hover:bg-slate-900 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
+                  >
+                    {copiedPip ? (
+                      <CheckCircle className="w-4 h-4 text-orange-400" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Step 3: Write Code */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <div className="bg-slate-900 border border-white/5 rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-display font-bold text-slate-200 flex items-center gap-2.5">
-                <span className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 text-slate-300 font-mono text-xs flex items-center justify-center">
+                <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/5 text-slate-300 font-mono text-xs flex items-center justify-center">
                   3
                 </span>
                 <span>Create Your Operations File</span>
               </h3>
               <button
                 onClick={copyFile}
-                className="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1 bg-slate-950 px-2 py-1 rounded border border-slate-800 cursor-pointer"
+                className="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1 bg-slate-950 px-2 py-1 rounded border border-white/5 cursor-pointer"
               >
                 {copiedFile ? (
                   <>
@@ -176,15 +206,17 @@ def health() -> dict[str, str]:
               Create a file named <code>app.py</code> and add the following minimal health check. Note that we only import from the public <code>tigrbl</code> facade:
             </p>
 
-            <div className="mt-4 bg-slate-950 border border-slate-850 rounded-lg p-4 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre leading-relaxed">
-              {codeString}
+            <div className="mt-4 bg-slate-950 border border-white/5 rounded-lg overflow-hidden text-xs">
+              <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
+                {codeString}
+              </SyntaxHighlighter>
             </div>
           </div>
 
           {/* Step 4: Boot and Verify */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <div className="bg-slate-900 border border-white/5 rounded-xl p-6">
             <h3 className="text-base font-display font-bold text-slate-200 flex items-center gap-2.5">
-              <span className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 text-slate-300 font-mono text-xs flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-slate-800 border border-white/5 text-slate-300 font-mono text-xs flex items-center justify-center">
                 4
               </span>
               <span>Boot and Verify Output</span>
@@ -194,7 +226,7 @@ def health() -> dict[str, str]:
               To launch, boot the application with any compatible ASGI server. If utilizing <code>uv</code>, run the app.py directly:
             </p>
 
-            <div className="mt-4 bg-slate-950 p-3 rounded-lg border border-slate-850 font-mono text-xs text-slate-300 flex items-center justify-between">
+            <div className="mt-4 bg-slate-950 p-3 rounded-lg border border-white/5 font-mono text-xs text-slate-300 flex items-center justify-between">
               <span>uv run app.py</span>
               <span className="text-emerald-400 text-[10px] uppercase font-bold px-1.5 py-0.5 bg-emerald-950/40 rounded border border-emerald-900/30">
                 Command
@@ -202,12 +234,12 @@ def health() -> dict[str, str]:
             </div>
 
             {/* Simulated Server output */}
-            <div className="mt-4 bg-slate-950 p-4 rounded-lg border border-slate-850 text-[11px] font-mono text-slate-400 leading-relaxed space-y-1">
+            <div className="mt-4 bg-slate-950 p-4 rounded-lg border border-white/5 text-[11px] font-mono text-slate-400 leading-relaxed space-y-1">
               <div className="text-slate-500">INFO:     Started server process [40321]</div>
               <div className="text-slate-500">INFO:     Waiting for application startup.</div>
-              <div className="text-emerald-400">TIGRBL:   Compiling pre-boot ASGI execution plan...</div>
-              <div className="text-emerald-400">TIGRBL:   Mapped REST path: GET /health -&gt; health</div>
-              <div className="text-emerald-400">TIGRBL:   Mapped JSON-RPC procedure: system.health -&gt; health</div>
+              <div className="text-orange-400">TIGRBL:   Compiling pre-boot ASGI execution plan...</div>
+              <div className="text-orange-400">TIGRBL:   Mapped REST path: GET /health -&gt; health</div>
+              <div className="text-orange-400">TIGRBL:   Mapped JSON-RPC procedure: system.health -&gt; health</div>
               <div className="text-slate-500">INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</div>
             </div>
 
@@ -216,15 +248,17 @@ def health() -> dict[str, str]:
               Query the REST endpoint using curl from a separate terminal block to verify:
             </p>
 
-            <div className="mt-3 bg-slate-950 p-3 rounded-lg border border-slate-850 font-mono text-xs text-slate-300 flex items-center justify-between">
+            <div className="mt-3 bg-slate-950 p-3 rounded-lg border border-white/5 font-mono text-xs text-slate-300 flex items-center justify-between">
               <span>curl http://127.0.0.1:8000/health</span>
               <span className="text-slate-500 text-[10px] uppercase font-bold">Query</span>
             </div>
 
-            <div className="mt-3 bg-slate-950/80 p-4 rounded-lg border border-slate-850/80 font-mono text-xs text-slate-200">
+            <div className="mt-3 bg-[#0A0A0B] rounded-lg border border-white/5 text-xs overflow-hidden">
+              <SyntaxHighlighter language="json" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
 {`{
   "status": "ok"
 }`}
+              </SyntaxHighlighter>
             </div>
           </div>
         </div>

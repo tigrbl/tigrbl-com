@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from "react";
-import { Terminal, Copy, CheckCircle, Menu, X, Github, MessageCircle } from "lucide-react";
+import { Terminal, Copy, CheckCircle, Menu, X, Github, BookOpen } from "lucide-react";
 import { RELEASES } from "../data";
 
 interface HeaderProps {
@@ -19,7 +19,7 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
   const recommendedRelease = RELEASES.find(r => r.isRecommended) || RELEASES[0];
 
   const copyInstallCommand = () => {
-    navigator.clipboard.writeText("pip install tigrbl");
+    navigator.clipboard.writeText("uv add tigrbl");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -33,7 +33,7 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0A0A0B]/85 backdrop-blur-md border-b border-slate-800/50">
+    <header className="sticky top-0 z-50 bg-[#0A0A0B]/85 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
@@ -71,7 +71,7 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
                 onClick={() => onNavigate(item.id)}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium font-mono tracking-wide transition-colors cursor-pointer ${
                   currentView === item.id
-                    ? "bg-slate-900 text-orange-500 border border-slate-800"
+                    ? "bg-slate-900 text-orange-500 border border-white/5"
                     : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/40"
                 }`}
               >
@@ -83,10 +83,10 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
           {/* Desktop Right Hand Utilities */}
           <div className="hidden md:flex items-center gap-3">
             {/* Quick Install Bar */}
-            <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg pl-2.5 pr-1 py-1">
+            <div className="flex items-center bg-slate-900 border border-white/5 rounded-lg pl-2.5 pr-1 py-1">
               <Terminal className="w-3.5 h-3.5 text-slate-500 mr-1.5 shrink-0" />
               <code className="text-xs font-mono text-slate-300 select-all mr-3">
-                pip install tigrbl
+                uv add tigrbl
               </code>
               <button
                 onClick={copyInstallCommand}
@@ -110,16 +110,6 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
               title="GitHub Repository"
             >
               <Github className="w-5 h-5" />
-            </a>
-
-            <a
-              href="https://discord.gg/K4YTAPapjR"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="text-slate-400 hover:text-white p-1.5 rounded-lg transition-colors"
-              title="Tigrbl Discord community"
-            >
-              <MessageCircle className="w-5 h-5" />
             </a>
 
             <button
@@ -149,7 +139,7 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0A0A0B] border-b border-slate-850 animate-in fade-in slide-in-from-top duration-200">
+        <div className="md:hidden bg-[#0A0A0B] border-b border-white/5 animate-in fade-in slide-in-from-top duration-200">
           <div className="px-2 pt-2 pb-4 space-y-1">
             {navItems.map((item) => (
               <button
@@ -168,12 +158,12 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
               </button>
             ))}
 
-            <div className="pt-4 pb-2 border-t border-slate-900 px-3 space-y-3">
+            <div className="pt-4 pb-2 border-t border-white/5 px-3 space-y-3">
               {/* Mobile copy cmd */}
-              <div className="flex items-center justify-between bg-slate-900 border border-slate-800 rounded p-2">
+              <div className="flex items-center justify-between bg-slate-900 border border-white/5 rounded p-2">
                 <div className="flex items-center gap-1.5">
                   <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
-                  <code className="text-xs font-mono text-slate-300">pip install tigrbl</code>
+                  <code className="text-xs font-mono text-slate-300">uv add tigrbl</code>
                 </div>
                 <button
                   onClick={copyInstallCommand}
@@ -192,19 +182,10 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
                   href="https://github.com/tigrbl/tigrbl"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="flex items-center justify-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white bg-slate-900 border border-slate-800 rounded-md py-2 px-3 flex-1"
+                  className="flex items-center justify-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white bg-slate-900 border border-white/5 rounded-md py-2 px-3 flex-1"
                 >
                   <Github className="w-4 h-4" />
                   <span>GitHub</span>
-                </a>
-                <a
-                  href="https://discord.gg/K4YTAPapjR"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex items-center justify-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white bg-slate-900 border border-slate-800 rounded-md py-2 px-3 flex-1"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Discord</span>
                 </a>
                 <button
                   onClick={() => {
