@@ -12,9 +12,9 @@ interface SEOProps {
 export function SEO({ currentView }: SEOProps) {
   useEffect(() => {
     // 1. Establish page-specific static metadata configurations
-    let title = "Tigrbl (mdwrk) — Schema-First ASGI Python Framework";
+    let title = "Tigrbl — Schema-First ASGI Python Framework";
     let description = "Schema-first ASGI framework and Python package family for defining operations once and projecting them across multiple protocols, validation, and execution engines.";
-    let keywords = "tigrbl, mdwrk, python, asgi, schema-first, rest api, json-rpc, websocket, sse, openapi, postgres, orm, developer-framework";
+    let keywords = "tigrbl, python, asgi, schema-first, rest api, json-rpc, websocket, sse, openapi, postgres, orm, developer-framework";
     let ogType = "website";
     const canonicalBase = "https://tigrbl.com";
     let canonicalPath = "/";
@@ -22,33 +22,33 @@ export function SEO({ currentView }: SEOProps) {
     // Build unique page attributes based on navigation state
     switch (currentView) {
       case "home":
-        title = "Tigrbl (mdwrk) — Schema-First ASGI Python Framework";
+        title = "Tigrbl — Schema-First ASGI Python Framework";
         description = "Define API operations once. Project transparently across REST, JSON-RPC, SSE, and WebSocket channels with compile-time ASGI execution plans.";
         canonicalPath = "/";
         break;
       case "how-it-works":
-        title = "Technical Architecture — Tigrbl (mdwrk)";
-        description = "Explore the progressive 4-Stage Intent Compilation Pipeline of the Tigrbl / mdwrk framework: Author, Describe, Plan, and Execute.";
+        title = "Technical Architecture — Tigrbl";
+        description = "Explore the progressive 4-Stage Intent Compilation Pipeline of Tigrbl: Author, Describe, Plan, and Execute.";
         canonicalPath = "/how-it-works";
         ogType = "article";
         break;
       case "ecosystem":
-        title = "Package Ecosystem Explorer — Tigrbl (mdwrk)";
-        description = "Discover the modular packages comprising the Tigrbl/mdwrk family: core engines, declarative ORM, postgres transactors, and client SDKs.";
+        title = "Package Ecosystem Explorer — Tigrbl";
+        description = "Discover the modular packages comprising the Tigrbl family: framework layers, operation packs, engine plugins, and client tooling.";
         canonicalPath = "/ecosystem";
         break;
       case "releases":
-        title = "Release Registry & Changelogs — Tigrbl (mdwrk)";
+        title = "Release Registry & Changelogs — Tigrbl";
         description = "Track release lifecycles, environment limits, stability grades, and detailed version change-sets. Recommended: stable Alpha release v0.4.4.";
         canonicalPath = "/releases";
         break;
       case "examples":
-        title = "Interactive Python API Examples — Tigrbl (mdwrk)";
+        title = "Interactive Python API Examples — Tigrbl";
         description = "Learn from tested, ready-to-run Tigrbl code examples: Minimal health-checks, table CRUD, schema validation, compile-time plans, and SSE stream loops.";
         canonicalPath = "/examples";
         break;
       case "get-started":
-        title = "Get Started & Installation Onboarding — Tigrbl (mdwrk)";
+        title = "Get Started & Installation Onboarding — Tigrbl";
         description = "Verify prerequisite environments, install packages via pip/uv, and embark on our step-by-step interactive developer onboarding guide.";
         canonicalPath = "/get-started";
         break;
@@ -92,7 +92,7 @@ export function SEO({ currentView }: SEOProps) {
     setMetaTag("property", "og:type", ogType);
     setMetaTag("property", "og:url", fullUrl);
     setMetaTag("property", "og:image", "https://tigrbl.com/favicon.svg");
-    setMetaTag("property", "og:site_name", "Tigrbl (mdwrk)");
+    setMetaTag("property", "og:site_name", "Tigrbl");
 
     // Update Twitter Card headers
     setMetaTag("name", "twitter:card", "summary");

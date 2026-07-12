@@ -1,6 +1,6 @@
-# Tigrbl (mdwrk) - Schema-First ASGI Framework
+# Tigrbl - Schema-First ASGI Framework
 
-Tigrbl (also known as the mdwrk framework) is a schema-first ASGI framework and Python package family for defining API operations once and projecting them seamlessly across multiple protocols, validation layers, and execution engines.
+Tigrbl is a schema-first ASGI framework and Python package family for defining API operations once and projecting them across multiple protocols, validation layers, and execution engines.
 
 ## Key Capabilities
 - **Single-Surface Operations (`tigrbl-core`)**: Define endpoints, schema models, and types once. Automatically project across REST, JSON-RPC, SSE, and WebSocket channels.
