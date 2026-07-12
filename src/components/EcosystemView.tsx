@@ -143,7 +143,7 @@ export function EcosystemView() {
 
                 <div className="flex items-center gap-3 text-xs font-mono pt-1">
                   <a
-                    href={pkg.sourcePath}
+                    href={pkg.evidence.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-slate-400 hover:text-orange-400 flex items-center gap-1"

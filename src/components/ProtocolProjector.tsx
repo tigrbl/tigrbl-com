@@ -27,41 +27,36 @@ const PROJECTIONS: Projection[] = [
   {
     id: "proj-orders",
     name: "Multi-Table Order Management",
-    pythonCode: `from tigrbl import TigrblApp, TigrblRouter, Table
-from tigrbl.engines.postgres import PostgresEngine
+    pythonCode: `from sqlalchemy import Column, String
+from tigrbl import RestJsonRpcTable, TigrblApp
 
-app = TigrblApp(engine=PostgresEngine())
-sales_router = TigrblRouter(prefix="/sales")
+class Customer(RestJsonRpcTable):
+    __tablename__ = "customers"
+    id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
 
-class Customer(Table):
-    id: int
-    name: str
-    email: str
+class Product(RestJsonRpcTable):
+    __tablename__ = "products"
+    id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
 
-class Product(Table):
-    id: int
-    name: str
-    price: float
+class Order(RestJsonRpcTable):
+    __tablename__ = "orders"
+    id = Column(String, primary_key=True)
+    customer_id = Column(String, nullable=False)
 
-class Order(Table):
-    id: int
-    customer_id: int
-    status: str
+class OrderLine(RestJsonRpcTable):
+    __tablename__ = "order_lines"
+    id = Column(String, primary_key=True)
+    order_id = Column(String, nullable=False)
 
-class OrderLine(Table):
-    id: int
-    order_id: int
-    product_id: int
-    quantity: int
-
-@sales_router.crud(Order)
-class OrderOps:
-    @sales_router.bind("order.submit")
-    def submit(self, customer_id: int, lines: list[dict]) -> Order:
-        """Custom domain operation to submit an order."""
-        pass
-
-app.include_router(sales_router)`,
+app = TigrblApp(
+    engine={"kind": "sqlite", "mode": "memory", "async": False}
+)
+for table in (Customer, Product, Order, OrderLine):
+    app.include_table(table)
+app.initialize()
+app.mount_jsonrpc(prefix="/rpc")`,
     restEndpoint: "POST /sales/order",
     restDetails: `Request Body:
 {
@@ -190,11 +185,11 @@ Response Result:
   {
     id: "proj-health",
     name: "Minimalist Health Endpoint",
-    pythonCode: `from tigrbl import TigrblApp, get
+    pythonCode: `from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-@get("/health")
+@app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}`,
     restEndpoint: "GET /health",
@@ -204,22 +199,10 @@ Response (200 OK):
 {
   "status": "ok"
 }`,
-    rpcMethod: "system.health",
-    rpcDetails: `Request Params:
-{
-  "jsonrpc": "2.0",
-  "method": "system.health",
-  "id": 1
-}
-
-Response Result:
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "status": "ok"
-  },
-  "id": 1
-}`,
+    rpcMethod: "Not projected",
+    rpcDetails: `This direct app route is registered only as REST.
+Use a declarative operation with HttpJsonRpcBindingSpec, or a table profile such
+as RestJsonRpcTable, when one semantic operation must have an RPC binding.`,
     generatedContract: `{
   "openrpc": "1.2.6",
   "info": { "title": "Tigrbl System Methods", "version": "0.4.4" },
@@ -240,30 +223,24 @@ Response Result:
   ]
 }`,
     lifecyclePlan: [
-      "[BOOT] Analyze /health route signature with return hint",
-      "[ROUTING] Bind REST /health and RPC system.health to local health handler",
-      "[REQUEST] Incoming web packet",
-      "[EXECUTION] Call synchronous python target directly",
-      "[RESPONSE] Write ASGI response buffer with 'status: ok'"
+      "[DIRECT ROUTE] @app.get registers GET /health on the app",
+      "[NO RPC BINDING] no JSON-RPC method is implied",
+      "[NO TABLE PLAN] /system/kernelz reports compiled table operations, not this explanatory route summary"
     ]
   },
   {
     id: "proj-analytics",
     name: "Custom Non-Persistence Operation",
-    pythonCode: `from tigrbl import TigrblApp, operation, Schema
+    pythonCode: `from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-class DataPayload(Schema):
-    metrics: list[float]
-    label: str
-
-@app.bind("analytics.process")
-@operation
-def process_data(payload: DataPayload) -> dict:
+@app.post("/analytics/process")
+def process_data(payload: dict) -> dict[str, float | str]:
+    metrics = [float(value) for value in payload.get("metrics", [])]
     return {
-        "avg": sum(payload.metrics) / len(payload.metrics),
-        "tag": payload.label.upper()
+        "avg": sum(metrics) / len(metrics),
+        "tag": str(payload.get("label", "")).upper()
     }`,
     restEndpoint: "POST /analytics/process",
     restDetails: `Request Body:
@@ -277,27 +254,9 @@ Response (200 OK):
   "avg": 2.33,
   "tag": "DEMO"
 }`,
-    rpcMethod: "analytics.process",
-    rpcDetails: `Request Params:
-{
-  "jsonrpc": "2.0",
-  "method": "analytics.process",
-  "params": {
-    "metrics": [1.5, 2.0, 3.5],
-    "label": "demo"
-  },
-  "id": 1
-}
-
-Response Result:
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "avg": 2.3333333333333335,
-    "tag": "DEMO"
-  },
-  "id": 1
-}`,
+    rpcMethod: "Not projected",
+    rpcDetails: `This direct route has no JSON-RPC binding. Add an explicit
+HttpJsonRpcBindingSpec to a semantic operation when RPC projection is required.`,
     generatedContract: `{
   "components": {
     "schemas": {
@@ -313,12 +272,10 @@ Response Result:
   }
 }`,
     lifecyclePlan: [
-      "[BOOT] Compile custom Schema: DataPayload definition",
-      "[ROUTING] Map RPC analytics.process -> process_data",
-      "[REQUEST] Receive transport payload",
-      "[VALIDATION] Verify array values are strictly float types",
-      "[EXECUTION] Process sum and average metrics helper",
-      "[RESPONSE] Format tag output and stream response"
+      "[DIRECT ROUTE] @app.post registers POST /analytics/process",
+      "[HANDLER] process_data receives the direct route payload",
+      "[NO RPC BINDING] add an explicit HttpJsonRpcBindingSpec for RPC projection",
+      "[NO GENERATED SCHEMA CLAIM] dict annotations do not create the table-operation schema inventory shown elsewhere"
     ]
   }
 ];
@@ -530,7 +487,7 @@ export function ProtocolProjector() {
             {activeTab === "lifecycle" && (
               <div className="flex-1 flex flex-col">
                 <div className="bg-slate-950 border border-white/5 p-2 rounded mb-2 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">Pre-boot Compiled Kernel Plan (/system/kernelz)</span>
+                  <span className="text-[11px] font-mono text-slate-400">Lifecycle and binding evidence</span>
                   <span className="text-[11px] font-mono text-orange-400 font-semibold">100% Inspectable</span>
                 </div>
                 <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex-1 overflow-y-auto max-h-[300px]">

@@ -8,11 +8,11 @@ import {
   Claim,
   ProofItem,
   PackageRecord,
-  ReleaseRecord,
   ExampleRecord,
   CapabilityRow,
   UserProfileHypothesis
 } from "./types";
+export { RELEASES } from "./releases";
 
 export const VERIFIED_DATE = "2026-07-11";
 
@@ -28,8 +28,8 @@ export const FEATURES: Feature[] = [
     versionScope: ">=0.4.0",
     protocols: ["REST", "JSON-RPC", "SSE", "WebSocket"],
     engines: ["Generic"],
-    docsUrl: "https://github.com/tigrbl/tigrbl/blob/main/README.md",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-core",
+    docsUrl: "https://github.com/tigrbl/tigrbl/blob/master/README.md",
+    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_core",
     verifiedAt: "2026-07-11"
   },
   {
@@ -43,7 +43,7 @@ export const FEATURES: Feature[] = [
     protocols: ["REST", "JSON-RPC"],
     engines: ["Postgres"],
     docsUrl: "https://github.com/tigrbl/tigrbl",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-orm",
+    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_orm",
     verifiedAt: "2026-07-11"
   },
   {
@@ -57,7 +57,7 @@ export const FEATURES: Feature[] = [
     protocols: ["REST", "JSON-RPC", "SSE", "WebSocket", "WebTransport"],
     engines: ["Generic"],
     docsUrl: "https://github.com/tigrbl/tigrbl",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-kernel",
+    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_kernel",
     verifiedAt: "2026-07-11"
   },
   {
@@ -71,7 +71,7 @@ export const FEATURES: Feature[] = [
     protocols: ["REST", "JSON-RPC"],
     engines: ["Postgres"],
     docsUrl: "https://github.com/tigrbl/tigrbl",
-    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-engine",
+    sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/engines",
     verifiedAt: "2026-07-11"
   }
 ];
@@ -83,7 +83,7 @@ export const CLAIMS: Claim[] = [
     claimText: "Define once, project everywhere: Keep REST endpoints, JSON-RPC procedures, and WebSocket flows completely synchronized in a single schema-first Python codebase.",
     allowedContexts: ["Home Hero", "Product Page"],
     evidenceLinks: [
-      "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-runtime",
+      "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_runtime",
       "https://pypi.org/project/tigrbl/"
     ],
     reviewer: "Maintainer",
@@ -97,7 +97,7 @@ export const CLAIMS: Claim[] = [
     claimText: "Inspectable ASGI kernel plans guarantee runtime predictability, allowing compile-time tracing of lifecycle hooks, middleware, and dependency trees.",
     allowedContexts: ["Product Page", "Get Started"],
     evidenceLinks: [
-      "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-kernel"
+      "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_kernel"
     ],
     reviewer: "Maintainer",
     approvalStatus: "Approved",
@@ -135,7 +135,7 @@ export const PROOF_ITEMS: ProofItem[] = [
     type: "Policy",
     title: "Apache-2.0 License File",
     description: "Permissive Apache-2.0 license checked in at repository root for framework usage.",
-    url: "https://github.com/tigrbl/tigrbl/blob/main/LICENSE",
+    url: "https://github.com/tigrbl/tigrbl/blob/master/LICENSE",
     verifiedAt: "2026-06-27"
   },
   {
@@ -143,7 +143,7 @@ export const PROOF_ITEMS: ProofItem[] = [
     type: "Test",
     title: "Upstream Kernel Lifecycle Spec Tests",
     description: "Automated test suite checking route compile and lifecycle plan generator in core ASGI loops.",
-    url: "https://github.com/tigrbl/tigrbl/tree/main/packages/tigrbl-kernel/tests",
+    url: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_kernel/tests",
     verifiedAt: "2026-07-11"
   }
 ];
@@ -165,7 +165,7 @@ export const PACKAGES: PackageRecord[] = [
     pythonRange: ">=3.10,<3.15",
     installCmd: "uv add tigrbl",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -179,11 +179,11 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Specs, configuration resolution, operation vocabulary, and schema generation.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-core",
+    sourcePath: "pkgs/core/tigrbl_core",
     pypiUrl: "https://pypi.org/project/tigrbl-core/",
     installCmd: "uv add tigrbl-core",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-core",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_core",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -196,10 +196,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Abstract contracts, mapping helpers, and inference boundaries.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-base",
+    sourcePath: "pkgs/core/tigrbl_base",
     pypiUrl: "https://pypi.org/project/tigrbl-base/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-base",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_base",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -212,10 +212,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Concrete app/router/table/operation/docs/diagnostics/engine/transport adapters.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-concrete",
+    sourcePath: "pkgs/core/tigrbl_concrete",
     pypiUrl: "https://pypi.org/project/tigrbl-concrete/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-concrete",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_concrete",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -228,10 +228,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Lifecycle phase work, typed contexts, atoms, transactions, and runtime units.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-atoms",
+    sourcePath: "pkgs/core/tigrbl_atoms",
     pypiUrl: "https://pypi.org/project/tigrbl-atoms/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-atoms",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_atoms",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -244,10 +244,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Operation-view compilation, hook ordering, packed plans, protocol chains, lifecycle rows, labels, event keys, and capability masks.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-kernel",
+    sourcePath: "pkgs/core/tigrbl_kernel",
     pypiUrl: "https://pypi.org/project/tigrbl-kernel/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-kernel",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_kernel",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -260,10 +260,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Execution of compiled plans, routing, transport-unit handling, framing, and transaction progression.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-runtime",
+    sourcePath: "pkgs/core/tigrbl_runtime",
     pypiUrl: "https://pypi.org/project/tigrbl-runtime/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-runtime",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_runtime",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -276,10 +276,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "SQLAlchemy-facing table, mixin, column, and persistence helpers.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-orm",
+    sourcePath: "pkgs/core/tigrbl_orm",
     pypiUrl: "https://pypi.org/project/tigrbl-orm/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-orm",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_orm",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -293,11 +293,11 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Canonical CRUD and transactional operation definitions.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-ops-oltp",
+    sourcePath: "pkgs/core/tigrbl_ops_oltp",
     pypiUrl: "https://pypi.org/project/tigrbl-ops-oltp/",
     installCmd: "uv add tigrbl-ops-oltp",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-ops-oltp",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_ops_oltp",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -310,10 +310,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Analytical operation definitions.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-ops-olap",
+    sourcePath: "pkgs/core/tigrbl_ops_olap",
     pypiUrl: "https://pypi.org/project/tigrbl-ops-olap/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-ops-olap",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_ops_olap",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -326,10 +326,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Realtime, streaming, pub/sub, and transport-oriented operation definitions.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-ops-realtime",
+    sourcePath: "pkgs/core/tigrbl_ops_realtime",
     pypiUrl: "https://pypi.org/project/tigrbl-ops-realtime/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-ops-realtime",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_ops_realtime",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -343,11 +343,11 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "PostgreSQL transaction and persistence engine integration.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/engines/tigrbl-engine-postgres",
+    sourcePath: "pkgs/engines/tigrbl_engine_postgres",
     pypiUrl: "https://pypi.org/project/tigrbl-engine-postgres/",
     installCmd: "uv add tigrbl-engine-postgres",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/engines/tigrbl-engine-postgres",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/engines/tigrbl_engine_postgres",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -361,10 +361,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Client helpers.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-client",
+    sourcePath: "pkgs/core/tigrbl_client",
     pypiUrl: "https://pypi.org/project/tigrbl-client/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-client",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_client",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -377,10 +377,10 @@ export const PACKAGES: PackageRecord[] = [
     responsibility: "Shared typing and vendor-compatible types.",
     publicationStatus: "Published",
     installable: true,
-    sourcePath: "pkgs/core/tigrbl-typing",
+    sourcePath: "pkgs/core/tigrbl_typing",
     pypiUrl: "https://pypi.org/project/tigrbl-typing/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl-typing",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_typing",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -396,7 +396,7 @@ export const PACKAGES: PackageRecord[] = [
     sourcePath: "pkgs/core/tigrbl_spec",
     pypiUrl: "https://pypi.org/project/tigrbl_spec/",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl_spec",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_spec",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
@@ -413,75 +413,10 @@ export const PACKAGES: PackageRecord[] = [
     pypiUrl: "https://pypi.org/project/tigrbl_tests/",
     installCmd: "uv add --dev tigrbl_tests",
     evidence: {
-      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/main/pkgs/core/tigrbl_tests",
+      sourceUrl: "https://github.com/tigrbl/tigrbl/tree/master/pkgs/core/tigrbl_tests",
       verifiedAt: "2026-07-11",
       evidenceKind: "pypi"
     }
-  }
-];
-
-// 5. Release History
-export const RELEASES: ReleaseRecord[] = [
-  {
-    version: "0.4.4",
-    type: "stable",
-    publishedAt: "2026-06-27",
-    pyRange: ">=3.10,<3.15",
-    license: "Apache-2.0",
-    status: "Alpha",
-    pypiUrl: "https://pypi.org/project/tigrbl/0.4.4/",
-    githubUrl: "https://github.com/tigrbl/tigrbl/releases/tag/v0.4.4",
-    changelogSummary: [
-      "Fixes release version drift, bringing the PyPI facade up to date with core operational features.",
-      "Optimized ORM database table compiler, producing tighter OpenAPI schema boundaries.",
-      "Stabilized WebSocket framing callbacks, reducing overall message latency.",
-      "Exposed the template extra package for simple custom HTML bindings."
-    ],
-    isRecommended: true
-  },
-  {
-    version: "0.4.5.dev4",
-    type: "prerelease",
-    publishedAt: "2026-06-27",
-    pyRange: ">=3.10,<3.15",
-    license: "Apache-2.0",
-    status: "Alpha (Development Prerelease)",
-    pypiUrl: "https://pypi.org/project/tigrbl/0.4.5.dev4/",
-    githubUrl: "https://github.com/tigrbl/tigrbl/releases",
-    changelogSummary: [
-      "Experimental WebTransport session routing support added directly to the kernel runtime.",
-      "Initial design hook interfaces for custom client code generators."
-    ],
-    isRecommended: false
-  },
-  {
-    version: "0.4.5.dev1",
-    type: "prerelease",
-    publishedAt: "2026-06-27",
-    pyRange: ">=3.10,<3.15",
-    license: "Apache-2.0",
-    status: "Alpha (Development Prerelease)",
-    pypiUrl: "https://pypi.org/project/tigrbl/0.4.5.dev1/",
-    githubUrl: "https://github.com/tigrbl/tigrbl/releases",
-    changelogSummary: [
-      "Early refactoring of split core and base packages to allow modular imports in lightweight runtime units."
-    ],
-    isRecommended: false
-  },
-  {
-    version: "0.4.1",
-    type: "stable",
-    publishedAt: "2026-05-12",
-    pyRange: ">=3.10,<3.15",
-    license: "Apache-2.0",
-    status: "Alpha",
-    pypiUrl: "https://pypi.org/project/tigrbl/0.4.1/",
-    githubUrl: "https://github.com/tigrbl/tigrbl/releases/tag/v0.4.1",
-    changelogSummary: [
-      "Initial architecture separation where the main facade began backing up to core, atoms, and kernel packages.",
-      "Added support for the postgres extra engine."
-    ],
-    isRecommended: false
   }
 ];
 
@@ -497,14 +432,13 @@ export const EXAMPLES: ExampleRecord[] = [
     engine: "None",
     packageScope: "tigrbl",
     testedStatus: "Passed",
-    sourceLink: "https://github.com/tigrbl/tigrbl/blob/main/examples/health.py",
-    code: `from tigrbl import TigrblApp, get
+    sourceLink: "https://github.com/tigrbl/tigrbl/blob/master/examples/transport_surface_matrix_demo/app.py",
+    code: `from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-@get("/health")
+@app.get("/health")
 def health() -> dict[str, str]:
-    """Exposes a clean REST GET endpoint at /health"""
     return {"status": "ok"}
 `,
     expectedOutput: `GET /health
@@ -521,31 +455,30 @@ Body:
     useCase: "Generated REST routes and JSON-RPC procedures compiled directly from a single data model.",
     difficulty: "Intermediate",
     protocol: "Multi-Protocol",
-    engine: "Postgres",
+    engine: "Generic",
     packageScope: "tigrbl, tigrbl-orm",
     testedStatus: "Passed",
-    sourceLink: "https://github.com/tigrbl/tigrbl/blob/main/examples/crud.py",
-    code: `from tigrbl import TigrblApp, Table, get, post
-from tigrbl.engines.postgres import PostgresEngine
+    sourceLink: "https://github.com/tigrbl/tigrbl/blob/master/examples/equivalence_contracts/src/tigrbl_equivalence_contracts/equivalences/rest_json_rpc_oltp_table/tigrbl_impl.py",
+    code: `from sqlalchemy import Column, String
+from tigrbl import RestJsonRpcTable, TigrblApp
 
-# Connect Postgres engine via extra
-app = TigrblApp(engine=PostgresEngine(dsn="postgresql://localhost/db"))
+class User(RestJsonRpcTable):
+    __tablename__ = "users"
+    __allow_unmapped__ = True
 
-class Users(Table):
-    id: int
-    name: str
-    email: str
+    id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
 
-@app.crud(Users)
-class UserOperations:
-    # Tigrbl compiles the Users schema. It automatically projects:
-    # 1. REST Endpoint: GET /users, POST /users
-    # 2. JSON-RPC Method: users.list, users.create
-    # 3. Typed schema validation on all inputs
-    pass
+app = TigrblApp(
+    engine={"kind": "sqlite", "mode": "memory", "async": False}
+)
+app.include_table(User)
+app.initialize()
+app.mount_jsonrpc(prefix="/rpc")
 `,
-    expectedOutput: `REST: GET /users  ==> [{"id": 1, "name": "Jane", "email": "jane@example.com"}]
-JSON-RPC: {"method": "users.list"} ==> {"jsonrpc": "2.0", "result": [{"id": 1}]}
+    expectedOutput: `The RestJsonRpcTable profile supplies the operation inventory.
+Inspect the generated routes and RPC methods at runtime; path and method aliases
+come from the bound table operation specs, not from handwritten duplicates.
 `
   },
   {
@@ -554,80 +487,56 @@ JSON-RPC: {"method": "users.list"} ==> {"jsonrpc": "2.0", "result": [{"id": 1}]}
     audience: "Python API Developers",
     useCase: "Complex operations (like text analysis) that require strict typed schemas but no database storage.",
     difficulty: "Intermediate",
-    protocol: "JSON-RPC",
+    protocol: "REST",
     engine: "None",
     packageScope: "tigrbl",
     testedStatus: "Passed",
-    sourceLink: "https://github.com/tigrbl/tigrbl/blob/main/examples/analyze.py",
-    code: `from tigrbl import TigrblApp, operation, Schema
+    sourceLink: "https://github.com/tigrbl/tigrbl/blob/master/examples/transport_surface_matrix_demo/app.py",
+    code: `from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-class TextPayload(Schema):
-    text: str
-    max_words: int = 5
-
-@app.bind("text.summarize")
-@operation
-def summarize(payload: TextPayload) -> dict[str, any]:
-    words = payload.text.split()
-    summary = " ".join(words[:payload.max_words])
-    return {
-        "summary": f"{summary}...",
-        "word_count": len(words)
-    }
+@app.post("/summaries")
+def summarize(payload: dict) -> dict[str, object]:
+    words = str(payload.get("text", "")).split()
+    limit = int(payload.get("max_words", 5))
+    return {"summary": " ".join(words[:limit]), "word_count": len(words)}
 `,
-    expectedOutput: `JSON-RPC Request:
-{
-  "jsonrpc": "2.0",
-  "method": "text.summarize",
-  "params": {"text": "Tigrbl is a schema-first ASGI framework for Python", "max_words": 3},
-  "id": 1
-}
+    expectedOutput: `POST /summaries
+{"text":"Tigrbl keeps operation identity visible","max_words":3}
 
-JSON-RPC Response:
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "summary": "Tigrbl is a...",
-    "word_count": 8
-  },
-  "id": 1
-}`
+200 OK
+{"summary":"Tigrbl keeps operation","word_count":6}`
   },
   {
     id: "ex-lifecycle",
-    name: "Compile-Time Lifecycle Hooks",
+    name: "Inspect Runtime Diagnostics",
     audience: "Technical Evaluators",
-    useCase: "Registering global hooks and inspecting the boot plan to verify server dispatch logic before starting.",
+    useCase: "Mounting the framework diagnostics and inspecting the kernel-owned operation plan.",
     difficulty: "Advanced",
     protocol: "None",
     engine: "None",
     packageScope: "tigrbl, tigrbl-kernel",
     testedStatus: "Passed",
-    sourceLink: "https://github.com/tigrbl/tigrbl/blob/main/examples/hooks.py",
-    code: `from tigrbl import TigrblApp, get
+    sourceLink: "https://github.com/tigrbl/tigrbl/blob/master/pkgs/70_concrete/tigrbl_concrete/tigrbl_concrete/system/diagnostics/kernelz.py",
+    code: `from tigrbl import TigrblApp
 
-app = TigrblApp()
+app = TigrblApp(mount_system=True)
 
-@app.on_startup
-async def connect_external_metrics():
-    print("Hook fired: Connecting external metrics platform...")
-
-@get("/compute")
-def compute() -> int:
-    return 42
-
-# We can inspect the compiled dispatch plan before launching ASGI!
-plan = app.compile_plan()
-for step in plan.steps:
-    print(f"Step: {step.name} -> {step.handler_name}")
+# After tables are included and initialized, query the mounted diagnostics:
+#   GET /system/methodz
+#   GET /system/hookz
+#   GET /system/kernelz
 `,
-    expectedOutput: `Hook fired: Connecting external metrics platform...
-Step: parse_request -> tigrbl.kernel.steps.parse_http
-Step: authenticate -> my_custom_auth_middleware
-Step: execute_route -> compute
-Step: format_response -> tigrbl.kernel.steps.serialize_json`
+    expectedOutput: `/system/kernelz returns:
+{
+  "ModelName": {
+    "operation_alias": ["PHASE:hook-label", "..."]
+  }
+}
+
+The exact labels are generated from the included tables, operation specs,
+dependencies, hooks, persistence policy, and kernel plan.`
   },
   {
     id: "ex-streaming",
@@ -639,21 +548,26 @@ Step: format_response -> tigrbl.kernel.steps.serialize_json`
     engine: "None",
     packageScope: "tigrbl, tigrbl-runtime",
     testedStatus: "Passed",
-    sourceLink: "https://github.com/tigrbl/tigrbl/blob/main/examples/stream.py",
-    code: `import asyncio
-from tigrbl import TigrblApp, stream, Event
+    sourceLink: "https://github.com/tigrbl/tigrbl/blob/master/examples/transport_surface_matrix_demo/app.py",
+    code: `from tigrbl import EventStreamResponse, SseBindingSpec, TigrblApp
 
 app = TigrblApp()
 
-@stream("/events")
-async def event_generator():
-    """Generates a structured SSE event sequence"""
-    for count in range(1, 4):
-        await asyncio.sleep(1)
-        yield Event(
-            event="tick",
-            data={"index": count, "message": "heartbeat"}
-        )
+async def event_items():
+    yield {"event": "tick", "data": {"id": 1}}
+
+def events() -> EventStreamResponse:
+    return EventStreamResponse(event_items())
+
+app.add_route(
+    "/events",
+    events,
+    methods=("GET",),
+    tigrbl_binding=SseBindingSpec(
+        proto="http.sse", path="/events", methods=("GET",)
+    ),
+    tigrbl_exchange="event_stream",
+)
 `,
     expectedOutput: `Connection: GET /events
 Response Headers: text/event-stream

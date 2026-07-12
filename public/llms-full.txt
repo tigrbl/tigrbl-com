@@ -1,209 +1,91 @@
-# Tigrbl (mdwrk) - Full Technical Specification & Developer Reference
+# Tigrbl technical reference
 
-Tigrbl (alternatively referred to as the mdwrk framework) is a highly optimized, schema-first ASGI framework for Python. Its key architectural philosophy is to specify core domain models, tables, validation schemas, and execution routines exactly **once**, then compilation-project them transparently into multiple transport pathways (REST paths, JSON-RPC procedures, WebSocket message events, and SSE streams) while validating incoming payloads and emitting perfectly synchronized client specifications without code drift.
+Verified: 2026-07-11
 
----
+Tigrbl is a schema-first Python framework family for REST, JSON-RPC, typed
+contracts, runtime pipelines, engine plugins, and optional Rust runtime
+bindings. Application code normally starts with the `tigrbl` facade.
 
-## 1. Architectural Blueprint: The Four-Stage Pipeline
+## Install
 
-Tigrbl operates progressively from authoring down to the socket transport layer, dividing execution into four distinct phases:
+```bash
+uv add tigrbl
+```
 
-### Phase 1: Author (The Public Facade Pattern)
-Developers interact solely with the high-level unified `tigrbl` package contract. Using simple declarative python code, decorators (like `@get`, `@post`, `@stream`, `@app.crud`), table models (`class Users(Table)`), and schema declarations (`class Payload(Schema)`), developers write clear business logic devoid of low-level socket, protocol framing, or middleware boilerplates.
+Use `pipx install tigrbl` only for an isolated CLI installation. Use
+`python -m pip install tigrbl` as the tertiary virtual-environment path.
 
-### Phase 2: Describe (The Specification Parser)
-During the pre-boot cycle, `tigrbl-core` analyzes code signatures. It inspects parameters, return type annotations, docstrings, and decorators. It compiles these structures into an intermediate abstract operational specification (similar to OpenAPI/OpenRPC schemas but protocol-agnostic).
-
-### Phase 3: Plan (The ASGI Kernel compiler)
-The `tigrbl-kernel` parses the abstract specification and organizes all middleware, validation guards, authorization blocks, and endpoint handlers into a structured, step-by-step dispatch execution plan. This plan can be printed or audited *prior* to starting the server, enabling upfront static diagnostics.
-
-### Phase 4: Execute (The Transport Dispatcher)
-At startup, `tigrbl-runtime` binds sockets across HTTP, SSE, WebSocket, and WebTransport sessions. When a package/message arrives, the runtime matches it directly against the compiled plan's paths or procedures, triggers the validation guards, processes hooks, executes the target controller, and serializes responses dynamically.
-
----
-
-## 2. Comprehensive Package Ecosystem
-
-Tigrbl is structured as a modular mono-repository of discrete, lightweight micro-packages. Developers primarily import from the facade, but platform teams customize behavior through core layers.
-
-| Package Name | Category | Purpose & Description | Maturity |
-| :--- | :--- | :--- | :--- |
-| **`tigrbl`** | Public Facade | Unified developer entry point. Re-exports core decorators, tables, schemas, and engine hooks. | Alpha |
-| **`tigrbl-core`** | Framework Core | Implements ASGI app wrapper, route compilation interfaces, and baseline specifications. | Alpha |
-| **`tigrbl-kernel`** | Framework Core | Compiles routes into static, queryable boot logs and dependency trees. | Alpha |
-| **`tigrbl-runtime`** | Framework Core | Executes compiled dispatch trees on top of raw ASGI HTTP and WebSocket sockets. | Alpha |
-| **`tigrbl-orm`** | Framework Core | Mapped table declarations, validation models, and migration compilers. | Alpha |
-| **`tigrbl-crud-pack`** | Operation Pack | Ready-to-go CRUD blocks. Exposes standard table endpoints instantly on REST & RPC. | Beta |
-| **`tigrbl-postgres`** | Engine Plugin | Native PostgreSQL adapter managing pools and state transactions. | Alpha |
-| **`tigrbl-client`** | Client SDK | Helper wrapper to call REST or JSON-RPC Tigrbl systems from Python or JavaScript. | Alpha |
-| **`tigrbl-typing`** | Developer Tool | Mypy and Pyright static analyzer rules for validating signatures at development time. | Beta |
-| **`tigrbl-test`** | Developer Tool | Direct, socket-less request runner to mock requests straight intocompiled plans. | Stable |
-
----
-
-## 3. Core Python Code Examples & Execution Playgrounds
-
-### Example 1: Minimal Health Operation
-A simple, low-boilerplate REST endpoint illustrating basic facade usage.
+## Direct REST route
 
 ```python
-from tigrbl import TigrblApp, get
+from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-@get("/health")
+@app.get("/health")
 def health() -> dict[str, str]:
-    """Exposes a clean REST GET endpoint at /health"""
     return {"status": "ok"}
 ```
-**Expected Output:**
-```json
-GET /health -> 200 OK
-{
-  "status": "ok"
-}
-```
 
-### Example 2: Table-Backed Multi-Protocol CRUD
-Map a database table directly into high-level REST pathways and JSON-RPC method handlers simultaneously.
+`app.get()` immediately registers a direct REST route. The standalone `get()`
+decorator instead attaches operation metadata to a method owned by a Tigrbl
+declarative class; a free-standing decorated function is not automatically
+included in an existing app.
+
+## Table-backed REST and JSON-RPC
 
 ```python
-from tigrbl import TigrblApp, Table, get, post
-from tigrbl.engines.postgres import PostgresEngine
+from sqlalchemy import Column, String
+from tigrbl import RestJsonRpcTable, TigrblApp
 
-# Connect Postgres engine via extra
-app = TigrblApp(engine=PostgresEngine(dsn="postgresql://localhost/db"))
+class User(RestJsonRpcTable):
+    __tablename__ = "users"
+    __allow_unmapped__ = True
+    id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
 
-class Users(Table):
-    id: int
-    name: str
-    email: str
-
-@app.crud(Users)
-class UserOperations:
-    # Tigrbl automatically projects:
-    # 1. REST Path: GET /users, POST /users
-    # 2. JSON-RPC: users.list, users.create methods
-    # 3. Dynamic schema validation on inputs
-    pass
-```
-**Expected Output:**
-- `REST GET /users` -> `[{"id": 1, "name": "Jane", "email": "jane@example.com"}]`
-- `JSON-RPC Request` `{"method": "users.list"}` -> `{"jsonrpc": "2.0", "result": [{"id": 1, ...}]}`
-
-### Example 3: Custom Schema Validation & Non-Persistence Operation
-Validating inputs using nested Schema subclasses without direct database storage.
-
-```python
-from tigrbl import TigrblApp, operation, Schema
-
-app = TigrblApp()
-
-class TextPayload(Schema):
-    text: str
-    max_words: int = 5
-
-@app.bind("text.summarize")
-@operation
-def summarize(payload: TextPayload) -> dict[str, any]:
-    words = payload.text.split()
-    summary = " ".join(words[:payload.max_words])
-    return {
-        "summary": f"{summary}...",
-        "word_count": len(words)
-    }
-```
-**Expected Output:**
-- **Request:**
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "text.summarize",
-  "params": {"text": "Tigrbl is a schema-first ASGI framework for Python", "max_words": 3},
-  "id": 1
-}
-```
-- **Response:**
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "summary": "Tigrbl is a...",
-    "word_count": 8
-  },
-  "id": 1
-}
+app = TigrblApp(
+    engine={"kind": "sqlite", "mode": "memory", "async": False}
+)
+app.include_table(User)
+app.initialize()
+app.mount_jsonrpc(prefix="/rpc")
 ```
 
-### Example 4: Pre-Boot Kernel Lifecycle Inspection
-Exposing, querying, and auditing compile-time step execution plans prior to live socket attachment.
+The table profile supplies an operation inventory that Tigrbl can project into
+bindings, schemas, docs, hooks, diagnostics, and runtime plans. Exact route and
+method aliases must be read from the generated output for the installed version.
 
-```python
-from tigrbl import TigrblApp, get
+## Kernel lifecycle
 
-app = TigrblApp()
+The canonical success phases are:
 
-@app.on_startup
-async def connect_external_metrics():
-    print("Hook fired: Connecting external metrics platform...")
+1. `INGRESS_BEGIN`
+2. `INGRESS_PARSE`
+3. `INGRESS_DISPATCH`
+4. `PRE_TX_BEGIN`
+5. `START_TX`
+6. `PRE_HANDLER`
+7. `HANDLER`
+8. `POST_HANDLER`
+9. `PRE_COMMIT`
+10. `TX_COMMIT`
+11. `POST_COMMIT`
+12. `EGRESS_SHAPE`
+13. `EGRESS_FINALIZE`
+14. `POST_RESPONSE`
 
-@get("/compute")
-def compute() -> int:
-    return 42
+Error handling uses phase-specific `ON_*_ERROR` chains, `ON_ERROR` fallback,
+and `TX_ROLLBACK` for transaction-owned work.
 
-# Inspect compiled boot plan
-plan = app.compile_plan()
-for step in plan.steps:
-    print(f"Step: {step.name} -> {step.handler_name}")
-```
-**Expected Output:**
-```
-Hook fired: Connecting external metrics platform...
-Step: parse_request -> tigrbl.kernel.steps.parse_http
-Step: authenticate -> my_custom_auth_middleware
-Step: execute_route -> compute
-Step: format_response -> tigrbl.kernel.steps.serialize_json
-```
+`/system/kernelz` returns model → operation → label arrays. Labels are generated
+from security dependencies, dependencies, persistence policy, phase chains,
+hooks, and transaction steps. It does not return prose descriptions or an
+`app.compile_plan()` object.
 
-### Example 5: High-Performance Server-Sent Events (SSE) Stream
-Streaming real-time event sequences with validated schemas to browser channels.
+## Sources
 
-```python
-import asyncio
-from tigrbl import TigrblApp, stream, Event
-
-app = TigrblApp()
-
-@stream("/events")
-async def event_generator():
-    """Generates a structured SSE event sequence"""
-    for count in range(1, 4):
-        await asyncio.sleep(1)
-        yield Event(
-            event="tick",
-            data={"index": count, "message": "heartbeat"}
-        )
-```
-**Expected Output:**
-```
-Connection: GET /events
-Response Headers: text/event-stream
-
-Stream Output:
-event: tick
-data: {"index": 1, "message": "heartbeat"}
-
-event: tick
-data: {"index": 2, "message": "heartbeat"}
-```
-
----
-
-## 4. Release Registry Archive & Environment Ranges
-
-- **Active Stable Version:** `v0.4.4` (Apache-2.0 License / Verified July 11, 2026)
-- **Supported Python Lifecycles:** `>=3.10` up to `<3.15` (covers Python 3.10, 3.11, 3.12, 3.13, and 3.14 alpha)
-- **Status:** Active Framework Alpha
-
----
-*For questions, issue logs, or pipeline specifications, see the full interactive website at https://tigrbl.com.*
+- Website: https://tigrbl.com/
+- Repository: https://github.com/tigrbl/tigrbl
+- PyPI: https://pypi.org/project/tigrbl/
+- Discord: https://discord.gg/K4YTAPapjR

@@ -237,16 +237,16 @@ export function SEO({ currentView }: SEOProps) {
         "codeRepository": "https://github.com/tigrbl/tigrbl/blob/main/examples/health.py",
         "programmingLanguage": "Python",
         "runtimePlatform": "Python >= 3.10",
-        "text": `from tigrbl import TigrblApp, get\n\napp = TigrblApp()\n\n@get("/health")\ndef health() -> dict[str, str]:\n    return {"status": "ok"}`
+        "text": `from tigrbl import TigrblApp\n\napp = TigrblApp()\n\n@app.get("/health")\ndef health() -> dict[str, str]:\n    return {"status": "ok"}`
       };
       const codeEx2 = {
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
         "name": "Table-Backed Multi-Protocol CRUD (Tigrbl)",
-        "codeRepository": "https://github.com/tigrbl/tigrbl/blob/main/examples/crud.py",
+        "codeRepository": "https://github.com/tigrbl/tigrbl/blob/master/examples/equivalence_contracts/src/tigrbl_equivalence_contracts/equivalences/rest_json_rpc_oltp_table/tigrbl_impl.py",
         "programmingLanguage": "Python",
         "runtimePlatform": "Python >= 3.10",
-        "text": `from tigrbl import TigrblApp, Table\nfrom tigrbl.engines.postgres import PostgresEngine\n\napp = TigrblApp(engine=PostgresEngine(dsn="postgresql://localhost/db"))\n\nclass Users(Table):\n    id: int\n    name: str\n\n@app.crud(Users)\nclass UserOperations:\n    pass`
+        "text": `from sqlalchemy import Column, String\nfrom tigrbl import RestJsonRpcTable, TigrblApp\n\nclass User(RestJsonRpcTable):\n    __tablename__ = "users"\n    id = Column(String, primary_key=True)\n    name = Column(String, nullable=False)\n\napp = TigrblApp(engine={"kind": "sqlite", "mode": "memory", "async": False})\napp.include_table(User)\napp.initialize()\napp.mount_jsonrpc(prefix="/rpc")`
       };
       schemas.push(codeEx1, codeEx2);
     }
@@ -286,7 +286,7 @@ export function SEO({ currentView }: SEOProps) {
             "name": "Can the framework align REST and JSON-RPC multi-protocol structures in one codebase?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Absolutely. By declaring a single Python operation specification, the Tigrbl engine automatically compiles and projects matching REST routes and JSON-RPC method bindings synchronously with zero contract version drift."
+              "text": "A semantic operation can carry both REST and JSON-RPC binding specifications. Verify the generated OpenAPI, OpenRPC, and runtime diagnostics for the Tigrbl version you deploy."
             }
           },
           {

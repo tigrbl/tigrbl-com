@@ -38,7 +38,9 @@ export function ReleasesView() {
             Facade Release Stream
           </h1>
           <p className="mt-4 text-slate-400 text-sm leading-relaxed">
-            Verify PyPI release logs, download links, and package history. Tigrbl distinguishes recommended high-level facade releases from individual dev plugin distributions.
+            Complete facade publication history from PyPI: {RELEASES.length} releases,
+            including stable and development versions. PyPI metadata proves publication;
+            release notes are linked separately and are never inferred.
           </p>
         </div>
 
@@ -95,7 +97,7 @@ export function ReleasesView() {
           {/* Recommended Release Changelog Highlights */}
           <div className="mt-6 pt-6 border-t border-white/5">
             <h4 className="text-xs font-mono text-slate-300 font-semibold uppercase tracking-wider mb-3">
-              Changelog Highlights
+              Publication details
             </h4>
             <ul className="space-y-2 text-xs text-slate-400 leading-relaxed list-none">
               {recommendedRelease.changelogSummary.map((item, idx) => (

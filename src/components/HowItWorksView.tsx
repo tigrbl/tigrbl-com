@@ -106,19 +106,16 @@ export function HowItWorksView() {
               <span className="text-[10px] text-slate-500 block uppercase mb-2">Canonical Code Concept</span>
               <div className="bg-[#0A0A0B] rounded border border-white/5 overflow-hidden">
                 <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
-{`from tigrbl import TigrblApp, Table, get
+{`from tigrbl import TigrblApp, TigrblRouter
 
 app = TigrblApp()
+accounts = TigrblRouter(prefix="/accounts")
 
-class Account(Table):
-    account_id: int
-    balance: float
+@accounts.get("/{account_id}")
+def check_balance(account_id: int) -> dict[str, int | float]:
+    return {"account_id": account_id, "balance": 150.00}
 
-@get("/accounts/{account_id}")
-def check_balance(account_id: int) -> Account:
-    # Schema validation and contract generation
-    # align automatically.
-    return Account(account_id=account_id, balance=150.00)`}
+app.include_router(accounts)`}
                 </SyntaxHighlighter>
               </div>
             </div>
@@ -183,23 +180,29 @@ def check_balance(account_id: int) -> Account:
             </div>
 
             <div className="bg-slate-900/40 border border-white/5 rounded-xl p-5 font-mono text-xs text-slate-300">
-              <span className="text-[10px] text-slate-500 block uppercase mb-2">Simulated Pre-boot Kernel Plan Dump (/system/kernelz)</span>
+              <span className="text-[10px] text-slate-500 block uppercase mb-2">Lifecycle phase reference used by kernel plans</span>
               <div className="bg-slate-950/80 p-3 rounded border border-white/5 max-h-[220px] overflow-y-auto space-y-1.5 text-[11px] text-slate-400">
-                <div>[01] INGRESS_BEGIN: Accept transport stream</div>
-                <div>[02] INGRESS_PARSE: Deserialize incoming payload</div>
-                <div>[03] INGRESS_DISPATCH: Map route to check_balance operation</div>
-                <div>[04] PRE_TX_BEGIN: Apply security capability masks</div>
-                <div>[05] START_TX: Open database connection (PostgresEngine)</div>
-                <div>[06] PRE_HANDLER: Attach validation hooks and guards</div>
-                <div>[07] HANDLER: Execute operation handler (check_balance)</div>
-                <div>[08] POST_HANDLER: Run logging or mutation hooks</div>
-                <div>[09] PRE_COMMIT: Run final validation constraints</div>
-                <div>[10] TX_COMMIT: Commit transaction</div>
-                <div>[11] POST_COMMIT: Broadcast to subscribers</div>
-                <div>[12] EGRESS_SHAPE: Format output via schema</div>
-                <div>[13] EGRESS_FINALIZE: Serialize response body</div>
-                <div>[14] POST_RESPONSE: Telemetry and teardown</div>
+                <div>[01] INGRESS_BEGIN — initialize ingress context</div>
+                <div>[02] INGRESS_PARSE — parse transport payload and request metadata</div>
+                <div>[03] INGRESS_DISPATCH — resolve operation, binding, and protocol event</div>
+                <div>[04] PRE_TX_BEGIN — run checks before a transaction exists</div>
+                <div>[05] START_TX — open or attach transaction state when persistence applies</div>
+                <div>[06] PRE_HANDLER — resolve dependencies, validate input, and enforce policy</div>
+                <div>[07] HANDLER — execute the semantic operation handler</div>
+                <div>[08] POST_HANDLER — normalize output and run in-transaction hooks</div>
+                <div>[09] PRE_COMMIT — run final checks before commit</div>
+                <div>[10] TX_COMMIT — commit framework-owned transaction work</div>
+                <div>[11] POST_COMMIT — run committed-side effects</div>
+                <div>[12] EGRESS_SHAPE — build the response envelope and apply masks</div>
+                <div>[13] EGRESS_FINALIZE — finalize status, headers, renderer, and transport data</div>
+                <div>[14] POST_RESPONSE — run work that cannot change the returned response</div>
+                <div>[error] ON_*_ERROR / ON_ERROR — phase-specific and fallback error chains</div>
+                <div>[error] TX_ROLLBACK — roll back transaction-owned work</div>
               </div>
+              <p className="mt-3 text-[10px] leading-relaxed text-slate-500">
+                <code>/system/kernelz</code> returns model → operation → label arrays such as
+                <code> PHASE:hook-label</code>. It does not return the explanatory prose above.
+              </p>
             </div>
           </div>
         </div>
@@ -208,10 +211,10 @@ def check_balance(account_id: int) -> Account:
         <div className="mt-16 bg-gradient-to-tr from-slate-900/40 to-slate-950 border border-white/5 rounded-xl p-8 text-center">
           <ShieldCheck className="w-10 h-10 text-orange-500 mx-auto mb-4" />
           <h3 className="text-xl font-display font-bold text-slate-200">
-            Guaranteed Aligned Contracts. No Drift.
+            One operation identity across generated surfaces
           </h3>
           <p className="text-slate-400 text-xs sm:text-sm mt-2 max-w-2xl mx-auto leading-relaxed">
-            By compiling operation intent into structured plans before binding the transport port, Tigrbl ensures OpenAPI specifications, routing validation, database schemas, and client typings are always 100% aligned with actual server execution.
+            Tigrbl is designed to keep operation identity visible across bindings, schemas, hooks, diagnostics, and runtime planning. Verify the generated documents and diagnostics for the version you deploy.
           </p>
         </div>
       </div>

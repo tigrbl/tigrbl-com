@@ -32,13 +32,12 @@ export function GetStartedView() {
     setTimeout(() => setCopiedUv(false), 2000);
   };
 
-  const codeString = `from tigrbl import TigrblApp, get
+  const codeString = `from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-@get("/health")
+@app.get("/health")
 def health() -> dict[str, str]:
-    """Exposes a clean REST GET endpoint at /health"""
     return {"status": "ok"}`;
 
   const copyFile = () => {

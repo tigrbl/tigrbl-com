@@ -315,13 +315,12 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             </div>
             <div className="bg-[#0A0A0B] rounded-b-xl overflow-hidden text-xs">
               <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', background: 'transparent' }}>
-{`from tigrbl import TigrblApp, get
+{`from tigrbl import TigrblApp
 
 app = TigrblApp()
 
-@get("/health")
+@app.get("/health")
 def health() -> dict[str, str]:
-    """Exposes a clean REST GET endpoint at /health"""
     return {"status": "ok"}`}
               </SyntaxHighlighter>
             </div>
