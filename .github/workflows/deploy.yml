@@ -1,7 +1,14 @@
 name: Deploy
 
 on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [master]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: deploy-tigrbl-com
@@ -9,22 +16,18 @@ concurrency:
 
 jobs:
   deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push')
     runs-on: deployment
     environment: deployment
-    env:
-      NPM_BASE_URL: ${{ secrets.NPM_BASE_URL }}
-      NPM_IDENTITY: ${{ secrets.NPM_IDENTITY }}
-      NPM_SECRET: ${{ secrets.NPM_SECRET || secrets.NPM_PASSWORD || secrets.NGINX_PROXY_MANAGER_SECRET }}
-      NPM_TIMEOUT_S: 30
-      NAMECHEAP_API_USER: ${{ secrets.NAMECHEAP_API_USER }}
-      NAMECHEAP_API_KEY: ${{ secrets.NAMECHEAP_API_KEY }}
-      NAMECHEAP_USERNAME: ${{ secrets.NAMECHEAP_USERNAME }}
-      NAMECHEAP_CLIENT_IP: ${{ secrets.NAMECHEAP_CLIENT_IP }}
-      SITE_SERVER_IP: ${{ secrets.SITE_SERVER_IP || secrets.SERVER_IP || secrets.DEPLOY_SERVER_IP }}
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -45,56 +48,6 @@ jobs:
           docker-compose -f docker-compose.yaml rm -f tigrbl-com || true
           docker rm -f tigrbl-com || true
           docker-compose -f docker-compose.yaml up -d --no-build --force-recreate --no-deps tigrbl-com
-      - name: Install npmctl from PyPI
-        run: python -m pip install --upgrade "npmctl>=0.3.10" "npmctl-namecheap>=0.3.10"
-      - name: Validate npmctl orchestration secrets
-        shell: bash
-        run: |
-          missing=0
-          for name in NPM_BASE_URL NPM_IDENTITY NPM_SECRET NAMECHEAP_API_USER NAMECHEAP_API_KEY NAMECHEAP_USERNAME NAMECHEAP_CLIENT_IP SITE_SERVER_IP; do
-            if [ -z "${!name}" ]; then
-              echo "Missing required secret-backed environment variable: ${name}"
-              missing=1
-            fi
-          done
-          exit ${missing}
-      - name: Diagnose npmctl API authentication
-        shell: bash
-        run: |
-          echo "NPM_BASE_URL length=${#NPM_BASE_URL}"
-          echo "NPM_IDENTITY length=${#NPM_IDENTITY}"
-          echo "NPM_SECRET length=${#NPM_SECRET}"
-          npmctl doctor
-      - name: Render DNS desired state
-        shell: bash
-        run: |
-          mkdir -p .tmp
-          sed "s/__SITE_SERVER_IP__/${SITE_SERVER_IP}/g" desired-state/dns.yaml > .tmp/dns.yaml
-      - name: Validate DNS desired state
-        run: npmctl validate .tmp/dns.yaml
-      - name: Validate Namecheap provider
-        run: npmctl dns doctor --provider namecheap
-      - name: Normalize Namecheap DNS records
-        run: python scripts/namecheap-normalize-dns.py .tmp/dns.yaml
-      - name: Apply Namecheap DNS with npmctl
-        continue-on-error: true
-        run: npmctl apply .tmp/dns.yaml --owner tigrbl-com
-      - name: Render proxy desired state
-        shell: bash
-        run: |
-          mkdir -p .tmp/npmctl
-          sed "s/__NPM_IDENTITY__/${NPM_IDENTITY}/g" desired-state/proxy.yaml > .tmp/npmctl/proxy.yaml
-      - name: Validate npmctl proxy host and certificate desired state
-        run: npmctl validate .tmp/npmctl/proxy.yaml
-      - name: Check Nginx Proxy Manager API schema
-        run: npmctl schema check || echo "NPM schema check reported limited endpoint permissions; continuing with proxy-host deploy."
-      - name: Adopt matching unmanaged NPM resources
-        continue-on-error: true
-        run: npmctl adopt .tmp/npmctl/proxy.yaml --owner tigrbl-com --force
-      - name: Plan Nginx Proxy Manager proxy host and certificates with npmctl
-        run: npmctl plan .tmp/npmctl/proxy.yaml --owner tigrbl-com
-      - name: Apply Nginx Proxy Manager proxy host and certificates with npmctl
-        run: npmctl apply .tmp/npmctl/proxy.yaml --owner tigrbl-com
       - name: Verify public HTTPS and HTTP redirect
         shell: bash
         run: |

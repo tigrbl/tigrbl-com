@@ -1,16 +1,15 @@
----
 apiVersion: npmctl.com/v1
 schemaVersion: 2
 certificates:
   - name: tigrbl-com-letsencrypt
     domain_names:
-      - tigrbl.com
-      - www.tigrbl.com
+      - "tigrbl.com"
+      - "www.tigrbl.com"
     certificate_type: letsencrypt
     api_payload:
       provider: letsencrypt
       meta:
-        letsencrypt_email: "__NPM_IDENTITY__"
+        letsencrypt_email: "__LETSENCRYPT_EMAIL__"
         letsencrypt_agree: true
         dns_challenge: false
     meta:
@@ -19,8 +18,8 @@ certificates:
       resource_id: cert.tigrbl-com
 proxy_hosts:
   - domain_names:
-      - tigrbl.com
-      - www.tigrbl.com
+      - "tigrbl.com"
+      - "www.tigrbl.com"
     forward_scheme: http
     forward_host: tigrbl-com
     forward_port: 80

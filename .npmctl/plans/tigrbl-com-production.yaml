@@ -1,0 +1,124 @@
+apiVersion: npmctl.com/v1
+kind: NpmctlPlan
+schemaVersion: 1
+metadata:
+  name: tigrbl-com-production
+  owner: tigrbl-com
+  environment: production
+baseline:
+  repository: tigrbl/tigrbl-com
+  commit: null
+  observedAt: "2026-07-13"
+  migrationSource: legacy-checked-in-desired-state
+  npmctl:
+    source: pypi
+    version: "0.3.10"
+    desiredStateApiVersion: npmctl.com/v1
+    desiredStateSchemaVersion: 2
+  providers:
+    - package: npmctl-namecheap
+      version: "0.3.10"
+      mutationModel: complete-zone-setHosts
+  python: "3.12"
+  uv: null
+desiredState:
+  files:
+    dns: .npmctl/desired-state/production/dns.yaml
+    proxy: .npmctl/desired-state/production/proxy.yaml
+  serverIp: null
+  render:
+    SITE_SERVER_IP: required-protected-secret
+    LETSENCRYPT_EMAIL: NPM_IDENTITY
+  upstream:
+    scheme: http
+    host: tigrbl-com
+    port: 80
+  domains:
+    - "tigrbl.com"
+    - "www.tigrbl.com"
+resources:
+  - kind: DNSRecord
+    resource_id: dns.tigrbl-com.root-a
+    expectedTransition: inspect_then_create_or_update
+  - kind: DNSRecord
+    resource_id: dns.tigrbl-com.wildcard-a
+    expectedTransition: inspect_then_create_or_update
+  - kind: DNSRecord
+    resource_id: dns.tigrbl-com.www-cname
+    expectedTransition: inspect_then_create_or_update
+  - kind: Certificate
+    resource_id: cert.tigrbl-com
+    expectedTransition: inspect_then_create_or_update
+  - kind: ProxyHost
+    resource_id: proxy.tigrbl-com
+    expectedTransition: inspect_then_create_or_update
+operations:
+  - stage: static-validation
+    mutation: false
+    command: npmctl validate .npmctl/desired-state/production
+  - stage: live-plan
+    mutation: false
+    command: npmctl --output json plan reviewed-desired-state --owner tigrbl-com --validate-output
+  - stage: apply
+    mutation: true
+    command: npmctl apply reviewed-desired-state --owner tigrbl-com
+    adoption: false
+    prune: false
+workflow:
+  file: .github/workflows/npmctl.yml
+  artifact:
+    immutable: true
+    binds: [repository, commit, owner, environment, desired_state_sha256, npmctl_version, provider_versions, plan_output]
+  apply:
+    environment: production-npmctl
+    consumesReviewedArtifact: true
+    regenerateFromBranch: false
+    globalDnsLock: /tmp/npmctl-namecheap-sethosts.lock
+  secrets:
+    - NPM_BASE_URL
+    - NPM_IDENTITY
+    - NPM_SECRET
+    - NAMECHEAP_API_USER
+    - NAMECHEAP_API_KEY
+    - NAMECHEAP_USERNAME
+    - NAMECHEAP_CLIENT_IP
+    - SITE_SERVER_IP
+approvals:
+  - gate: production-npmctl
+    requiredReviewers: true
+    adminBypass: false
+  - gate: explicit-adoption-migration
+    requiredWhen: unmanaged_matching_resource_exists
+verification:
+  - DNS and HTTPS verification succeeds for tigrbl.com.
+  - DNS and HTTPS verification succeeds for www.tigrbl.com.
+  - NPM metadata reports owner tigrbl-com and the planned resource IDs.
+recovery:
+  - Capture complete Namecheap zone and NPM state before apply.
+  - Use the generated backup, transaction, rollback-plan, and audit artifacts.
+  - Forward-repair Namecheap from captured state because setHosts is not transactionally reversible.
+unresolved:
+  - fact: execution commit
+    value: null
+    impact: The workflow binds this at plan time.
+    resolutionOwner: workflow
+  - fact: live NPM and DNS state
+    value: null
+    impact: Production mutation remains blocked until a clean live plan is reviewed.
+    resolutionOwner: infrastructure
+  - fact: upstream health contract
+    value: null
+    impact: The workflow verifies that the container is running, but no application-specific health path is established.
+    resolutionOwner: tigrbl/tigrbl-com
+  - fact: shared deployment runner topology
+    value: null
+    impact: The filesystem lock is cross-repository only when all apply jobs share one lock filesystem.
+    resolutionOwner: infrastructure
+  - fact: uv version
+    value: null
+    impact: setup-uv is immutable, but the resolved uv binary version is captured only in the execution artifact.
+    resolutionOwner: workflow
+  - fact: production server IP
+    value: null
+    impact: The workflow must resolve SITE_SERVER_IP from protected secret configuration before planning.
+    resolutionOwner: infrastructure

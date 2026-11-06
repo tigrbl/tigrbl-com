@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 const compose = fs.readFileSync("docker-compose.yaml", "utf8");
-const proxy = fs.readFileSync("desired-state/proxy.yaml", "utf8");
+const proxy = fs.readFileSync(".npmctl/desired-state/production/proxy.yaml", "utf8");
 const composeLines = compose.split(/\r?\n/);
 
 if (composeLines.some((line) => /^\s*ports:\s*(?:#.*)?$/.test(line))) {
@@ -12,8 +12,11 @@ if (!composeLines.some((line) => /^\s*expose:\s*(?:#.*)?$/.test(line)) || !compo
   throw new Error("docker-compose.yaml must expose port 80 to the Docker network");
 }
 
-if (!/^\s{4}networks:\s*(?:#.*)?$/m.test(compose) || !/^\s{6}dockerwp:\s*(?:#.*)?$/m.test(compose) || !/^\s{4}name:\s*dockerwp\s*(?:#.*)?$/m.test(compose) || !/^\s{4}external:\s*true\s*(?:#.*)?$/m.test(compose)) {
-  throw new Error("docker-compose.yaml must attach the site service to the external dockerwp network");
+const edgeNetwork = "portwyrm-edge";
+const serviceNetworkPattern = new RegExp(`^\\s{6}${edgeNetwork}:\\s*(?:#.*)?$`, "m");
+const namedNetworkPattern = new RegExp(`^\\s{4}name:\\s*${edgeNetwork}\\s*(?:#.*)?$`, "m");
+if (!/^\s{4}networks:\s*(?:#.*)?$/m.test(compose) || !serviceNetworkPattern.test(compose) || !namedNetworkPattern.test(compose) || !/^\s{4}external:\s*true\s*(?:#.*)?$/m.test(compose)) {
+  throw new Error(`docker-compose.yaml must attach the site service to the external ${edgeNetwork} network`);
 }
 
 const containerMatch = compose.match(/^\s*container_name:\s*([^\r\n#]+)/m);
@@ -24,7 +27,7 @@ if (!containerMatch) {
 const containerName = containerMatch[1].trim();
 const forwardMatches = [...proxy.matchAll(/^\s*forward_host:\s*([^\r\n#]+)/gm)].map((match) => match[1].trim());
 if (forwardMatches.length === 0) {
-  throw new Error("desired-state/proxy.yaml must define at least one forward_host");
+  throw new Error(".npmctl/desired-state/production/proxy.yaml must define at least one forward_host");
 }
 
 const ipLiteral = /^(?:\d{1,3}\.){3}\d{1,3}$/;
@@ -37,4 +40,4 @@ for (const forwardHost of forwardMatches) {
   }
 }
 
-console.log(`proxy target ok: ${containerName} on dockerwp with exposed port 80`);
+console.log(`proxy target ok: ${containerName} on ${edgeNetwork} with exposed port 80`);

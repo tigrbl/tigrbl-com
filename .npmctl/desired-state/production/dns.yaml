@@ -1,32 +1,31 @@
----
 apiVersion: npmctl.com/v1
 schemaVersion: 2
 dns_records:
   - provider: namecheap
-    zone: tigrbl.com
+    zone: "tigrbl.com"
     type: A
     name: "@"
-    value: __SITE_SERVER_IP__
+    value: "__SITE_SERVER_IP__"
     ttl: 300
     meta:
       managed_by: npmctl
       owner: tigrbl-com
       resource_id: dns.tigrbl-com.root-a
   - provider: namecheap
-    zone: tigrbl.com
+    zone: "tigrbl.com"
     type: A
     name: "*.tigrbl.com"
-    value: __SITE_SERVER_IP__
+    value: "__SITE_SERVER_IP__"
     ttl: 300
     meta:
       managed_by: npmctl
       owner: tigrbl-com
       resource_id: dns.tigrbl-com.wildcard-a
   - provider: namecheap
-    zone: tigrbl.com
+    zone: "tigrbl.com"
     type: CNAME
     name: "www"
-    value: tigrbl.com
+    value: "tigrbl.com"
     ttl: 300
     meta:
       managed_by: npmctl

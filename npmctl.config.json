@@ -42,17 +42,17 @@
     "check": "npm run check",
     "build": "npm run build",
     "docker:build": "docker compose build tigrbl-com",
-    "dns:plan": "npmctl plan desired-state/dns.yaml --owner tigrbl-com",
+    "dns:plan": "npmctl plan .npmctl/desired-state/production/dns.yaml --owner tigrbl-com",
     "deploy:dry-run": "node scripts/deploy.mjs --dry-run",
     "deploy": "docker compose up -d --build --force-recreate --no-deps tigrbl-com",
     "npmctl:install": "python -m pip install --upgrade \"npmctl>=0.3.10\" \"npmctl-namecheap>=0.3.10\"",
-    "npmctl:validate": "npmctl validate desired-state",
+    "npmctl:validate": "npmctl validate .npmctl/desired-state/production",
     "npmctl:schema": "npmctl schema check",
     "dns:doctor": "npmctl dns doctor --provider namecheap",
-    "dns:apply": "npmctl apply desired-state/dns.yaml --owner tigrbl-com",
-    "proxy:validate": "npmctl validate desired-state/proxy.yaml",
-    "proxy:plan": "npmctl plan desired-state/proxy.yaml --owner tigrbl-com",
-    "proxy:apply": "npmctl apply desired-state/proxy.yaml --owner tigrbl-com"
+    "dns:apply": "node -e \"throw Error('Use .github/workflows/npmctl.yml')\"",
+    "proxy:validate": "npmctl validate .npmctl/desired-state/production/proxy.yaml",
+    "proxy:plan": "npmctl plan .npmctl/desired-state/production/proxy.yaml --owner tigrbl-com",
+    "proxy:apply": "node -e \"throw Error('Use .github/workflows/npmctl.yml')\""
   },
   "npmctl": {
     "package": "npmctl",

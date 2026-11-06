@@ -93,7 +93,7 @@ export const siteContent = {
           { name: "Install", description: "Install deterministic dependencies.", install: "npm ci", api: ["npm ci"] },
           { name: "Check", description: "Run type and content-pack checks.", install: "npm run check", api: ["npm run check"] },
           { name: "Build", description: "Build the content pack and static site.", install: "npm run build", api: ["npm run build"] },
-          { name: "DNS plan", description: "Render the Namecheap record plan.", install: "npm run dns:plan", api: ["npmctl plan desired-state/dns.yaml"] }
+          { name: "DNS plan", description: "Render the Namecheap record plan.", install: "npm run dns:plan", api: ["npmctl plan .npmctl/desired-state/production/dns.yaml"] }
         ] }
       ]
     },
@@ -138,8 +138,8 @@ export const siteContent = {
         { id: "commands", kind: "package_grid", title: "Operator commands called out by the repo", packages: [
           { name: "Check", description: "Verifies the content pack and application surface.", install: "npm run check", api: ["npm run check"] },
           { name: "Build", description: "Produces the static site and the Docker input surface.", install: "npm run build", api: ["npm run build"] },
-          { name: "DNS plan", description: "Shows intended DNS changes before apply.", install: "npm run dns:plan", api: ["npmctl plan desired-state/dns.yaml"] },
-          { name: "Proxy plan", description: "Shows intended proxy changes before apply.", install: "npm run proxy:plan", api: ["npmctl plan desired-state/proxy.yaml"] }
+          { name: "DNS plan", description: "Shows intended DNS changes before apply.", install: "npm run dns:plan", api: ["npmctl plan .npmctl/desired-state/production/dns.yaml"] },
+          { name: "Proxy plan", description: "Shows intended proxy changes before apply.", install: "npm run proxy:plan", api: ["npmctl plan .npmctl/desired-state/production/proxy.yaml"] }
         ] },
         { id: "cta", kind: "cta", title: "Read the repo as operational proof", body: "For Tigrbl, the site repo is part of the product argument. It shows that the publication lane can be named, inspected, and reviewed instead of being treated as invisible operator glue." }
       ]

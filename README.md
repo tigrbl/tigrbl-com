@@ -17,4 +17,6 @@ The GitHub workflows install `npmctl>=0.3.10` and `npmctl-namecheap>=0.3.10` fro
 
 ## Deployment
 
-This repo deploys as the `tigrbl-com` self-hosted Docker service. DNS is managed through the PyPI `npmctl-namecheap>=0.3.10` provider for the `tigrbl.com` zone and is declared in `desired-state/dns.yaml`.
+This repo deploys as the `tigrbl-com` self-hosted Docker service. Pushes to the default `master` branch run CI and automatically deploy the exact verified commit after CI succeeds. The `Deploy` workflow also supports manual recovery runs.
+
+DNS and proxy changes are deliberately separate from ordinary site releases. They are planned and applied through the protected `npmctl` workflow using the production desired state in `.npmctl/desired-state/production/`.
