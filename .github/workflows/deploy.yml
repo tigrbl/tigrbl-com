@@ -48,6 +48,27 @@ jobs:
           docker compose -f docker-compose.yaml rm -f tigrbl-com || true
           docker rm -f tigrbl-com || true
           docker compose -f docker-compose.yaml up -d --no-build --force-recreate --no-deps tigrbl-com
+      - name: Verify deployed content identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected_asset="$(grep -oE '/assets/index-[A-Za-z0-9_-]+\.js' dist/index.html | head -n 1)"
+          test -n "$expected_asset"
+
+          container_html="$(docker exec tigrbl-com wget -qO- http://127.0.0.1/)"
+          grep -Fq "$expected_asset" <<< "$container_html"
+
+          site_ip="$(getent ahostsv4 tigrbl.com | awk 'NR == 1 { print $1 }')"
+          echo "tigrbl.com DNS IP: $site_ip"
+          echo "expected site asset: $expected_asset"
+
+          for host in tigrbl.com www.tigrbl.com; do
+            public_html="$(curl --silent --show-error --location --max-time 30 "https://$host/")"
+            grep -Fq "$expected_asset" <<< "$public_html" || {
+              echo "$host is not serving the deployed asset $expected_asset" >&2
+              exit 1
+            }
+          done
       - name: Verify public HTTPS and HTTP redirect
         shell: bash
         run: |
