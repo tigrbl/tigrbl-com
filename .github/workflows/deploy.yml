@@ -34,7 +34,7 @@ jobs:
       - run: npm run proxy:target-check
 
   deploy:
-    needs: validate
+    needs: adopt-certificate
     uses: cobycloud/actions/.github/workflows/reusable-vm104-wyrmctl-compose-deploy.yml@9e53be1283fcd9c26bbc5ab1cc4c59b5dec27885
     with:
       compose-file: docker-compose.yaml
@@ -45,6 +45,37 @@ jobs:
       public-service: tigrbl-com
       containers-json: '["tigrbl-com"]'
       verify-path: /
+
+  adopt-certificate:
+    needs: validate
+    runs-on:
+      group: portwyrm-deployment
+      labels: [self-hosted, Linux, X64, vm104]
+    environment: deployment
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v4
+      - uses: cobycloud/actions/actions/wyrmctl-setup@56c4a13434c7ec49453bf109d7d6955158992b5a
+      - name: Adopt the issued Portwyrm certificate
+        env:
+          WYRMCTL_CREDENTIAL: /etc/groupsum/portwyrm.env
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -r "$WYRMCTL_CREDENTIAL"
+          base_url="$(sed -n 's/^PORTWYRM_WYRMCTL_BASE_URL=//p' "$WYRMCTL_CREDENTIAL")"
+          identity="$(sed -n 's/^PORTWYRM_WYRMCTL_IDENTITY=//p' "$WYRMCTL_CREDENTIAL")"
+          secret="$(sed -n 's/^PORTWYRM_WYRMCTL_SECRET_B64=//p' "$WYRMCTL_CREDENTIAL" | base64 -d)"
+          echo "::add-mask::$secret"
+          test -n "$base_url"
+          test -n "$identity"
+          test -n "$secret"
+          NPM_BASE_URL="$base_url" NPM_IDENTITY="$identity" NPM_SECRET="$secret" \
+            wyrmctl --output json adopt .wyrmctl/desired-state/production/desired-state.yaml \
+              --owner tigrbl-com \
+              --metadata-only \
+              --certificate-mode reuse \
+              --validate-output
 
   verify-content:
     needs: deploy
