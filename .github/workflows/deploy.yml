@@ -3,6 +3,9 @@ name: Deploy
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - ".github/workflows/dns-cutover.yml"
+      - "scripts/namecheap-dns-cutover.py"
   workflow_dispatch:
 
 permissions:

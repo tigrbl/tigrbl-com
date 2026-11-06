@@ -1,0 +1,52 @@
+name: DNS Cutover
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type tigrbl.com to move apex, wildcard, and www to VM104 Portwyrm
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dns-cutover-tigrbl-com
+  cancel-in-progress: false
+
+jobs:
+  cutover:
+    if: ${{ inputs.confirm == 'tigrbl.com' }}
+    runs-on: ubuntu-latest
+    environment: deployment
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v4
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: Preserve records and cut DNS over to Portwyrm
+        env:
+          NAMECHEAP_API_KEY: ${{ secrets.NAMECHEAP_API_KEY }}
+          NAMECHEAP_API_USER: ${{ secrets.NAMECHEAP_API_USER }}
+          NAMECHEAP_CLIENT_IP: ${{ secrets.NAMECHEAP_CLIENT_IP }}
+          NAMECHEAP_USERNAME: ${{ secrets.NAMECHEAP_USERNAME }}
+        run: uv run python scripts/namecheap-dns-cutover.py
+      - name: Verify authoritative DNS
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 30); do
+            apex="$(dig +short A tigrbl.com @dns1.registrar-servers.com | tail -n 1)"
+            wildcard="$(dig +short A probe.tigrbl.com @dns1.registrar-servers.com | tail -n 1)"
+            www="$(dig +short A www.tigrbl.com @dns1.registrar-servers.com | tail -n 1)"
+            if [[ "$apex" == 149.255.33.254 && "$wildcard" == 149.255.33.254 && "$www" == 149.255.33.254 ]]; then
+              echo "authoritative DNS now targets VM104 Portwyrm"
+              exit 0
+            fi
+            echo "attempt $attempt: apex=$apex wildcard=$wildcard www=$www"
+            sleep 10
+          done
+          exit 1
