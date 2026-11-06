@@ -1,0 +1,91 @@
+# Tigrbl technical reference
+
+Verified: 2026-07-11
+
+Tigrbl is a schema-first Python framework family for REST, JSON-RPC, typed
+contracts, runtime pipelines, engine plugins, and optional Rust runtime
+bindings. Application code normally starts with the `tigrbl` facade.
+
+## Install
+
+```bash
+uv add tigrbl
+```
+
+Use `pipx install tigrbl` only for an isolated CLI installation. Use
+`python -m pip install tigrbl` as the tertiary virtual-environment path.
+
+## Direct REST route
+
+```python
+from tigrbl import TigrblApp
+
+app = TigrblApp()
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+```
+
+`app.get()` immediately registers a direct REST route. The standalone `get()`
+decorator instead attaches operation metadata to a method owned by a Tigrbl
+declarative class; a free-standing decorated function is not automatically
+included in an existing app.
+
+## Table-backed REST and JSON-RPC
+
+```python
+from sqlalchemy import Column, String
+from tigrbl import RestJsonRpcTable, TigrblApp
+
+class User(RestJsonRpcTable):
+    __tablename__ = "users"
+    __allow_unmapped__ = True
+    id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
+
+app = TigrblApp(
+    engine={"kind": "sqlite", "mode": "memory", "async": False}
+)
+app.include_table(User)
+app.initialize()
+app.mount_jsonrpc(prefix="/rpc")
+```
+
+The table profile supplies an operation inventory that Tigrbl can project into
+bindings, schemas, docs, hooks, diagnostics, and runtime plans. Exact route and
+method aliases must be read from the generated output for the installed version.
+
+## Kernel lifecycle
+
+The canonical success phases are:
+
+1. `INGRESS_BEGIN`
+2. `INGRESS_PARSE`
+3. `INGRESS_DISPATCH`
+4. `PRE_TX_BEGIN`
+5. `START_TX`
+6. `PRE_HANDLER`
+7. `HANDLER`
+8. `POST_HANDLER`
+9. `PRE_COMMIT`
+10. `TX_COMMIT`
+11. `POST_COMMIT`
+12. `EGRESS_SHAPE`
+13. `EGRESS_FINALIZE`
+14. `POST_RESPONSE`
+
+Error handling uses phase-specific `ON_*_ERROR` chains, `ON_ERROR` fallback,
+and `TX_ROLLBACK` for transaction-owned work.
+
+`/system/kernelz` returns model → operation → label arrays. Labels are generated
+from security dependencies, dependencies, persistence policy, phase chains,
+hooks, and transaction steps. It does not return prose descriptions or an
+`app.compile_plan()` object.
+
+## Sources
+
+- Website: https://tigrbl.com/
+- Repository: https://github.com/tigrbl/tigrbl
+- PyPI: https://pypi.org/project/tigrbl/
+- Discord: https://discord.gg/K4YTAPapjR
