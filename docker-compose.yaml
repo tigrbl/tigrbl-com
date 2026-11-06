@@ -1,6 +1,9 @@
 services:
   tigrbl-com:
-    build: .
+    build:
+      context: .
+      args:
+        SOURCE_COMMIT: ${GITHUB_SHA:-local}
     container_name: tigrbl-com
     restart: unless-stopped
     labels:
