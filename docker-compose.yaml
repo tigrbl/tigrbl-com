@@ -9,15 +9,11 @@ services:
     expose:
       - "80"
     networks:
-      tigrbl-com-private: {}
       portwyrm-edge:
         aliases:
           - tigrbl-com
 
 networks:
-  tigrbl-com-private:
-    name: tigrbl-com-private
-    internal: true
   portwyrm-edge:
     name: portwyrm-edge
     external: true
