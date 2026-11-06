@@ -1,11 +1,12 @@
 import fs from "node:fs";
 
 const compose = fs.readFileSync("docker-compose.yaml", "utf8");
-const proxy = fs.readFileSync(".npmctl/desired-state/production/proxy.yaml", "utf8");
+const proxyPath = ".wyrmctl/desired-state/production/desired-state.yaml";
+const proxy = fs.readFileSync(proxyPath, "utf8");
 const composeLines = compose.split(/\r?\n/);
 
 if (composeLines.some((line) => /^\s*ports:\s*(?:#.*)?$/.test(line))) {
-  throw new Error('docker-compose.yaml must not publish host ports; use expose: ["80"] behind Nginx Proxy Manager');
+  throw new Error('docker-compose.yaml must not publish host ports; use expose: ["80"] behind Portwyrm');
 }
 
 if (!composeLines.some((line) => /^\s*expose:\s*(?:#.*)?$/.test(line)) || !composeLines.some((line) => /^\s*-\s*["']?80["']?\s*(?:#.*)?$/.test(line))) {
@@ -13,10 +14,11 @@ if (!composeLines.some((line) => /^\s*expose:\s*(?:#.*)?$/.test(line)) || !compo
 }
 
 const edgeNetwork = "portwyrm-edge";
-const serviceNetworkPattern = new RegExp(`^\\s{6}${edgeNetwork}:\\s*(?:#.*)?$`, "m");
-const namedNetworkPattern = new RegExp(`^\\s{4}name:\\s*${edgeNetwork}\\s*(?:#.*)?$`, "m");
-if (!/^\s{4}networks:\s*(?:#.*)?$/m.test(compose) || !serviceNetworkPattern.test(compose) || !namedNetworkPattern.test(compose) || !/^\s{4}external:\s*true\s*(?:#.*)?$/m.test(compose)) {
-  throw new Error(`docker-compose.yaml must attach the site service to the external ${edgeNetwork} network`);
+if (!/^\s{6}private:\s*(?:#.*)?$/m.test(compose) || !/^\s{6}edge:\s*(?:#.*)?$/m.test(compose)) {
+  throw new Error("docker-compose.yaml must attach the site service to private and edge networks");
+}
+if (!/^\s{4}name:\s*portwyrm-edge\s*(?:#.*)?$/m.test(compose) || !/^\s{4}external:\s*true\s*(?:#.*)?$/m.test(compose)) {
+  throw new Error(`docker-compose.yaml must define edge as the external ${edgeNetwork} network`);
 }
 
 const containerMatch = compose.match(/^\s*container_name:\s*([^\r\n#]+)/m);
@@ -27,7 +29,7 @@ if (!containerMatch) {
 const containerName = containerMatch[1].trim();
 const forwardMatches = [...proxy.matchAll(/^\s*forward_host:\s*([^\r\n#]+)/gm)].map((match) => match[1].trim());
 if (forwardMatches.length === 0) {
-  throw new Error(".npmctl/desired-state/production/proxy.yaml must define at least one forward_host");
+  throw new Error(`${proxyPath} must define at least one forward_host`);
 }
 
 const ipLiteral = /^(?:\d{1,3}\.){3}\d{1,3}$/;

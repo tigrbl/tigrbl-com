@@ -1,8 +1,8 @@
-[![Managed with npmctl](https://img.shields.io/badge/managed%20with-npmctl-2f6f4e.svg)](https://npmctl.com)
+[![Managed with wyrmctl](https://img.shields.io/badge/managed%20with-wyrmctl-2f6f4e.svg)](https://github.com/groupsum/wyrmctl)
 
 # tigrbl.com
 
-Standalone MdWrk lander repository for [tigrbl.com](https://tigrbl.com).
+Product website for [tigrbl.com](https://tigrbl.com).
 
 ## Commands
 
@@ -10,13 +10,14 @@ Standalone MdWrk lander repository for [tigrbl.com](https://tigrbl.com).
 - `npm run check`
 - `npm run build`
 - `npm run docker:build`
-- `npm run dns:plan` (uses PyPI `npmctl>=0.3.10` plus `npmctl-namecheap>=0.3.10`)
-- `npm run proxy:plan` (uses PyPI `npmctl`)
+- `uv sync --dev`
+- `npm run routing:validate`
+- `npm run routing:plan` (read-only; requires Portwyrm credentials)
 
-The GitHub workflows install `npmctl>=0.3.10` and `npmctl-namecheap>=0.3.10` from PyPI, then use `npmctl validate`, `npmctl plan`, and `npmctl apply` against `desired-state/`.
+The repository pins `wyrmctl==0.4.6` through uv. CI validates the schema-v3 desired state in `.wyrmctl/`, and deployment delegates immutable plan/apply/verify operations to the shared Portwyrm workflow.
 
 ## Deployment
 
-This repo deploys as the `tigrbl-com` self-hosted Docker service. Pushes to the default `master` branch run CI and automatically deploy the exact verified commit after CI succeeds. The `Deploy` workflow also supports manual recovery runs.
+This repo owns the `tigrbl-com` application desired state and release. Pushes to the default `master` branch run CI and automatically deploy the verified commit after CI succeeds. The `Deploy` workflow also supports manual recovery runs.
 
-DNS and proxy changes are deliberately separate from ordinary site releases. They are planned and applied through the protected `npmctl` workflow using the production desired state in `.npmctl/desired-state/production/`.
+The shared `cobycloud/actions` deployment workflow runs on the protected `portwyrm-deployment` runner group. It builds the Compose service, creates an immutable `wyrmctl` plan bound to the repository and commit, applies that exact artifact under the VM104 mutation lock, and verifies public HTTPS. Portwyrm itself remains shared infrastructure; this repository remains the owner of the application and its route.

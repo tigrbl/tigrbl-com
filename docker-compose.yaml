@@ -9,11 +9,18 @@ services:
     expose:
       - "80"
     networks:
-      portwyrm-edge:
+      private:
+      edge:
         aliases:
           - tigrbl-com
 
 networks:
-  portwyrm-edge:
+  private:
+    name: tigrbl-com-private
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.104.117.0/28
+  edge:
     name: portwyrm-edge
     external: true

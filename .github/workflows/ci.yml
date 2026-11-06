@@ -14,17 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: npm
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
         with:
-          python-version: '3.12'
+          python-version: "3.12"
+          enable-cache: true
       - run: npm ci
+      - run: uv sync --frozen --dev
       - run: npm run check
       - run: npm run build
+      - run: npm run routing:validate
       - name: Validate Docker proxy target
         run: npm run proxy:target-check
       - run: npm run docker:build

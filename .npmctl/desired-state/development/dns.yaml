@@ -1,5 +1,0 @@
-apiVersion: npmctl.com/v1
-schemaVersion: 2
-
-# Names below .localhost resolve to loopback without provider-backed DNS.
-dns_records: []

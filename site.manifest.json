@@ -3,7 +3,7 @@
   "zone": "tigrbl.com",
   "repository": "tigrbl/tigrbl-com",
   "siteKind": "mdwrk-lander",
-  "orchestrator": "npmctl",
+  "orchestrator": "wyrmctl",
   "dnsProvider": "namecheap",
   "deployment": "self-hosted-docker",
   "dockerService": "tigrbl-com",
@@ -27,8 +27,8 @@
       "ttl": 300
     }
   ],
-  "proxyManager": {
-    "provider": "nginx-proxy-manager",
-    "apiEndpoint": "NPM_BASE_URL_SECRET"
+  "routing": {
+    "provider": "portwyrm",
+    "desiredState": ".wyrmctl/desired-state/production/desired-state.yaml"
   }
 }

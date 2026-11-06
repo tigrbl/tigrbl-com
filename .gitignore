@@ -1,4 +1,5 @@
 node_modules/
+.uv-cache/
 dist/
 coverage/
 .env

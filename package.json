@@ -9,14 +9,10 @@
     "check": "tsc --noEmit",
     "preview": "vite preview --host 0.0.0.0",
     "docker:build": "docker compose build tigrbl-com",
-    "dns:plan": "npmctl plan .npmctl/desired-state/production/dns.yaml --owner tigrbl-com",
-    "dns:apply": "node -e \"throw Error('Use .github/workflows/npmctl.yml')\"",
     "deploy:dry-run": "node scripts/deploy.mjs --dry-run",
     "deploy": "docker compose -f docker-compose.yaml up -d --build --force-recreate --no-deps tigrbl-com",
-    "dns:doctor": "npmctl dns doctor --provider namecheap",
-    "proxy:validate": "npmctl validate .npmctl/desired-state/production/proxy.yaml",
-    "proxy:plan": "npmctl plan .npmctl/desired-state/production/proxy.yaml --owner tigrbl-com",
-    "proxy:apply": "node -e \"throw Error('Use .github/workflows/npmctl.yml')\"",
+    "routing:validate": "uv run wyrmctl validate .wyrmctl/desired-state/production/desired-state.yaml",
+    "routing:plan": "uv run wyrmctl plan .wyrmctl/desired-state/production/desired-state.yaml --owner tigrbl-com",
     "proxy:target-check": "node scripts/validate-proxy-target.mjs"
   },
   "dependencies": {
