@@ -5,9 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && tsx scripts/build-static.tsx && npm run discovery:check && npm run performance:budget",
     "check": "tsc --noEmit",
-    "preview": "vite preview --host 0.0.0.0",
+    "preview": "node scripts/serve.mjs",
+    "discovery:generate": "tsx scripts/build-static.tsx",
+    "discovery:check": "tsx scripts/validate-site.ts",
+    "demos:check": "tsx scripts/check-demos.ts",
+    "performance:budget": "node scripts/check-budgets.mjs",
+    "test:browser": "playwright test",
+    "test:http": "node scripts/check-http.mjs",
+    "performance:audit": "node scripts/audit-performance.mjs",
+    "content:refresh": "node scripts/refresh-publications.mjs",
     "docker:build": "docker compose build tigrbl-com",
     "deploy:dry-run": "node scripts/deploy.mjs --dry-run",
     "deploy": "docker compose -f docker-compose.yaml up -d --build --force-recreate --no-deps tigrbl-com",
@@ -15,22 +23,27 @@
     "routing:plan": "uv run wyrmctl plan .wyrmctl/desired-state/production/desired-state.yaml --owner tigrbl-com",
     "proxy:target-check": "node scripts/validate-proxy-target.mjs"
   },
+  "engines": {
+    "node": ">=22.19 <23"
+  },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.14",
+    "@mdwrk/structured-data": "0.3.0",
     "@vitejs/plugin-react": "^5.0.4",
-    "lucide-react": "^0.546.0",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
-    "react-syntax-highlighter": "^16.1.1",
     "vite": "^6.2.3"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "autoprefixer": "^10.4.21",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "esbuild": "^0.25.0",
-    "tailwindcss": "^4.1.14",
+    "fast-xml-parser": "5.12.1",
+    "lighthouse": "13.6.0",
+    "prettier": "3.10.1",
+    "sharp": "0.35.5",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.3"

@@ -1,0 +1,274 @@
+{
+  "bigquery-engine-probe": {
+    "url": "https://bigquery.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:19.932Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://bigquery.engine-demo.tigrbl.dev/"
+  },
+  "csv-engine-probe": {
+    "url": "https://csv.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:19.956Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://csv.engine-demo.tigrbl.dev/"
+  },
+  "haptic-demo": {
+    "url": "https://haptic.showcase.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.489Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://haptic.showcase.tigrbl.dev/"
+  },
+  "inmemcache-engine-probe": {
+    "url": "https://inmemcache.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.593Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://inmemcache.engine-demo.tigrbl.dev/"
+  },
+  "inmemory-engine-probe": {
+    "url": "https://inmemory.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.635Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://inmemory.engine-demo.tigrbl.dev/"
+  },
+  "mariadb-engine-probe": {
+    "url": "https://mariadb.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.827Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://mariadb.engine-demo.tigrbl.dev/"
+  },
+  "memkv-engine-probe": {
+    "url": "https://memkv.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.990Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://memkv.engine-demo.tigrbl.dev/"
+  },
+  "mempubsub-engine-probe": {
+    "url": "https://mempubsub.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.173Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://mempubsub.engine-demo.tigrbl.dev/"
+  },
+  "memrate-engine-probe": {
+    "url": "https://memrate.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.238Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://memrate.engine-demo.tigrbl.dev/"
+  },
+  "moqt-loc-msf-webtransport": {
+    "url": "https://moqt.showcase.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.906Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://moqt.showcase.tigrbl.dev/"
+  },
+  "numpy-engine-probe": {
+    "url": "https://numpy.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.363Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://numpy.engine-demo.tigrbl.dev/"
+  },
+  "pandas-engine-probe": {
+    "url": "https://pandas.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.424Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://pandas.engine-demo.tigrbl.dev/"
+  },
+  "redis-engine-probe": {
+    "url": "https://redis.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.616Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://redis.engine-demo.tigrbl.dev/"
+  },
+  "rediscachethrough-engine-probe": {
+    "url": "https://rediscachethrough.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.654Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://rediscachethrough.engine-demo.tigrbl.dev/"
+  },
+  "s3-engine-probe": {
+    "url": "https://s3.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.704Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://s3.engine-demo.tigrbl.dev/"
+  },
+  "s3fs-engine-probe": {
+    "url": "https://s3fs.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.749Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://s3fs.engine-demo.tigrbl.dev/"
+  },
+  "snowflake-engine-probe": {
+    "url": "https://snowflake.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.847Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://snowflake.engine-demo.tigrbl.dev/"
+  },
+  "sqlite-engine-probe": {
+    "url": "https://sqlite.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.906Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://sqlite.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-bloom-filter-engine": {
+    "url": "https://membloom.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:19.954Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://membloom.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-clickhouse-engine": {
+    "url": "https://clickhouse.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:19.955Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://clickhouse.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-dataframe-engine": {
+    "url": "https://dataframe.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:19.956Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://dataframe.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-dedupe-engine": {
+    "url": "https://memdedupe.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.482Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://memdedupe.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-immutable-rom-engine": {
+    "url": "https://rom.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.537Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://rom.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-lru-engine": {
+    "url": "https://memlru.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.719Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://memlru.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-pyspark-engine": {
+    "url": "https://pyspark.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.570Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://pyspark.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-queue-engine": {
+    "url": "https://memqueue.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:20.991Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://memqueue.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-demo-wal-engines": {
+    "url": "https://pgsqli-wal.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:22.291Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://pgsqli-wal.engine-demo.tigrbl.dev/"
+  },
+  "tigrbl-http-webdav-demo": {
+    "url": "https://webdav.showcase.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:22.092Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://webdav.showcase.tigrbl.dev/"
+  },
+  "tigrbl-realtime-ws-user2user-voice": {
+    "url": "https://voice.showcase.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.987Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://voice.showcase.tigrbl.dev/"
+  },
+  "tigrbl-realtime-wt-present2many-video-screen": {
+    "url": "https://present2many.showcase.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.511Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://present2many.showcase.tigrbl.dev/"
+  },
+  "tigrbl-realtime-wt-user2user-videochat": {
+    "url": "https://wt-video.showcase.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:22.180Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://wt-video.showcase.tigrbl.dev/"
+  },
+  "tigrbl-restbulkcrudtable-postgres-demo": {
+    "url": "https://postgres.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:21.451Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://postgres.engine-demo.tigrbl.dev/"
+  },
+  "websocket-realtime-ops-duckdb-demo": {
+    "url": "https://duckdb.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:19.957Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://duckdb.engine-demo.tigrbl.dev/"
+  },
+  "xlsx-engine-probe": {
+    "url": "https://xlsx.engine-demo.tigrbl.dev/",
+    "checkedAt": "2026-11-18T02:16:22.352Z",
+    "status": "reachable",
+    "scope": "HTTP landing page retrieval only; no protocol, backend, or user workflow qualification.",
+    "httpStatus": 200,
+    "finalUrl": "https://xlsx.engine-demo.tigrbl.dev/"
+  }
+}

@@ -5,3 +5,9 @@ coverage
 .env
 .env.local
 npm-debug.log*
+.quickstart-venv
+.reports
+test-results
+playwright-report
+.venv
+.uv-cache
