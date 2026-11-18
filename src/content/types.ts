@@ -18,9 +18,11 @@ export interface DemoRecord {
   protocols: string[];
   engines: string[];
   packageNames: string[];
-  repositoryUrl: string;
-  sourceRef: string;
-  documentationUrl: string;
+  repositoryKey: string;
+  sourceVisibility: "public" | "private";
+  repositoryUrl?: string;
+  sourceRef?: string;
+  documentationUrl?: string;
   liveUrl?: string;
   aliases: string[];
   browserRequirements: string[];

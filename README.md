@@ -55,6 +55,13 @@ added to `demos.ts`. The inventory includes dedicated demo/realtime repositories
 the engine probe fleet, and identity/transport examples. Framework inline examples
 are linked as code recipes rather than misrepresented as hosted applications.
 
+Source inventory refresh requires authenticated GitHub CLI access to check
+repository visibility. Private repository URLs and commit revisions are removed
+before the snapshot is written. Of the 26 current demo repositories, only the
+WIMSE interop repository is public. Public source/setup links are therefore shown
+only for that entry; other entries label source access as restricted and direct
+visitors to support. Hosted demo access remains independent of source access.
+
 Aliases are retained in the inventory; only the chosen configured host is used
 for the launch action. HTTP observations require a successful response, the
 expected host, and Tigrbl identity. They do not certify the underlying operation,

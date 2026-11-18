@@ -206,9 +206,14 @@ export const DEMOS: DemoRecord[] = snapshot.repositories
         protocols,
         engines,
         packageNames: engines.map((e) => `tigrbl_engine_${e}`),
-        repositoryUrl: repo.repositoryUrl,
-        sourceRef: repo.sourceRef,
-        documentationUrl: `${repo.repositoryUrl}/blob/${repo.sourceRef}/README.md`,
+        repositoryKey: repo.name,
+        sourceVisibility:
+          repo.sourceVisibility === "public" ? "public" : "private",
+        repositoryUrl: repo.repositoryUrl || undefined,
+        sourceRef: repo.sourceRef || undefined,
+        documentationUrl: repo.repositoryUrl
+          ? `${repo.repositoryUrl}/blob/${repo.sourceRef}/README.md`
+          : undefined,
         liveUrl: host ? `https://${host}/` : undefined,
         aliases: fleet
           ? []
@@ -230,30 +235,35 @@ export const DEMOS: DemoRecord[] = snapshot.repositories
           ? [
               "Open the engine probe.",
               "Choose Run live probe and inspect the loaded distribution and version.",
-              "Follow the source to reproduce the WebSocket echo check.",
+              "Source access is restricted; contact the maintainers for local reproduction instructions.",
             ]
           : [
-              "Read the repository setup and usage instructions.",
-              "Launch the hosted application if it is reachable, or run the documented local setup.",
-              "Follow the example workflow and compare the result with the repository documentation.",
+              repo.repositoryUrl
+                ? "Read the pinned repository setup and usage instructions."
+                : "Check the requirements below. Source and local setup access are restricted.",
+              host
+                ? "Launch the hosted application and follow its on-screen workflow."
+                : "Contact the maintainers for access or follow the public setup instructions when available.",
+              "Use synthetic test data and compare the result with the application's instructions.",
             ],
         evidenceScope: fleet
           ? "Package import/version evidence and a WebSocket echo endpoint. This probe does not establish complete engine CRUD or backend-service conformance."
-          : "Source-backed demonstration. Website reachability is checked separately and does not certify protocol or application behavior.",
+          : "Website reachability is checked separately and does not certify protocol or application behavior. Public source availability is stated independently.",
         relatedExampleIds: engines.length
           ? ["health", "table-crud"]
           : ["health"],
-        localRunInstructions: `Clone ${repo.repositoryUrl}, check out ${repo.sourceRef}, and follow its README prerequisites and run commands.`,
+        localRunInstructions: repo.repositoryUrl
+          ? `Clone ${repo.repositoryUrl}, check out ${repo.sourceRef}, and follow its README prerequisites and run commands.`
+          : "This demonstration has a private source repository. Local setup requires access from the maintainers; no public clone or setup link is provided.",
       };
     });
   })
   .sort((a, b) => a.title.localeCompare(b.title, "en"));
 export const DEMO_DISPOSITIONS = snapshot.repositories.map((repo) => ({
+  repositoryKey: repo.name,
   repositoryUrl: repo.repositoryUrl,
   sourceRef: repo.sourceRef,
   disposition: "cataloged",
-  demoIds: DEMOS.filter((d) => d.repositoryUrl === repo.repositoryUrl).map(
-    (d) => d.id,
-  ),
+  demoIds: DEMOS.filter((d) => d.repositoryKey === repo.name).map((d) => d.id),
   aliases: repo.hosts,
 }));

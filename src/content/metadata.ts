@@ -66,11 +66,12 @@ export function pageGraph(page: PageRecord) {
         })
       : undefined;
   const demo = DEMOS.find((d) => `/demos/${d.id}` === page.path);
-  const primaryId = demo
-    ? stableId(url, "source")
-    : page.path === "/"
-      ? stableId(SITE.origin, "software")
-      : (list?.["@id"] as string | undefined);
+  const primaryId =
+    demo && demo.sourceVisibility === "public"
+      ? stableId(url, "source")
+      : page.path === "/"
+        ? stableId(SITE.origin, "software")
+        : (list?.["@id"] as string | undefined);
   const pageInput = {
     id: stableId(url, "page"),
     name: page.title,
@@ -97,7 +98,7 @@ export function pageGraph(page: PageRecord) {
         publisher: organizationId,
       }),
     );
-  if (demo)
+  if (demo && demo.sourceVisibility === "public")
     nodes.push(
       softwareSourceCodeNode({
         id: primaryId,

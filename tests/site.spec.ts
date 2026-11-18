@@ -98,3 +98,22 @@ test("static pages work without JavaScript", async ({ browser }) => {
   await expect(page.locator(".demo-card")).toHaveCount(DEMOS.length);
   await context.close();
 });
+test("private demo sources are labeled without unusable repository links", async ({
+  page,
+}) => {
+  await page.goto("/demos/tigrbl-http-webdav-demo");
+  await expect(
+    page.getByText("Private repository; access required.", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "View source", exact: false }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("link", { name: "Ask about source access" }),
+  ).toBeVisible();
+  await expect(page.locator('main a[href*="github.com"]')).toHaveCount(0);
+  await page.goto("/demos/tba-test-interop-wimse");
+  await expect(
+    page.getByRole("link", { name: "View source", exact: false }),
+  ).toBeVisible();
+});

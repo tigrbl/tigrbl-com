@@ -596,6 +596,7 @@ function Demos() {
 }
 function DemoDetail({ demo }: { demo: DemoRecord }) {
   const check = availability[demo.id];
+  const publicSource = demo.sourceVisibility === "public";
   return (
     <>
       <a href="/demos" className="text-link">
@@ -609,8 +610,8 @@ function DemoDetail({ demo }: { demo: DemoRecord }) {
           <section className="panel">
             <h2>Try this demonstration</h2>
             <ol>
-              {demo.steps.map((s) => (
-                <li key={s}>{s}</li>
+              {demo.steps.map((step) => (
+                <li key={step}>{step}</li>
               ))}
             </ol>
             <div className="actions">
@@ -622,19 +623,27 @@ function DemoDetail({ demo }: { demo: DemoRecord }) {
                   ↗
                 </a>
               )}
-              <a className="button" href={demo.repositoryUrl}>
-                View source ↗
-              </a>
-              <a className="button" href={demo.documentationUrl}>
-                Run locally ↗
-              </a>
+              {publicSource ? (
+                <>
+                  <a className="button" href={demo.repositoryUrl}>
+                    View source ↗
+                  </a>
+                  <a className="button" href={demo.documentationUrl}>
+                    Run locally ↗
+                  </a>
+                </>
+              ) : (
+                <a className="button" href="/support">
+                  Ask about source access
+                </a>
+              )}
             </div>
           </section>
           <section className="panel">
             <h2>Before you start</h2>
             <ul>
-              {demo.browserRequirements.map((s) => (
-                <li key={s}>{s}</li>
+              {demo.browserRequirements.map((requirement) => (
+                <li key={requirement}>{requirement}</li>
               ))}
             </ul>
             <p>
@@ -644,15 +653,25 @@ function DemoDetail({ demo }: { demo: DemoRecord }) {
             </p>
           </section>
           <section className="panel">
-            <h2>Run locally</h2>
+            <h2>
+              {publicSource ? "Run locally" : "Source and local setup access"}
+            </h2>
             <p>{demo.localRunInstructions}</p>
-            <CodeBlock
-              label="Git"
-              code={`git clone ${demo.repositoryUrl}.git\ncd ${demo.repositoryUrl.split("/").pop()}\ngit checkout ${demo.sourceRef}`}
-            />
-            <a href={demo.documentationUrl}>
-              Open the pinned setup instructions ↗
-            </a>
+            {publicSource && (
+              <>
+                <CodeBlock
+                  label="Git"
+                  code={[
+                    "git clone " + demo.repositoryUrl + ".git",
+                    "cd " + demo.repositoryUrl!.split("/").pop(),
+                    "git checkout " + demo.sourceRef,
+                  ].join("\n")}
+                />
+                <a href={demo.documentationUrl}>
+                  Open the pinned setup instructions ↗
+                </a>
+              </>
+            )}
           </section>
         </div>
         <aside>
@@ -664,36 +683,39 @@ function DemoDetail({ demo }: { demo: DemoRecord }) {
               <dd>{demo.protocols.join(", ")}</dd>
               <dt>Engines</dt>
               <dd>{demo.engines.join(", ") || "Application-specific"}</dd>
-              <dt>Source revision</dt>
+              <dt>Source access</dt>
               <dd>
-                <a href={`${demo.repositoryUrl}/tree/${demo.sourceRef}`}>
-                  {demo.sourceRef.slice(0, 12)}
-                </a>
+                {publicSource ? (
+                  <a href={demo.repositoryUrl! + "/tree/" + demo.sourceRef}>
+                    {demo.sourceRef!.slice(0, 12)} · Public source
+                  </a>
+                ) : (
+                  "Private repository; access required."
+                )}
               </dd>
               <dt>Hosted page</dt>
               <dd>
                 {!demo.liveUrl
-                  ? "No public host recorded; follow local setup."
+                  ? "No public host recorded."
                   : !check
                     ? "Configured; no HTTP observation recorded."
-                    : `${check.status === "reachable" ? "Reachable" : "Unavailable"} at ${check.checkedAt} (HTTP check only).`}
+                    : (check.status === "reachable"
+                        ? "Reachable"
+                        : "Unavailable") +
+                      " at " +
+                      check.checkedAt +
+                      " (HTTP check only)."}
               </dd>
             </dl>
-            {check?.error && (
-              <p className="muted">
-                The last check could not retrieve the page. This can be
-                temporary.
-              </p>
-            )}
           </section>
           <section className="panel">
             <h2>Related code</h2>
             <ul>
-              {EXAMPLES.filter((e) =>
-                demo.relatedExampleIds.includes(e.id),
-              ).map((e) => (
-                <li key={e.id}>
-                  <a href={`/examples#${e.id}`}>{e.title}</a>
+              {EXAMPLES.filter((example) =>
+                demo.relatedExampleIds.includes(example.id),
+              ).map((example) => (
+                <li key={example.id}>
+                  <a href={"/examples#" + example.id}>{example.title}</a>
                 </li>
               ))}
             </ul>
@@ -703,10 +725,12 @@ function DemoDetail({ demo }: { demo: DemoRecord }) {
       <section className="section">
         <h2>Explore related demos</h2>
         <div className="grid three">
-          {DEMOS.filter((d) => d.id !== demo.id && d.category === demo.category)
+          {DEMOS.filter(
+            (other) => other.id !== demo.id && other.category === demo.category,
+          )
             .slice(0, 3)
-            .map((d) => (
-              <DemoCard demo={d} key={d.id} />
+            .map((other) => (
+              <DemoCard demo={other} key={other.id} />
             ))}
         </div>
       </section>

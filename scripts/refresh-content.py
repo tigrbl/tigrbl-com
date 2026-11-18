@@ -51,6 +51,14 @@ def main() -> None:
             if path.endswith((".yaml", ".yml")):
                 hosts.update(re.findall(r"[a-z0-9][a-z0-9.-]*\.(?:tigrbl\.dev|bz23\.xyz)", (directory / path).read_text(encoding="utf-8")))
         repositories.append({"name": name, "repositoryUrl": remote, "sourceRef": subprocess.check_output(["git", "-C", str(directory), "rev-parse", "HEAD"], text=True).strip(), "hosts": sorted(hosts)})
+    # Fail closed: do not expose repository URLs or revisions without verifying public visibility.
+    fields = " ".join(f'r{i}:repository(owner:{json.dumps(r["repositoryUrl"].split("/")[3])},name:{json.dumps(r["repositoryUrl"].split("/")[4])}){{isPrivate}}' for i, r in enumerate(repositories))
+    visibility = json.loads(subprocess.check_output(["gh", "api", "graphql", "-f", "query=query{" + fields + "}"], text=True))["data"]
+    for i, record in enumerate(repositories):
+        record["sourceVisibility"] = "private" if visibility[f"r{i}"]["isPrivate"] else "public"
+        if record["sourceVisibility"] == "private":
+            record["repositoryUrl"] = None
+            record["sourceRef"] = None
     output = {"verifiedAt": previous.get("verifiedAt"), "sourceObservedAt": datetime.now(timezone.utc).isoformat(), "frameworkRef": subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip(), "packages": sorted(packages, key=lambda p: p["name"]), "repositories": repositories}
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")

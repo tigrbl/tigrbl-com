@@ -2061,107 +2061,121 @@
   "repositories": [
     {
       "name": "bmvp-authnz",
-      "repositoryUrl": "https://github.com/tigrbl/bmvp-authnz",
-      "sourceRef": "bd9a5d2e0d7fca01fc423c12a7a671ef3da43f67",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     },
     {
       "name": "haptic_demo",
-      "repositoryUrl": "https://github.com/tigrbl/haptic_demo",
-      "sourceRef": "8a9631df43fb10c955373e66c6e0ccd051ce5537",
-      "hosts": ["haptic.showcase.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["haptic.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "moqt-loc-msf-webtransport",
-      "repositoryUrl": "https://github.com/tigrbl/moqt-loc-msf-webtransport",
-      "sourceRef": "3972d72affe9e2df277f416afef24391b1a5fd82",
-      "hosts": ["moqt.showcase.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["moqt.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "portable_oidc_idp",
-      "repositoryUrl": "https://github.com/tigrbl/portable_oidc_idp",
-      "sourceRef": "f1ccc1b4ec758b0686605c982eb77a9e323478b5",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     },
     {
       "name": "tba-test-interop-wimse",
       "repositoryUrl": "https://github.com/tigrbl/tba-tests-interop-wimse",
       "sourceRef": "81b22c906436c916d722d3a260c38e276b7ebba8",
-      "hosts": []
+      "hosts": [],
+      "sourceVisibility": "public"
     },
     {
       "name": "tigrbl-demo-bloom-filter-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-bloom-filter-engine",
-      "sourceRef": "ee8726fb1ee250326651749ff59304bd61fee40f",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "bloom.engine-demo.tigrbl.dev",
         "membloom.engine-demo.tigrbl.dev"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-clickhouse-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-clickhouse-engine",
-      "sourceRef": "bef26aa64c9a38dd17e29d0762e34c07f0d4f14c",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "clickhouse-lab.tigrbl.dev",
         "clickhouse.engine-demo.tigrbl.dev"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-dataframe-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-dataframe-engine",
-      "sourceRef": "fd5060cc9ab958eac4255941dd0796819ddc3719",
-      "hosts": ["dataframe.engine-demo.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["dataframe.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-dedupe-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-dedupe-engine",
-      "sourceRef": "c369342020ea1850ebbef4302e0f3f332f2ef2f9",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "dedupe.engine-demo.tigrbl.dev",
         "memdedupe.engine-demo.tigrbl.dev"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-immutable-rom-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-immutable-rom-engine",
-      "sourceRef": "45f5d62f1a1007aebc1e96247bee4d6a38ea2c02",
-      "hosts": ["rom.engine-demo.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["rom.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-lru-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-lru-engine",
-      "sourceRef": "5da9129faf67a8ec72af87c03734ed6b1ae2da20",
-      "hosts": ["lru.engine-demo.tigrbl.dev", "memlru.engine-demo.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["lru.engine-demo.tigrbl.dev", "memlru.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-PySpark-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-PySpark-engine",
-      "sourceRef": "bb4030730fefb6364cc99c2529ad249781e17b8a",
-      "hosts": ["pyspark.engine-demo.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["pyspark.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-queue-engine",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-queue-engine",
-      "sourceRef": "04ed60ca72660625298ab1ab354618185b4e0577",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "memqueue.engine-demo.tigrbl.dev",
         "queue.engine-demo.tigrbl.dev"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-demo-wal-engines",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-demo-wal-engines",
-      "sourceRef": "c55ea1281089155359e78342b55da0d3c1ebe465",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "pgsqli-wal.engine-demo.tigrbl.dev",
         "wal.engine-demo.tigrbl.dev"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-engine-demo-fleet",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-engine-demo-fleet",
-      "sourceRef": "77b6db760304ff78791c00fc04db8008956b197a",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "bigquery.engine-demo.tigrbl.dev",
         "csv.engine-demo.tigrbl.dev",
@@ -2180,76 +2194,91 @@
         "snowflake.engine-demo.tigrbl.dev",
         "sqlite.engine-demo.tigrbl.dev",
         "xlsx.engine-demo.tigrbl.dev"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl-restbulkcrudtable-postgres-demo",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl-restbulkcrudtable-postgres-demo",
-      "sourceRef": "0c45e3c2c7471412adde49a5cc83dedb19ff16af",
-      "hosts": ["postgres.engine-demo.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["postgres.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl_http_webdav_demo",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl_http_webdav_demo",
-      "sourceRef": "6dae38fd3df9753f7f0d9b9c82a056af57a5f35b",
-      "hosts": ["tigrbl-webdav-demo.bz23.xyz", "webdav.showcase.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["tigrbl-webdav-demo.bz23.xyz", "webdav.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl_realtime_ws_agent2user",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl_realtime_ws_agent2user",
-      "sourceRef": "6a21ffa1395e649f7140a7190fe3524f2625e43b",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl_realtime_ws_user2user_video",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl_realtime_ws_user2user_video",
-      "sourceRef": "b23faa0e548182977024243d51ea995c29493872",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl_realtime_ws_user2user_voice",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl_realtime_ws_user2user_voice",
-      "sourceRef": "836d40bf35224d7d313eae8e648ba44ae3095ce9",
-      "hosts": ["tigrbl-voice-demo.bz23.xyz", "voice.showcase.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["tigrbl-voice-demo.bz23.xyz", "voice.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl_realtime_wt_present2many_video-screen",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl_realtime_wt_present2many_video-screen",
-      "sourceRef": "e3f2cbefec1ad0bbc7131263e2cfad016bc0c7bd",
+      "repositoryUrl": null,
+      "sourceRef": null,
       "hosts": [
         "present2many.showcase.tigrbl.dev",
         "tigrbl-present2many-demo.bz23.xyz"
-      ]
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "tigrbl_realtime_wt_user2user_videochat",
-      "repositoryUrl": "https://github.com/tigrbl/tigrbl_realtime_wt_user2user_videochat",
-      "sourceRef": "9ee227eaff7496ca4ff5dcd3d70a27f14d8926dc",
-      "hosts": ["tigrbl-wt-video-demo.bz23.xyz", "wt-video.showcase.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "tigrbl-wt-video-demo.bz23.xyz",
+        "wt-video.showcase.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
     },
     {
       "name": "websocket-realtime-ops-duckdb-demo",
-      "repositoryUrl": "https://github.com/tigrbl/websocket-realtime-ops-duckdb-demo",
-      "sourceRef": "a901a5da4e500930596beb41b7e01364c481caf4",
-      "hosts": ["duckdb.engine-demo.tigrbl.dev"]
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["duckdb.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
     },
     {
       "name": "websocket-realtime-ops-postgres",
-      "repositoryUrl": "https://github.com/tigrbl/websocket-realtime-ops-postgres",
-      "sourceRef": "3ab3928f225520ed35696652bfce78a4931b3298",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     },
     {
       "name": "websocket-realtime-postgres-duckdb",
-      "repositoryUrl": "https://github.com/tigrbl/websocket-realtime-postgres-duckdb",
-      "sourceRef": "c131d87990ed529987a99923c2725f800179beb5",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     },
     {
       "name": "wt-agentbus",
-      "repositoryUrl": "https://github.com/tigrbl/wt-agentbus",
-      "sourceRef": "5eafeb9772b9217254e3d5dc069af96b34c9aa6c",
-      "hosts": []
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
     }
   ]
 }

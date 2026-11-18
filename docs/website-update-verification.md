@@ -2,14 +2,14 @@
 
 Validated locally on November 17, 2026 (America/Chicago; November 18 UTC).
 
-- 53 public static HTML pages; 42 demo entries from 26 repositories.
+- 53 public static HTML pages; 42 demo entries from 26 repositories. GitHub visibility checks found one public source repository and 25 private sources; private repository links and revisions are excluded from the public snapshot.
 - 45 source-backed package records and current PyPI facade 0.4.5.
 - 34/34 configured demo landing pages reachable; eight entries have local setup only.
 - TypeScript, generated discovery parity, internal links, JSON-LD, XML/feed validation, asset budgets, routing validation, and proxy target checks pass.
 - Published quickstart: isolated Python 3.12 with tigrbl==0.4.5, GET /health returns 200 and the expected JSON.
 - Node 22 Docker build and Nginx syntax check pass. HTTP checks confirm page content, content types, gzip, redirects, and real 404s.
-- 12 Playwright checks pass across desktop, tablet, and mobile; includes direct navigation/hydration, search/filter/reset/empty states, keyboard/mobile navigation, legacy hash links, and JavaScript-disabled content.
-- Four JS/CSS assets total approximately 83.5 KB gzip; largest uncompressed chunk is about 194 KB (256 KiB ceiling).
+- 15 Playwright checks pass across desktop, tablet, and mobile; includes direct navigation/hydration, search/filter/reset/empty states, keyboard/mobile navigation, legacy hash links, and JavaScript-disabled content.
+- Four JS/CSS assets total approximately 82.9 KB gzip; largest uncompressed chunk is about 194 KB (256 KiB ceiling).
 
 ## Lighthouse lab evidence
 
@@ -39,3 +39,5 @@ Demo landing-page reachability is distinct from protocol/backend conformance. En
 The dependency audit retains four high advisories in the Vite/picomatch build-tool chain after compatible updates; the deployed runtime serves static files through Nginx.
 
 Production has not been deployed by this update. Merge/promotion uses the existing deployment lane and post-deployment content verification. External demo repositories were inventoried but not modified.
+
+Source-visibility correction: private demos retain hosted launch actions, while public clone/setup links and SoftwareSourceCode markup are emitted only for public source. Browser coverage includes this access distinction.

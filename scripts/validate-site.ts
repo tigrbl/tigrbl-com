@@ -32,8 +32,15 @@ assert.equal(
 for (const disposition of DEMO_DISPOSITIONS)
   assert(disposition.demoIds.length, "Demo repository omitted from catalog");
 for (const demo of DEMOS) {
-  assert.match(demo.sourceRef, /^[a-f0-9]{40}$/);
-  assert(demo.documentationUrl.includes(demo.sourceRef));
+  if (demo.sourceVisibility === "public") {
+    assert.match(demo.sourceRef!, /^[a-f0-9]{40}$/);
+    assert(demo.documentationUrl!.includes(demo.sourceRef!));
+  } else {
+    assert(
+      !demo.repositoryUrl && !demo.sourceRef && !demo.documentationUrl,
+      "Private source links/revisions must not be emitted",
+    );
+  }
   assert(demo.steps.length && demo.evidenceScope && demo.localRunInstructions);
   if (demo.liveUrl) assert.equal(new URL(demo.liveUrl).protocol, "https:");
 }
