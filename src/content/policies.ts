@@ -91,7 +91,7 @@ export const POLICIES: Record<string, PolicySection[]> = {
     {
       title: "Browser interactions",
       paragraphs: [
-        "The website application does not include analytics or advertising scripts, account registration, contact forms, or application cookies. Catalog search and filtering run in your browser and are not submitted to a search service. Copy buttons write only the selected code or command to your clipboard when activated. Fonts and site assets are served with the website.",
+        "The website application does not include analytics or advertising scripts, account registration, contact forms, or application cookies. Catalog search and filtering run in your browser and are not submitted to a search service. Copy buttons write only the selected code or command to your clipboard when activated. The site uses system fonts and serves its assets from the website.",
       ],
     },
     {
