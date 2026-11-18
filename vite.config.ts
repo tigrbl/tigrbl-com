@@ -7,6 +7,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes("/prismjs/")) return "syntax-vendor";
           if (id.includes("node_modules")) return "react-vendor";
           if (id.includes("source-snapshot.json")) return "content";
         },

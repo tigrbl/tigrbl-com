@@ -29,6 +29,7 @@
   "dependencies": {
     "@mdwrk/structured-data": "0.3.0",
     "@vitejs/plugin-react": "^5.0.4",
+    "prismjs": "1.30.0",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "vite": "^6.2.3"
@@ -37,6 +38,7 @@
     "@playwright/test": "1.65.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
+    "@types/prismjs": "1.26.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "esbuild": "^0.25.0",

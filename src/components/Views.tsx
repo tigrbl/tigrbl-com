@@ -13,6 +13,7 @@ import { POLICIES } from "../content/policies";
 import checks from "../content/availability.json" with { type: "json" };
 import type { Availability, DemoRecord, PageRecord } from "../content/types";
 import { CodeBlock } from "./CodeBlock";
+import { SyntaxCode } from "./SyntaxCode";
 
 const availability = checks as Record<string, Availability>;
 export function PageHeading({
@@ -97,7 +98,7 @@ function Home() {
               · Alpha · Python {FACADE.publication.python}
             </p>
           </div>
-          <CodeBlock code={HEALTH_CODE} />
+          <CodeBlock language="python" code={HEALTH_CODE} />
         </div>
       </section>
       <section className="wrap section">
@@ -276,16 +277,18 @@ function GetStarted() {
             this website’s quickstart check.
           </p>
           <CodeBlock
+            language="bash"
             label="Shell"
             code={`uv init tigrbl-starter\ncd tigrbl-starter\nuv add "tigrbl==${FACADE.publication.version}" uvicorn`}
           />
           <p>
             Using pip instead? Create and activate a virtual environment, then
             run{" "}
-            <code>
-              python -m pip install "tigrbl=={FACADE.publication.version}"
-              uvicorn
-            </code>
+            <SyntaxCode
+              inline
+              language="bash"
+              code={`python -m pip install "tigrbl==${FACADE.publication.version}" uvicorn`}
+            />
             . An isolated pipx CLI install does not add application dependencies
             to your project.
           </p>
@@ -295,18 +298,20 @@ function GetStarted() {
           <p>
             Create <code>app.py</code> with this endpoint.
           </p>
-          <CodeBlock label="app.py" code={HEALTH_CODE} />
+          <CodeBlock language="python" label="app.py" code={HEALTH_CODE} />
         </section>
         <section>
           <h2>3. Run and request it</h2>
           <CodeBlock
+            language="bash"
             label="Shell"
             code={
               "uv run uvicorn app:app --reload\n# In another terminal:\ncurl http://127.0.0.1:8000/health"
             }
           />
           <p>
-            Expected JSON response: <code>{'{"status":"ok"}'}</code>. The
+            Expected JSON response:{" "}
+            <SyntaxCode inline language="json" code={'{"status":"ok"}'} />. The
             repository quickstart check exercises this request over ASGI using
             the pinned facade.
           </p>
@@ -397,7 +402,11 @@ function Ecosystem() {
                 : "Not found on PyPI at verification"}
             </p>
             {p.publication.version && (
-              <CodeBlock label="Install" code={`uv add ${p.name}`} />
+              <CodeBlock
+                language="bash"
+                label="Install"
+                code={`uv add ${p.name}`}
+              />
             )}
             <div className="actions">
               <a href={`${FRAMEWORK_SOURCE}/${p.sourcePath}`}>
@@ -448,10 +457,15 @@ function Examples() {
             <p className="eyebrow">{e.protocol}</p>
             <h2>{e.title}</h2>
             <p>{e.description}</p>
-            <CodeBlock
-              code={e.code}
-              label={e.id === "health" ? "Python" : "Reference"}
-            />
+            {e.language === "text" ? (
+              <p>{e.code}</p>
+            ) : (
+              <CodeBlock
+                code={e.code}
+                language={e.language}
+                label={e.language === "python" ? "Python" : "HTTP requests"}
+              />
+            )}
             <p className="muted">{e.evidence}</p>
             <a href={e.sourceUrl}>Pinned source ↗</a>
             <div className="related">
@@ -660,6 +674,7 @@ function DemoDetail({ demo }: { demo: DemoRecord }) {
             {publicSource && (
               <>
                 <CodeBlock
+                  language="bash"
                   label="Git"
                   code={[
                     "git clone " + demo.repositoryUrl + ".git",
@@ -765,6 +780,7 @@ function Releases() {
           </p>
         </div>
         <CodeBlock
+          language="bash"
           label="Pinned install"
           code={`uv add "tigrbl==${FACADE.publication.version}"`}
         />

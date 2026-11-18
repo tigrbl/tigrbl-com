@@ -37,6 +37,7 @@ export interface ExampleRecord {
   description: string;
   protocol: string;
   code: string;
+  language: "python" | "http" | "text";
   sourceUrl: string;
   evidence: string;
 }

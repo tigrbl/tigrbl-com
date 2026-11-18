@@ -8,8 +8,8 @@ Validated locally on November 17, 2026 (America/Chicago; November 18 UTC).
 - TypeScript, generated discovery parity, internal links, JSON-LD, XML/feed validation, asset budgets, routing validation, and proxy target checks pass.
 - Published quickstart: isolated Python 3.12 with tigrbl==0.4.5, GET /health returns 200 and the expected JSON.
 - Node 22 Docker build and Nginx syntax check pass. HTTP checks confirm page content, content types, gzip, redirects, and real 404s.
-- 15 Playwright checks pass across desktop, tablet, and mobile; includes direct navigation/hydration, search/filter/reset/empty states, keyboard/mobile navigation, legacy hash links, and JavaScript-disabled content.
-- Four JS/CSS assets total approximately 82.9 KB gzip; largest uncompressed chunk is about 194 KB (256 KiB ceiling).
+- 18 Playwright checks pass across desktop, tablet, and mobile; includes direct navigation/hydration, search/filter/reset/empty states, keyboard/mobile navigation, legacy hash links, and JavaScript-disabled content.
+- Five JS/CSS assets total approximately 91.9 KB gzip; largest uncompressed chunk is about 194 KB (256 KiB ceiling).
 
 ## Lighthouse lab evidence
 
@@ -41,3 +41,5 @@ The dependency audit retains four high advisories in the Vite/picomatch build-to
 Production has not been deployed by this update. Merge/promotion uses the existing deployment lane and post-deployment content verification. External demo repositories were inventoried but not modified.
 
 Source-visibility correction: private demos retain hosted launch actions, while public clone/setup links and SoftwareSourceCode markup are emitted only for public source. Browser coverage includes this access distinction.
+
+Syntax highlighting: explicit Python, Bash/Git, HTTP, and inline JSON grammars render token colors in initial HTML and during hydration. Browser checks confirm distinct keyword/string colors, exact source text, HTTP methods/paths, inline JSON properties, and highlighting across every code-block route family.

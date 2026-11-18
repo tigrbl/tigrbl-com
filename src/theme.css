@@ -627,6 +627,53 @@ dd {
 p a {
   text-decoration: underline;
 }
+.code-block pre code {
+  color: #e2e8f0;
+}
+.inline-code {
+  background: #111827;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+code .token.comment,
+code .token.prolog {
+  color: #94a3b8;
+  font-style: italic;
+}
+code .token.keyword,
+code .token.atrule {
+  color: #c4b5fd;
+}
+code .token.string,
+code .token.char,
+code .token.attr-value {
+  color: #86efac;
+}
+code .token.function,
+code .token.function-name {
+  color: #93c5fd;
+}
+code .token.class-name,
+code .token.decorator,
+code .token.annotation {
+  color: #fcd34d;
+}
+code .token.number,
+code .token.boolean,
+code .token.constant {
+  color: #fdba74;
+}
+code .token.operator,
+code .token.variable {
+  color: #fda4af;
+}
+code .token.builtin,
+code .token.property {
+  color: #67e8f9;
+}
+code .token.punctuation {
+  color: #cbd5e1;
+}
 @media (max-width: 850px) {
   .menu-button {
     display: none;

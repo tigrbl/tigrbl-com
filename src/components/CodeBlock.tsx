@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { SyntaxCode, type CodeLanguage } from "./SyntaxCode";
 export function CodeBlock({
   code,
+  language,
   label = "Python",
 }: {
   code: string;
+  language: CodeLanguage;
   label?: string;
 }) {
   const [status, setStatus] = useState("Copy");
@@ -24,7 +27,7 @@ export function CodeBlock({
         </button>
       </div>
       <pre tabIndex={0}>
-        <code>{code}</code>
+        <SyntaxCode code={code} language={language} />
       </pre>
       <span className="sr-only" role="status">
         {status === "Copy" ? "" : status}

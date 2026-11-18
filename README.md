@@ -37,6 +37,13 @@ External demo application origins are not included in the website's URL sitemaps
 The unused previous content pack, manual discovery outputs, simulated projection
 data, and client-only metadata injector have been removed.
 
+All code snippets declare their language and render syntax-colored token spans
+in static HTML and React. The lightweight Prism core loads only Python, Bash/Git,
+JSON, and HTTP grammars; React owns the markup and Prism's automatic DOM mutation
+is disabled. Inline shell commands and JSON responses use the same renderer.
+Prose references are rendered as paragraphs rather than mislabeled code blocks.
+Copy buttons preserve the exact original source text.
+
 ## Updating source facts
 
 Use Python 3.11+ for manifest extraction and Node 22 for the site. Refreshing is

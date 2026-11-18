@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { DEMOS } from "../src/content/demos";
+import { HEALTH_CODE } from "../src/content/examples";
 test("direct pages hydrate with correct content and no errors", async ({
   page,
 }) => {
@@ -116,4 +117,55 @@ test("private demo sources are labeled without unusable repository links", async
   await expect(
     page.getByRole("link", { name: "View source", exact: false }),
   ).toBeVisible();
+});
+test("code snippets have language-specific tokens and distinct syntax colors", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/");
+  const python = page.locator(".code-block code.language-python");
+  await expect(python).toHaveText(HEALTH_CODE);
+  const keywordColor = await python
+    .locator(".token.keyword")
+    .first()
+    .evaluate((node) => getComputedStyle(node).color);
+  const stringColor = await python
+    .locator(".token.string")
+    .first()
+    .evaluate((node) => getComputedStyle(node).color);
+  expect(keywordColor).not.toBe(stringColor);
+  for (const route of [
+    "/get-started",
+    "/examples",
+    "/ecosystem",
+    "/releases",
+    "/demos/tba-test-interop-wimse",
+  ]) {
+    await page.goto(route);
+    const blocks = page.locator(".code-block code");
+    expect(await blocks.count()).toBeGreaterThan(0);
+    for (const block of await blocks.all()) {
+      await expect(block).toHaveAttribute(
+        "data-language",
+        /^(python|bash|http)$/,
+      );
+      expect(await block.locator(".token").count()).toBeGreaterThan(0);
+    }
+  }
+  await page.goto("/get-started");
+  await expect(
+    page.locator("code.language-bash .token.project-command").first(),
+  ).toHaveText("uv");
+  await expect(
+    page.locator("code.inline-code.language-json .token.property"),
+  ).toHaveText('"status"');
+  await page.goto("/examples");
+  await expect(
+    page.locator("code.language-http .token.request-method"),
+  ).toHaveCount(3);
+  await expect(
+    page.locator("code.language-http .token.request-path"),
+  ).toHaveCount(3);
+  expect(errors).toEqual([]);
 });

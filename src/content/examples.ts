@@ -15,6 +15,7 @@ export const EXAMPLES: ExampleRecord[] = [
     description: "Create an ASGI application and expose a JSON health check.",
     protocol: "REST",
     code: HEALTH_CODE,
+    language: "python",
     sourceUrl: `${FRAMEWORK_SOURCE}/pkgs/80_facade/tigrbl`,
     evidence:
       "The website quickstart check installs the pinned facade and exercises this endpoint over ASGI.",
@@ -26,6 +27,7 @@ export const EXAMPLES: ExampleRecord[] = [
       "Start from the repository’s executable equivalence-contract example for a table-backed operation surface.",
     protocol: "REST + JSON-RPC",
     code: "See the pinned source example for the complete table declaration, app setup, and operation bindings.",
+    language: "text",
     sourceUrl: `${FRAMEWORK_SOURCE}/pkgs/96_examples/equivalence_contracts/src/tigrbl_equivalence_contracts/equivalences/rest_json_rpc_oltp_table/tigrbl_impl.py`,
     evidence:
       "Pinned source example; hosted-demo availability is reported separately. Follow the example’s own environment and test instructions.",
@@ -37,6 +39,7 @@ export const EXAMPLES: ExampleRecord[] = [
       "Read the diagnostics implementation and inspect the included application’s operation plans.",
     protocol: "REST",
     code: "GET /system/kernelz\nGET /system/methodz\nGET /system/hookz",
+    language: "http",
     sourceUrl: `${FRAMEWORK_SOURCE}/pkgs/70_concrete/tigrbl_concrete/tigrbl_concrete/system/diagnostics/kernelz.py`,
     evidence:
       "Diagnostic output depends on the installed version, mounted system routes, and included operations. These are request paths, not captured output.",
