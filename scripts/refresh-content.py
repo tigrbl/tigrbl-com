@@ -23,6 +23,7 @@ def main() -> None:
     parser.add_argument("--organization-root", type=Path, required=True)
     parser.add_argument("--skip-publications", action="store_true", help="Collect local facts before running refresh-publications.mjs")
     args = parser.parse_args()
+    exclusions = json.loads((Path(__file__).resolve().parents[1] / "src/content/demo-exclusions.json").read_text(encoding="utf-8"))
     repo = args.organization_root / "tigrbl"
     packages = []
     for path in tracked(repo, "*pyproject.toml"):
@@ -40,6 +41,8 @@ def main() -> None:
     repositories = []
     for directory in sorted(args.organization_root.iterdir()):
         name = directory.name
+        if name in exclusions:
+            continue
         if not directory.is_dir() or not re.search(r"demo|realtime|^websocket|^wt-agentbus$|^moqt-|^bmvp-authnz$|^portable_oidc_idp$|^tba-test-interop-wimse$", name):
             continue
         if not (directory / ".git").exists():

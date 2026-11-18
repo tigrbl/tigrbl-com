@@ -2,9 +2,9 @@
 
 Validated locally on November 17, 2026 (America/Chicago; November 18 UTC).
 
-- 53 public static HTML pages; 42 demo entries from 26 repositories. GitHub visibility checks found one public source repository and 25 private sources; private repository links and revisions are excluded from the public snapshot.
+- 51 public static HTML pages; 40 demo entries from 24 repositories. GitHub visibility checks found one public source repository and 23 private sources; private repository links and revisions are excluded from the public snapshot.
 - 45 source-backed package records and current PyPI facade 0.4.5.
-- 34/34 configured demo landing pages reachable; eight entries have local setup only.
+- 34/34 configured demo landing pages reachable; six entries have no public host.
 - TypeScript, generated discovery parity, internal links, JSON-LD, XML/feed validation, asset budgets, routing validation, and proxy target checks pass.
 - Published quickstart: isolated Python 3.12 with tigrbl==0.4.5, GET /health returns 200 and the expected JSON.
 - Node 22 Docker build and Nginx syntax check pass. HTTP checks confirm page content, content types, gzip, redirects, and real 404s.

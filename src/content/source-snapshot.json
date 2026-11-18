@@ -2060,13 +2060,6 @@
   ],
   "repositories": [
     {
-      "name": "bmvp-authnz",
-      "repositoryUrl": null,
-      "sourceRef": null,
-      "hosts": [],
-      "sourceVisibility": "private"
-    },
-    {
       "name": "haptic_demo",
       "repositoryUrl": null,
       "sourceRef": null,
@@ -2078,13 +2071,6 @@
       "repositoryUrl": null,
       "sourceRef": null,
       "hosts": ["moqt.showcase.tigrbl.dev"],
-      "sourceVisibility": "private"
-    },
-    {
-      "name": "portable_oidc_idp",
-      "repositoryUrl": null,
-      "sourceRef": null,
-      "hosts": [],
       "sourceVisibility": "private"
     },
     {

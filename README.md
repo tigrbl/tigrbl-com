@@ -4,8 +4,8 @@
 
 Product website for [tigrbl.com](https://tigrbl.com).
 
-React/Vite builds 53 public HTML pages, including a source-linked catalog of 42
-demonstrations from 26 repositories. Public pages are statically rendered before
+React/Vite builds 51 public HTML pages, including a source-linked catalog of 42
+demonstrations from 24 repositories. Public pages are statically rendered before
 React hydrates search, filters, copy controls, and mobile navigation. Ordinary
 links and page content work without JavaScript.
 
@@ -64,7 +64,7 @@ are linked as code recipes rather than misrepresented as hosted applications.
 
 Source inventory refresh requires authenticated GitHub CLI access to check
 repository visibility. Private repository URLs and commit revisions are removed
-before the snapshot is written. Of the 26 current demo repositories, only the
+before the snapshot is written. Of the 24 current demo repositories, only the
 WIMSE interop repository is public. Public source/setup links are therefore shown
 only for that entry; other entries label source access as restricted and direct
 visitors to support. Hosted demo access remains independent of source access.

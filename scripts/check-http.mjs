@@ -29,6 +29,8 @@ for (const url of [
   "/feed.xml",
   "/assets/missing.js",
   "/demos/missing",
+  "/demos/bmvp-authnz",
+  "/demos/portable-oidc-idp",
 ]) {
   const response = await fetch(origin + url);
   assert.equal(response.status, 404, url);

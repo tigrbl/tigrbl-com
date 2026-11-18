@@ -7,6 +7,7 @@ import { DEMOS, DEMO_DISPOSITIONS } from "../src/content/demos";
 import { SITE, PACKAGES } from "../src/content/site";
 import { discoveryFiles } from "./discovery";
 import { headHtml } from "../src/content/metadata";
+import exclusions from "../src/content/demo-exclusions.json" with { type: "json" };
 const parser = new XMLParser({
   ignoreAttributes: false,
   isArray: (tag) => ["sitemap", "url", "item", "entry"].includes(tag),
@@ -31,6 +32,12 @@ assert.equal(
 );
 for (const disposition of DEMO_DISPOSITIONS)
   assert(disposition.demoIds.length, "Demo repository omitted from catalog");
+for (const key of Object.keys(exclusions)) {
+  assert(
+    !DEMOS.some((demo) => demo.repositoryKey === key),
+    "Excluded demo must stay out of the catalog",
+  );
+}
 for (const demo of DEMOS) {
   if (demo.sourceVisibility === "public") {
     assert.match(demo.sourceRef!, /^[a-f0-9]{40}$/);

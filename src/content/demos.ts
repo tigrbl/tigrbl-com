@@ -3,12 +3,6 @@ import type { DemoRecord } from "./types";
 
 // Editorial purpose is reviewed here; repository identity and candidate hosts come from source manifests.
 const descriptions: Record<string, [string, string, string[], string[]]> = {
-  "bmvp-authnz": [
-    "Authorization application",
-    "Explore an application example for authentication and authorization.",
-    ["REST"],
-    [],
-  ],
   haptic_demo: [
     "Haptic feedback",
     "Explore a browser haptic interaction showcase and its transport implementation.",
@@ -19,12 +13,6 @@ const descriptions: Record<string, [string, string, string[], string[]]> = {
     "Media over QUIC",
     "Inspect the Media over QUIC and WebTransport demonstration.",
     ["WebTransport"],
-    [],
-  ],
-  portable_oidc_idp: [
-    "Portable OpenID Connect provider",
-    "Explore a portable identity-provider example and its discovery endpoints.",
-    ["REST", "OIDC"],
     [],
   ],
   "tba-test-interop-wimse": [
