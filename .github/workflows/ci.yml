@@ -12,12 +12,12 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
         with:
@@ -30,4 +30,31 @@ jobs:
       - run: npm run routing:validate
       - name: Validate Docker proxy target
         run: npm run proxy:target-check
-      - run: npm run docker:build
+      - name: Verify published quickstart
+        run: |
+          facade_version="$(node -p "JSON.parse(require('fs').readFileSync('src/content/source-snapshot.json')).packages.find(p => p.name === 'tigrbl').publication.version")"
+          uv run --no-project --with "tigrbl==$facade_version" --with httpx python scripts/check-quickstart.py
+      - run: npx playwright install --with-deps chromium
+      - name: Verify production Nginx and browser journeys
+        run: |
+          set -euo pipefail
+          docker build -t tigrbl-com:verify .
+          docker run --rm tigrbl-com:verify nginx -t
+          docker run -d --name tigrbl-site-verify -p 127.0.0.1:4189:80 tigrbl-com:verify
+          trap 'docker rm -f tigrbl-site-verify' EXIT
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:4189/ >/dev/null; then break; fi
+            sleep 1
+          done
+          SITE_BASE_URL=http://127.0.0.1:4189 npm run test:http
+          SITE_BASE_URL=http://127.0.0.1:4189 npm run test:browser
+          SITE_BASE_URL=http://127.0.0.1:4189 npm run performance:audit -- --strict
+      - name: Retain verification reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: website-verification
+          path: |
+            .reports/
+            test-results/
+          include-hidden-files: true

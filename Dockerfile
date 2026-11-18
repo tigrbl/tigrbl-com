@@ -1,4 +1,5 @@
-FROM node:20-alpine AS build
+FROM node:22-alpine AS build
+RUN apk add --no-cache fontconfig font-dejavu
 WORKDIR /app
 ARG SOURCE_COMMIT=unknown
 COPY package*.json ./

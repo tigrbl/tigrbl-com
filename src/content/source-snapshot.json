@@ -1,0 +1,2270 @@
+{
+  "verifiedAt": "2026-11-18",
+  "frameworkRef": "de78e1a54b6d9ddfa3603bdc0f3c77d7f8da3119",
+  "packages": [
+    {
+      "name": "tigrbl",
+      "description": "Schema-first ASGI framework for REST, JSON-RPC, streaming, SSE, WebSocket, runtime plans, hooks, diagnostics, and engine plugins.",
+      "sourcePath": "pkgs/80_facade/tigrbl",
+      "group": "facade",
+      "sourceVersion": "0.4.6.dev1",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [
+        "gunicorn",
+        "hypercorn",
+        "postgres",
+        "servers",
+        "templates",
+        "tests",
+        "tigrcorn",
+        "uvicorn"
+      ],
+      "publication": {
+        "name": "tigrbl",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Environment :: Web Environment",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+          "Topic :: Software Development :: Code Generators",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Typing :: Typed"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl/json",
+        "releases": [
+          {
+            "version": "0.0.1.dev1",
+            "publishedAt": "2025-09-09",
+            "publishedTimestamp": "2025-09-09T07:54:21.163379Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.0",
+            "publishedAt": "2026-01-28",
+            "publishedTimestamp": "2026-01-28T00:54:08.154066Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.0.dev2",
+            "publishedAt": "2025-09-10",
+            "publishedTimestamp": "2025-09-10T15:15:51.055612Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.0.dev3",
+            "publishedAt": "2025-09-10",
+            "publishedTimestamp": "2025-09-10T20:17:45.161798Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.0.dev4",
+            "publishedAt": "2025-09-11",
+            "publishedTimestamp": "2025-09-11T14:19:05.014375Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.1",
+            "publishedAt": "2026-01-28",
+            "publishedTimestamp": "2026-01-28T08:16:53.671899Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.10",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T11:02:51.355879Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.10.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T10:56:24.175633Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.11",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T12:32:19.285543Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.11.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T12:24:50.710200Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.11.dev2",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T12:28:02.276867Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.12",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T14:52:09.311675Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.12.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T14:48:24.578525Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.13",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T16:43:02.619401Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.13.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T16:40:35.512149Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.14",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T18:05:19.200955Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.14.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T18:01:48.199183Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.15",
+            "publishedAt": "2026-02-17",
+            "publishedTimestamp": "2026-02-17T13:36:24.327221Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.15.dev2",
+            "publishedAt": "2026-02-17",
+            "publishedTimestamp": "2026-02-17T13:09:32.868945Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.16",
+            "publishedAt": "2026-02-23",
+            "publishedTimestamp": "2026-02-23T13:13:36.481156Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.16.dev1",
+            "publishedAt": "2026-02-17",
+            "publishedTimestamp": "2026-02-17T18:05:17.460069Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.16.dev2",
+            "publishedAt": "2026-02-17",
+            "publishedTimestamp": "2026-02-17T19:40:22.902256Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.16.dev4",
+            "publishedAt": "2026-02-18",
+            "publishedTimestamp": "2026-02-18T23:45:58.883069Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.16.dev5",
+            "publishedAt": "2026-02-23",
+            "publishedTimestamp": "2026-02-23T10:27:29.653662Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17",
+            "publishedAt": "2026-03-24",
+            "publishedTimestamp": "2026-03-24T06:02:51.580210Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev10",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T21:58:54.353066Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev11",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T23:06:45.613871Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev12",
+            "publishedAt": "2026-03-05",
+            "publishedTimestamp": "2026-03-05T02:53:03.834937Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev13",
+            "publishedAt": "2026-03-20",
+            "publishedTimestamp": "2026-03-20T08:03:53.769747Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev14",
+            "publishedAt": "2026-03-20",
+            "publishedTimestamp": "2026-03-20T09:45:22.923444Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev15",
+            "publishedAt": "2026-03-20",
+            "publishedTimestamp": "2026-03-20T10:04:38.110152Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev16",
+            "publishedAt": "2026-03-20",
+            "publishedTimestamp": "2026-03-20T17:20:26.197442Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev17",
+            "publishedAt": "2026-03-20",
+            "publishedTimestamp": "2026-03-20T17:58:49.121856Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev18",
+            "publishedAt": "2026-03-23",
+            "publishedTimestamp": "2026-03-23T07:41:36.429813Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev2",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T08:01:02.339578Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev6",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T09:58:29.338688Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev7",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T10:01:37.728884Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev8",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T12:22:55.701344Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.17.dev9",
+            "publishedAt": "2026-03-04",
+            "publishedTimestamp": "2026-03-04T12:49:14.912870Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.19",
+            "publishedAt": "2026-05-03",
+            "publishedTimestamp": "2026-05-03T14:25:28.393238Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.2",
+            "publishedAt": "2026-01-28",
+            "publishedTimestamp": "2026-01-28T13:03:24.069270Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.2.dev1",
+            "publishedAt": "2026-01-28",
+            "publishedTimestamp": "2026-01-28T12:57:12.470836Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.20.dev1",
+            "publishedAt": "2026-05-04",
+            "publishedTimestamp": "2026-05-04T00:15:44.643068Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.28.dev1",
+            "publishedAt": "2026-04-24",
+            "publishedTimestamp": "2026-04-24T22:13:41.098355Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.29",
+            "publishedAt": "2026-04-24",
+            "publishedTimestamp": "2026-04-24T23:52:57.971777Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.29.dev1",
+            "publishedAt": "2026-04-24",
+            "publishedTimestamp": "2026-04-24T22:25:29.635767Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.29.dev2",
+            "publishedAt": "2026-04-24",
+            "publishedTimestamp": "2026-04-24T23:40:27.346052Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.3",
+            "publishedAt": "2026-02-01",
+            "publishedTimestamp": "2026-02-01T09:44:03.317778Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.3.dev1",
+            "publishedAt": "2026-01-30",
+            "publishedTimestamp": "2026-01-30T23:02:36.032194Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.3.dev2",
+            "publishedAt": "2026-01-30",
+            "publishedTimestamp": "2026-01-30T23:41:09.744710Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.30.dev1",
+            "publishedAt": "2026-04-25",
+            "publishedTimestamp": "2026-04-25T00:34:40.938116Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.4",
+            "publishedAt": "2026-02-04",
+            "publishedTimestamp": "2026-02-04T08:28:37.890700Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.4.dev1",
+            "publishedAt": "2026-02-01",
+            "publishedTimestamp": "2026-02-01T21:07:26.100754Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.4.dev2",
+            "publishedAt": "2026-02-04",
+            "publishedTimestamp": "2026-02-04T06:38:45.746772Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.5",
+            "publishedAt": "2026-02-14",
+            "publishedTimestamp": "2026-02-14T03:13:42.225621Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.5.dev5",
+            "publishedAt": "2026-02-12",
+            "publishedTimestamp": "2026-02-12T08:26:00.486737Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.6",
+            "publishedAt": "2026-02-14",
+            "publishedTimestamp": "2026-02-14T23:29:32.895977Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.6.dev1",
+            "publishedAt": "2026-02-14",
+            "publishedTimestamp": "2026-02-14T23:26:28.147361Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.7",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T06:31:49.914395Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.7.dev1",
+            "publishedAt": "2026-02-15",
+            "publishedTimestamp": "2026-02-15T00:32:06.671810Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.7.dev2",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T00:17:02.804277Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.7.dev3",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T06:28:36.133908Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.8",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T08:28:40.958256Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.8.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T08:21:57.317136Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.9",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T09:38:26.176858Z",
+            "yanked": false
+          },
+          {
+            "version": "0.3.9.dev1",
+            "publishedAt": "2026-02-16",
+            "publishedTimestamp": "2026-02-16T09:34:43.370863Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.0",
+            "publishedAt": "2026-05-04",
+            "publishedTimestamp": "2026-05-04T21:51:03.654950Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.0.dev2",
+            "publishedAt": "2026-05-04",
+            "publishedTimestamp": "2026-05-04T10:27:26.519847Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.1",
+            "publishedAt": "2026-05-19",
+            "publishedTimestamp": "2026-05-19T22:21:28.547480Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.1.dev3",
+            "publishedAt": "2026-05-13",
+            "publishedTimestamp": "2026-05-13T05:10:42.989560Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.1.dev6",
+            "publishedAt": "2026-05-19",
+            "publishedTimestamp": "2026-05-19T06:42:14.505591Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.2",
+            "publishedAt": "2026-06-01",
+            "publishedTimestamp": "2026-06-01T22:33:30.847797Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.2.dev3",
+            "publishedAt": "2026-06-01",
+            "publishedTimestamp": "2026-06-01T15:31:00.763410Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.2.dev4",
+            "publishedAt": "2026-06-01",
+            "publishedTimestamp": "2026-06-01T22:04:58.840959Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.3",
+            "publishedAt": "2026-06-18",
+            "publishedTimestamp": "2026-06-18T21:55:01.295547Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.3.dev4",
+            "publishedAt": "2026-06-18",
+            "publishedTimestamp": "2026-06-18T20:53:00.575332Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.4",
+            "publishedAt": "2026-06-27",
+            "publishedTimestamp": "2026-06-27T03:10:57.196184Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.4.dev1",
+            "publishedAt": "2026-06-19",
+            "publishedTimestamp": "2026-06-19T17:14:34.641414Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.4.dev7",
+            "publishedAt": "2026-06-26",
+            "publishedTimestamp": "2026-06-26T15:19:32.891167Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.4.dev8",
+            "publishedAt": "2026-06-26",
+            "publishedTimestamp": "2026-06-26T15:42:53.155962Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.5",
+            "publishedAt": "2026-11-10",
+            "publishedTimestamp": "2026-11-10T02:09:07.628048Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.5.dev1",
+            "publishedAt": "2026-06-27",
+            "publishedTimestamp": "2026-06-27T09:50:00.057125Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.5.dev10",
+            "publishedAt": "2026-11-09",
+            "publishedTimestamp": "2026-11-09T23:31:01.935825Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.5.dev4",
+            "publishedAt": "2026-06-27",
+            "publishedTimestamp": "2026-06-27T11:07:37.561861Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.5.dev6",
+            "publishedAt": "2026-11-03",
+            "publishedTimestamp": "2026-11-03T23:13:36.276949Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.5.dev8",
+            "publishedAt": "2026-11-04",
+            "publishedTimestamp": "2026-11-04T06:43:28.596892Z",
+            "yanked": false
+          },
+          {
+            "version": "0.4.6.dev1",
+            "publishedAt": "2026-11-16",
+            "publishedTimestamp": "2026-11-16T00:28:35.552563Z",
+            "yanked": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "tigrbl-atoms",
+      "description": "Runtime atom package for Tigrbl stages, phases, typed contexts, event anchors, protocol execution, and composable pipeline algebra.",
+      "sourcePath": "pkgs/40_atoms/tigrbl_atoms",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-atoms",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Environment :: Web Environment",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+          "Topic :: Software Development :: Code Generators",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Typing :: Typed"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-atoms/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-base",
+      "description": "Base contract package for Tigrbl apps, routers, tables, sessions, middleware, requests, responses, bindings, and engine interfaces.",
+      "sourcePath": "pkgs/20_base/tigrbl_base",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-base",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Environment :: Web Environment",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+          "Topic :: Software Development :: Code Generators",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Typing :: Typed"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-base/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-concrete",
+      "description": "Concrete Tigrbl implementations for reusable framework behavior, sessions, routes, responses, and base abstraction adapters.",
+      "sourcePath": "pkgs/70_concrete/tigrbl_concrete",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-concrete",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-concrete/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-core",
+      "description": "Core Tigrbl framework specifications, decorators, schemas, hooks, operations, and primitives for schema-first APIs.",
+      "sourcePath": "pkgs/10_core/tigrbl_core",
+      "group": "core",
+      "sourceVersion": "0.4.6.dev1",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-core",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-core/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-kernel",
+      "description": "Kernel orchestration for composing Tigrbl runtime plans, bindings, operation dispatch, and optimized ASGI execution.",
+      "sourcePath": "pkgs/45_kernel/tigrbl_kernel",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-kernel",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-kernel/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-migrations",
+      "description": "Component manifests, migration DAGs, schema ownership, ledgers, and deployment locks for Tigrbl.",
+      "sourcePath": "pkgs/10_core/tigrbl_migrations",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": ["test"],
+      "publication": {
+        "name": "tigrbl-migrations",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "License :: OSI Approved :: Apache Software License",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-migrations/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-ops-olap",
+      "description": "Analytical OLAP operation boundaries for Tigrbl workloads, query-oriented APIs, and engine integrations.",
+      "sourcePath": "pkgs/60_ops/tigrbl_ops_olap",
+      "group": "op-pack",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-ops-olap",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-ops-olap/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-ops-oltp",
+      "description": "Transactional OLTP operation handlers for Tigrbl CRUD, bulk, REST, JSON-RPC, and database-backed workloads.",
+      "sourcePath": "pkgs/60_ops/tigrbl_ops_oltp",
+      "group": "op-pack",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-ops-oltp",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-ops-oltp/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-ops-realtime",
+      "description": "Realtime, streaming, datagram, websocket, and event operation handlers for Tigrbl ASGI runtimes.",
+      "sourcePath": "pkgs/60_ops/tigrbl_ops_realtime",
+      "group": "op-pack",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-ops-realtime",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-ops-realtime/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-ops-webtransport",
+      "description": "WebTransport control-plane operation handlers for Tigrbl stream and session coordination.",
+      "sourcePath": "pkgs/60_ops/tigrbl_ops_webtransport",
+      "group": "op-pack",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-ops-webtransport",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-ops-webtransport/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-orm",
+      "description": "SQLAlchemy ORM tables, mixins, columns, model helpers, and persistence primitives for Tigrbl applications.",
+      "sourcePath": "pkgs/30_orm/tigrbl_orm",
+      "group": "core",
+      "sourceVersion": "0.4.6.dev1",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-orm",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-orm/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-runtime",
+      "description": "Execution bridge for compiled Tigrbl kernel plans and narrow runtime context/carrier compatibility.",
+      "sourcePath": "pkgs/50_runtime/tigrbl_runtime",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-runtime",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-runtime/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl-typing",
+      "description": "Typing protocols, aliases, generics, and shared type helpers for Tigrbl framework packages and extensions.",
+      "sourcePath": "pkgs/00_typing/tigrbl_typing",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl-typing",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl-typing/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_client",
+      "description": "Typed Python client for Tigrbl REST and JSON-RPC APIs with sync and async calls, nested resource helpers, and optional Pydantic validation.",
+      "sourcePath": "pkgs/95_client/tigrbl_client",
+      "group": "tooling",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_client",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Environment :: Web Environment",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Typing :: Typed"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_client/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_bigquery",
+      "description": "BigQuery engine plugin for Google BigQuery warehouse sessions, analytics workloads, and Tigrbl engine registration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_bigquery",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_bigquery",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_bigquery/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_clickhouse",
+      "description": "ClickHouse engine plugin for analytical database sessions, warehouse workloads, and Tigrbl engine registration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_clickhouse",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_clickhouse",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_clickhouse/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_csv",
+      "description": "CSV engine plugin for file-backed tables, pandas DataFrames, and lightweight Tigrbl data workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_csv",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_csv",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_csv/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_dataframe",
+      "description": "DataFrame engine plugin for transactional pandas sessions and in-process Tigrbl analytics workloads.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_dataframe",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_dataframe",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_dataframe/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_duckdb",
+      "description": "DuckDB engine plugin for embedded analytical database sessions, OLAP workloads, and Tigrbl engine registration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_duckdb",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_duckdb",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_duckdb/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_inmemcache",
+      "description": "In-memory cache engine plugin for process-local TTL, LRU, and fast Tigrbl cache workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_inmemcache",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_inmemcache",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_inmemcache/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_inmemory",
+      "description": "In-memory database engine plugin for process-local transactional storage, copy-on-write snapshots, and Tigrbl testing.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_inmemory",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_inmemory",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_inmemory/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_mariadb",
+      "description": "MariaDB engine plugin providing native Tigrbl EngineSession integration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_mariadb",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_mariadb",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_mariadb/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_membloom",
+      "description": "In-memory Bloom filter engine plugin for membership checks, rotating TTL windows, and Tigrbl API workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_membloom",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_membloom",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_membloom/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_memdedupe",
+      "description": "In-memory dedupe engine plugin for idempotency tracking, duplicate suppression, and Tigrbl workflow coordination.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_memdedupe",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_memdedupe",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_memdedupe/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_memkv",
+      "description": "In-memory key-value engine plugin for process-local KV storage, cache workflows, and lightweight Tigrbl services.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_memkv",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_memkv",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_memkv/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_memlru",
+      "description": "In-memory LRU engine plugin for least-recently-used cache behavior and process-local Tigrbl data workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_memlru",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_memlru",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_memlru/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_mempubsub",
+      "description": "In-memory pub/sub engine plugin for process-local publish-subscribe channels, events, and Tigrbl realtime workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_mempubsub",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_mempubsub",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_mempubsub/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_memqueue",
+      "description": "In-memory queue engine plugin for process-local tasks, message workflows, and Tigrbl runtime coordination.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_memqueue",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_memqueue",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_memqueue/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_memrate",
+      "description": "In-memory rate-limit engine plugin for API quotas, counters, windows, and Tigrbl governance workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_memrate",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_memrate",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_memrate/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_numpy",
+      "description": "NumPy engine plugin for array-to-table helpers, analytical workflows, and Tigrbl data integration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_numpy",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_numpy",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_numpy/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_pandas",
+      "description": "Pandas engine plugin for transactional DataFrame sessions, tabular workflows, and Tigrbl data integration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_pandas",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_pandas",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_pandas/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_pgsqli_wal",
+      "description": "PostgreSQL and SQLite WAL engine plugin for transactional Tigrbl workflows and database-backed engine registration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_pgsqli_wal",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_pgsqli_wal",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_pgsqli_wal/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_postgres",
+      "description": "PostgreSQL engine plugin for SQLAlchemy sessions, async database workflows, and Tigrbl application persistence.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_postgres",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_postgres",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_postgres/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_pyspark",
+      "description": "PySpark engine plugin for distributed DataFrame integration, analytics workloads, and Tigrbl data workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_pyspark",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_pyspark",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_pyspark/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_redis",
+      "description": "Redis engine plugin for cache, data structures, and Tigrbl engine workflows backed by Redis.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_redis",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_redis",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_redis/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_rediscachethrough",
+      "description": "Redis cache-through engine plugin for Redis, PostgreSQL, and Tigrbl data-access acceleration workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_rediscachethrough",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_rediscachethrough",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_rediscachethrough/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_rom",
+      "description": "Immutable read-only memory engine plugin for Tigrbl.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_rom",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_rom",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_rom/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_s3",
+      "description": "Direct S3 API-backed object storage engine plugin for Tigrbl with optional content-addressed storage.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_s3",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_s3",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_s3/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_s3fs",
+      "description": "S3FS-backed object storage engine plugin for Tigrbl with optional content-addressed storage.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_s3fs",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_s3fs",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_s3fs/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_snowflake",
+      "description": "Snowflake engine plugin for warehouse sessions, analytical workloads, and Tigrbl engine registration.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_snowflake",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_snowflake",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_snowflake/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_sqlite",
+      "description": "SQLite engine plugin for SQLAlchemy sessions, local transactional storage, and Tigrbl application persistence.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_sqlite",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_sqlite",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_sqlite/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_engine_xlsx",
+      "description": "XLSX engine plugin for Excel workbook-backed tables, worksheet data access, and Tigrbl tabular workflows.",
+      "sourcePath": "pkgs/90_engines/tigrbl_engine_xlsx",
+      "group": "engine",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_engine_xlsx",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Database",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_engine_xlsx/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_model",
+      "description": "Pydantic-independent validation, serialization, and JSON Schema models for Tigrbl.",
+      "sourcePath": "pkgs/02_model/tigrbl_model",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_model",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "License :: OSI Approved :: Apache Software License",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_model/json",
+        "releases": []
+      }
+    },
+    {
+      "name": "tigrbl_spec",
+      "description": "Shared Tigrbl interfaces, protocol definitions, compatibility targets, and specification artifacts for framework integration.",
+      "sourcePath": "pkgs/01_spec/tigrbl_spec",
+      "group": "core",
+      "sourceVersion": "0.4.5",
+      "sourcePython": ">=3.10,<3.15",
+      "extras": [],
+      "publication": {
+        "name": "tigrbl_spec",
+        "version": "0.4.5",
+        "python": "<3.15,>=3.10",
+        "classifiers": [
+          "Development Status :: 3 - Alpha",
+          "Framework :: AsyncIO",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Information Technology",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Software Development :: Libraries :: Application Frameworks",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "sourceUrl": "https://pypi.org/pypi/tigrbl_spec/json",
+        "releases": []
+      }
+    }
+  ],
+  "repositories": [
+    {
+      "name": "haptic_demo",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["haptic.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "moqt-loc-msf-webtransport",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["moqt.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tba-test-interop-wimse",
+      "repositoryUrl": "https://github.com/tigrbl/tba-tests-interop-wimse",
+      "sourceRef": "81b22c906436c916d722d3a260c38e276b7ebba8",
+      "hosts": [],
+      "sourceVisibility": "public"
+    },
+    {
+      "name": "tigrbl-demo-bloom-filter-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "bloom.engine-demo.tigrbl.dev",
+        "membloom.engine-demo.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-clickhouse-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "clickhouse-lab.tigrbl.dev",
+        "clickhouse.engine-demo.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-dataframe-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["dataframe.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-dedupe-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "dedupe.engine-demo.tigrbl.dev",
+        "memdedupe.engine-demo.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-immutable-rom-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["rom.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-lru-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["lru.engine-demo.tigrbl.dev", "memlru.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-PySpark-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["pyspark.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-queue-engine",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "memqueue.engine-demo.tigrbl.dev",
+        "queue.engine-demo.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-demo-wal-engines",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "pgsqli-wal.engine-demo.tigrbl.dev",
+        "wal.engine-demo.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-engine-demo-fleet",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "bigquery.engine-demo.tigrbl.dev",
+        "csv.engine-demo.tigrbl.dev",
+        "inmemcache.engine-demo.tigrbl.dev",
+        "inmemory.engine-demo.tigrbl.dev",
+        "mariadb.engine-demo.tigrbl.dev",
+        "memkv.engine-demo.tigrbl.dev",
+        "mempubsub.engine-demo.tigrbl.dev",
+        "memrate.engine-demo.tigrbl.dev",
+        "numpy.engine-demo.tigrbl.dev",
+        "pandas.engine-demo.tigrbl.dev",
+        "redis.engine-demo.tigrbl.dev",
+        "rediscachethrough.engine-demo.tigrbl.dev",
+        "s3.engine-demo.tigrbl.dev",
+        "s3fs.engine-demo.tigrbl.dev",
+        "snowflake.engine-demo.tigrbl.dev",
+        "sqlite.engine-demo.tigrbl.dev",
+        "xlsx.engine-demo.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl-restbulkcrudtable-postgres-demo",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["postgres.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl_http_webdav_demo",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["tigrbl-webdav-demo.bz23.xyz", "webdav.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl_realtime_ws_agent2user",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl_realtime_ws_user2user_video",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl_realtime_ws_user2user_voice",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["tigrbl-voice-demo.bz23.xyz", "voice.showcase.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl_realtime_wt_present2many_video-screen",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "present2many.showcase.tigrbl.dev",
+        "tigrbl-present2many-demo.bz23.xyz"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "tigrbl_realtime_wt_user2user_videochat",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [
+        "tigrbl-wt-video-demo.bz23.xyz",
+        "wt-video.showcase.tigrbl.dev"
+      ],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "websocket-realtime-ops-duckdb-demo",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": ["duckdb.engine-demo.tigrbl.dev"],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "websocket-realtime-ops-postgres",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "websocket-realtime-postgres-duckdb",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
+    },
+    {
+      "name": "wt-agentbus",
+      "repositoryUrl": null,
+      "sourceRef": null,
+      "hosts": [],
+      "sourceVisibility": "private"
+    }
+  ]
+}

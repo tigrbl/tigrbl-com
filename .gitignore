@@ -2,6 +2,10 @@ node_modules/
 .uv-cache/
 dist/
 coverage/
+.reports/
+test-results/
+playwright-report/
+.quickstart-venv/
 .env
 .env.local
 npm-debug.log*

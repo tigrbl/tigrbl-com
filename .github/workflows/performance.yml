@@ -1,0 +1,32 @@
+name: Audit website performance
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Audit production Nginx
+        run: |
+          set -euo pipefail
+          docker build -t tigrbl-com:audit .
+          docker run -d --name tigrbl-site-audit -p 127.0.0.1:4189:80 tigrbl-com:audit
+          trap 'docker rm -f tigrbl-site-audit' EXIT
+          SITE_BASE_URL=http://127.0.0.1:4189 npm run performance:audit -- --strict
+      - name: Retain raw Lighthouse evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: lighthouse-reports
+          path: .reports/lighthouse/
+          include-hidden-files: true
